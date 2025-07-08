@@ -1,0 +1,196 @@
+<?
+	header('content-Type:text/html; charset=utf-8');
+
+	session_start();
+
+	include 'lib/lib.php';
+
+	login_check();
+	
+
+	//세션 제거
+	unset($_SESSION['object_idx']);
+
+
+	$search_name  = trim($_POST['search_name']);
+	$search_birth = trim($_POST['search_birth']);
+	$search_tel   = trim($_POST['search_tel']);
+	$search_idx   = trim($_POST['search_idx']);
+
+?>
+
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.wapforum.org/DTD/xhtml-mobile12.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10.0,user-scalable=yes">
+<title>선별검진용 기록지</title>
+	<link rel="stylesheet" type="text/css" href="config/com/one_basic.css" />
+	<link rel="stylesheet" type="text/css" href="config/com/one_style.css" />
+
+	<script src="lib/lib.js"></script>
+	<script src="./jquery/jquery-1.9.1.js"></script>
+
+	<script>
+	$(function() {
+		
+		$("#pre_btn").click( function() {  goUrl("mainP.html"); } );
+		$("#next_btn").click( function() {  goUrl("sub00_02.html"); } );
+
+		$("input[name='search_name']").keyup(
+			function(e) 
+			{ 
+				if( $(this).val().length >0 && e.keyCode == 13 ) document.frm.submit(); 
+			} 
+		);
+
+		$("input[name='search_birth']").keyup(
+			function(e) 
+			{ 
+				if( $(this).val().length >0 && e.keyCode == 13 ) document.frm.submit(); 
+			} 
+		);
+
+		$("input[name='search_tel']").keyup(
+			function(e) 
+			{ 
+				if( $(this).val().length >0 && e.keyCode == 13 ) document.frm.submit(); 
+			} 
+		);
+
+		$("input[name='search_idx']").keyup(
+			function(e) 
+			{ 
+				if( $(this).val().length >0 && e.keyCode == 13 ) document.frm.submit(); 
+			} 
+		);
+	});
+
+	function object_edit(idx)
+	{
+		document.frms.object_idx.value = idx;
+		document.frms.submit();
+	}
+
+	function object_sel(idx)
+	{
+		//document.frms.object_idx.value = idx;
+		document.frms.action = "object_tests.html?object_idx="+idx;
+		document.frms.submit();
+	}
+
+	function onSubmit()
+	{
+		document.frm.submit();
+	}
+	</script>
+
+</head>
+<body>
+<form name='frms' method='post' action='sub00_02.html'>
+<input type='hidden' name='mode' value='edit'>
+<input type='hidden' name='object_idx'>
+</form>
+
+
+<div id="wrap">
+<!-- mobile header start -->
+<div id="header">
+	<h1><a href="#"><img src="mimg/sub00_tit.png" width="180" height="48" alt="대상자 관리" /></a></h1>
+</div>
+<!-- mobile header end -->
+<hr />
+ 
+<!-- mobile body start -->
+<div class="tableWrap">
+	<form method='post' action='sub00_03.html' name='frm' class="modificationForm">
+		<h1><img src="mimg/tit_search.png" width="182" height="74" alt="수정" /></h1>
+		<fieldset>
+	 		<label for="name02">이름</label><input name='search_name' id="name02" type="text" value='<?=$search_name?>'><br class="floatClear">
+     		<label for="birth02">주민번호</label><input name="search_birth" id="birth02" type="text" value='<?=$search_birth?>' pattern='[0-9]*' ><br class="floatClear">
+     		<label for="phonNum02">전화</label><input name="search_tel" id="phonNum02" type="text" value='<?=$search_tel?>' pattern='[0-9]*' ><br class="floatClear">
+			<label for="phonNum02">I D</label><input name="search_idx" id="phonNum02" type="text" value='<?=$search_idx?>' pattern='[0-9]*' ><br class="floatClear">
+			<div class="searchBtn2" onClick='onSubmit()'><p>검 색</p></div>
+		</fieldset>
+	</form>
+	<div class="tableStyle01">
+	<table summary="치매 선별용 한국어판 간이정신상태검사">
+		<colgroup>
+			<col width="20%" />
+			<col width="20%" />
+			<col width="20%" />
+			<col width="20%" />
+			<col width="20%" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th scope="col">이름</th>
+				<th scope="col">주민번호</th>
+				<th scope="col">집전화</th>
+				<th scope="col">휴대전화</th>
+				<th scope="col">선택</th>
+			</tr>
+		</thead>
+		<tbody>
+
+<?
+	db_con();
+
+	//echo strlen($search_name)."~".strlen($search_birth)."~".strlen($search_tel);
+
+	if(strlen($search_name)>0 || strlen($search_birth)>0 || strlen($search_tel)>0 || strlen($search_idx)>0)	
+	{
+		$query  = "select idx, name, jumin1, jumin2,  tel1, tel2, tel3, mobile1, mobile2, mobile3 from mb_object";
+		$query .= " where 1=1 ";
+		
+		if( strlen($search_name)>0 )
+		{
+			$query .= " and name like '%".enc("w", $search_name)."%' ";
+		}
+		if( strlen($search_birth)>0 )
+		{
+			$query .= " and (jumin1 like '%".enc("w", $search_birth)."%' or jumin2 like '%".enc("w", $search_birth)."%') ";
+		}
+		if( strlen($search_tel)>0 )
+		{
+			$query .= " and ( (CONCAT(tel1,tel2,tel3) like '%".enc("w", $search_tel)."%') or (CONCAT(mobile1,mobile2,mobile3) like '%".enc("w", $search_tel)."%' ) ) ";
+		}
+		if( strlen($search_idx)>0 )
+		{
+			$query .= " and idx = '".$search_idx."' ";
+		}
+		$query .= " order by name";
+		//echo $query."<br>";
+	}
+
+	$result = query_send_result($query);		
+
+	while($row = mysql_fetch_array($result))
+	{
+		echo "<tr><td>".enc("r", $row[name])."</td>";
+		echo "<td>".enc("r", $row[jumin1])."-".enc("r", $row[jumin2])."***</td>";
+		echo "<td>".enc("r", $row[tel1])."-".enc("r", $row[tel2])."-".enc("r", $row[tel3])."</td>";
+		echo "<td>".enc("r", $row[mobile1])."-".enc("r", $row[mobile2])."-".enc("r", $row[mobile3])."</td>";
+		echo "<td><div class='modificationBtn2' onClick='object_edit($row[idx])'><p>수정</p></div><div class='selectBtn' onClick='object_sel($row[idx])'><p>선택</p></div></td></tr>";
+	}
+
+
+	db_discon();
+?>
+		</tbody>
+	</table>
+	</div>
+</div>
+<div id="btnWrap"><p id='pre_btn' class="btnStyle02">메 인</p><p id='next_btn' class="btnStyle02">신 규</p></div>
+<!-- mobile body end -->
+<hr />
+
+<!-- mobile footer start -->
+<div id="footer">
+	<address>조선대학교 혁신하는 조선, 행복한 대학</address>
+</div>
+</div>
+</body>
+<!-- mobile footer end -->
+</html>

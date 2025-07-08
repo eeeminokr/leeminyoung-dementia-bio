@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <!-- base -->
+    <context:component-scan annotation-config="true" use-default-filters="false" base-package="dementia">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+    </context:component-scan>
+    
+	<bean class="dementia.framework.resource.ApplicationContextFactory"/>
+	
+	<bean id="ImagingInfoService" class="dementia.imageryInfoMgt.service.impl.ImagingInfoServiceImpl">
+        <property name="excelFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.ImagingDownloadInfoCellWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+        <property name="imagingInfoExcelFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.ImagingInfoCellWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+        <property name="imagingMriSubExcelFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.ImagingMriSubWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+        <property name="imagingMriSurfaceExcelFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.ImagingMriSurfaceWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+        <property name="imagingMriThickExcelFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.ImagingMriThickWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+		<property name="objectIdFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="colsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.ObjectIdCellReaderMapper" />
+                </property>
+            </bean>
+        </property>
+        <property name="medicIdFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="colsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.MedicIdCellReaderMapper" />
+                </property>
+            </bean>
+        </property>
+        <property name="imagingMriSubFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="colsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.ImagingMriSubCellReaderMapper" />
+                </property>
+            </bean>
+        </property>
+        <property name="imagingMriSurfaceFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="colsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.ImagingMriSurfaceCellReaderMapper" />
+                </property>
+            </bean>
+        </property>
+        <property name="imagingMriThickFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="colsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.ImagingMriThickCellReaderMapper" />
+                </property>
+            </bean>
+        </property>
+        <property name="petSuvrFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.PetSuvrWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+         <property name="petSuvrFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.imageryInfoMgt.service.impl.PetSuvrCellReaderMapper" />
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="UserMgtService" class="dementia.basicinfo.service.impl.UserMgtServiceImpl">
+    	<property name="userMgtExcelFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.basicinfo.service.impl.UserMgtCellWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="EmailSender" class="dementia.framework.mail.EmailSender" />
+    <bean id="ManageSearchConditionsService" class="dementia.basicinfo.service.impl.ManageSearchConditionsServiceImpl" />
+    <bean id="BrainwaveMgtService" class="dementia.brainwaveMgt.service.impl.BrainwaveMgtServiceImpl">
+	    <property name="brainwaveBeamFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="colsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.brainwaveMgt.service.impl.BrainwaveBeamCellReaderMapper" />
+                </property>
+            </bean>
+	     </property>
+	     <property name="brainwaveBeamExcelFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.brainwaveMgt.service.impl.BrainwaveBeamCellWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+        <property name="brainwaveSensoryFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="colsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.brainwaveMgt.service.impl.BrainwaveSensoryCellReaderMapper" />
+                </property>
+            </bean>
+	     </property>
+	     <property name="brainwaveSensoryExcelFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.brainwaveMgt.service.impl.BrainwaveSensoryCellWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+        <property name="brainwaveAttentionFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="colsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.brainwaveMgt.service.impl.BrainwaveAttentionCellReaderMapper" />
+                </property>
+            </bean>
+	     </property>
+	     <property name="brainwaveAttentionExcelFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.brainwaveMgt.service.impl.BrainwaveAttentionCellWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="GenomeInfoService" class="dementia.genomeInfoMgt.service.impl.GenomeInfoServiceImpl" >	
+    	<property name="genomeInfoExcelFileWriter">
+            <bean class="dementia.genomeInfoMgt.service.impl.GenomeInfoExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.genomeInfoMgt.service.impl.GenomeInfoCellWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+        <property name="addInfoFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="colsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.genomeInfoMgt.service.impl.AddInfoCellReaderMapper" />
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="ApoeInfoService" class="dementia.genomeInfoMgt.service.impl.ApoeInfoServiceImpl" >	
+    	<property name="apoeInfoWriterMapper">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.genomeInfoMgt.service.impl.ApoeInfoWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+       <property name="apoeInfoFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="colsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.genomeInfoMgt.service.impl.ApoeInfoCellReaderMapper" />
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="BioTakeMgtService" class="dementia.bioMaterial.service.impl.BioTakeMgtServiceImpl" >
+    	<property name="bioExcelFileWriter">
+            <bean class="dementia.framework.file.BioExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.bioMaterial.service.impl.BioTakeCellWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+    </bean>	    
+    <bean id="BioCarryMgtService" class="dementia.bioMaterial.service.impl.BioCarryMgtServiceImpl" >	
+    	<property name="bioCarryDtlExcelFileWriter">
+            <bean class="dementia.framework.file.BioExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.bioMaterial.service.impl.BioCarryDtlCellWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="ResidualViewService" class="dementia.residualView.service.impl.ResidualViewServiceImpl" >	    
+    	<property name="firstResidualFileReader">
+            <bean class="dementia.framework.file.ExcelFileReaderImpl">
+                <property name="rowsToSkip" value="1" />
+                <property name="colsToSkip" value="1" />
+                <property name="cellMapper">
+                    <bean class="dementia.residualView.service.impl.ResidualViewCellReaderMapper" />
+                </property>
+            </bean>
+        </property>
+        <property name="firstResidualFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+                <property name="cellMapper">
+                    <bean class="dementia.residualView.service.impl.FirstResidualWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="DataIntegrationService" class="dementia.dataIntegration.service.impl.DataIntegrationServiceImpl" >	    
+    	<property name="excelFileWriter">
+            <bean class="dementia.framework.file.ExcelFileWriterImpl">
+      
+                <property name="cellMapper">
+                    <bean class="dementia.dataIntegration.service.impl.DataIntegrationWriterMapper"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+</beans>

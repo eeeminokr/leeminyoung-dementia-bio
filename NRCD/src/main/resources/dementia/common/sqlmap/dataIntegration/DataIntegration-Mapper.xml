@@ -1,0 +1,4059 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DataIntegration">
+
+	<resultMap id="dataIntegrationMap" type="DataIntegrationVO">
+		<result property="objectId"       column="OBJECT_ID"  />
+		<result property="subjectId"      column="SUBJECT_ID"  />
+		<result property="patientSex"     column="PATIENT_SEX"  />
+		<result property="age"      	  column="AGE"  />
+		<result property="diagSeq"        column="DIAG_SEQ" />
+		<result property="diagLastSeq"    column="DIAG_LAST_SEQ" />
+		<result property="diagNm1" 		  column="DIAG_NM1"  />
+		<result property="diagNm2" 		  column="DIAG_NM2"  />
+		<result property="diagAge" 		  column="DIAG_AGE"  />
+		<result property="diagDate" 	  column="DIAG_DATE"  />
+		<result property="doctorName"     column="DOCTOR_NAME"  />
+		<result property="mmse"  		  column="MMSE"  />
+		<result property="snsb"       	  column="SNSB"  />
+		<result property="mri"   	      column="MRE"  />
+		<result property="pet"   		  column="PET"  />
+		<result property="blood"   		  column="BLOOD"  />
+		<result property="csf"   		  column="CSF"  />
+		<result property="brainwave" 	  column="BRAINWAVE"  />
+		<result property="genomeChipNm"   column="GENOME_CHIP_NM"  />
+		<result property="petResultV"     column="PET_RESULT_V"  />
+		<result property="petResult"      column="PET_RESULT"  />
+		<result property="petSubject"     column="PET_SUBJECT"  />
+		<result property="petSuvr"        column="PET_SUVR"  />
+		<result property="petAiSuvr"       column="PET_AI_SUVR"  />
+		<result property="cdrStep"        column="CDR_STEP"  />
+		<result property="diagNmBgColor"  column="DIAG_NM_BG_COLOR"  />
+		<result property="diagNmColor"    column="DIAG_NM_COLOR"  />
+		<result property="abo"            column="ABO"  />
+		<result property="apoeCd"         column="APOE_CD"  />
+		<result property="eduLevel"       column="EDU_LEVEL"  />
+	</resultMap>
+
+	<resultMap id="dataIntegrationSnsbMap" type="DataIntegrationSnsbVO">
+		<result property="mriId"                                         column="MRI_ID"    />                
+		<result property="familyId"                                      column="FAMILY_ID"    />          
+		<result property="individualId"                                  column="INDIVIDUAL_ID"    />                          
+		<result property="objectIdx"                                     column="OBJECT_IDX"    />        
+		<result property="diagSeq"    									 column="DIAG_SEQ"    />
+		<result property="diagNm1"    									 column="DIAG_NM1"    />
+		<result property="diagNm2"    									 column="DIAG_NM2"    />
+		<result property="doctorName"    								 column="DOCTOR_NAME"    />
+		<result property="unum"                                          column="UNUM"    />                   
+		<result property="recordNum"                                     column="RECORD_NUM"    />        
+		<result property="testDay"                                       column="TEST_DAY"    />            
+		<result property="age"                                           column="AGE"    />                     
+		<result property="birth"                                         column="BIRTH"    />                 
+		<result property="gender"                                        column="GENDER"    />               
+		<result property="education"                                     column="EDUCATION"    />         
+		<result property="yearsofeducation"                              column="YEARSOFEDUCATION"    />                   
+		<result property="job"                                           column="JOB"    />                     
+		<result property="handgrip"                                      column="HANDGRIP"    />           
+		<result property="referDoctor"                                   column="REFER_DOCTOR"    />    
+		<result property="referDept"                                     column="REFER_DEPT"    />        
+		<result property="diagnosis"                                     column="DIAGNOSIS"    />         
+		<result property="duration"                                      column="DURATION"    />           
+		<result property="subjectNm"                                     column="SUBJECT_NM"    />        
+		<result property="inspectionEngine"                              column="INSPECTION_ENGINE"    />                  
+		<result property="remark"                                        column="REMARK"    />               
+		<result property="digitSpanForward"                              column="DIGIT_SPAN_FORWARD"    />                 
+		<result property="digitSpanForwardZ"                             column="DIGIT_SPAN_FORWARD_Z"    />              
+		<result property="digitSpanForwardP"                             column="DIGIT_SPAN_FORWARD_P"    />              
+		<result property="digitSpanBackward"                             column="DIGIT_SPAN_BACKWARD"    />               
+		<result property="digitSpanBackwardZ"                            column="DIGIT_SPAN_BACKWARD_Z"    />            
+		<result property="digitSpanBackwardP"                            column="DIGIT_SPAN_BACKWARD_P"    />            
+		<result property="digitSpanForwardBackward"                      column="DIGIT_SPAN_FORWARD_BACKWARD"    />                        
+		<result property="digitSpanForwardBackwardZ"                     column="DIGIT_SPAN_FORWARD_BACKWARD_Z"    />                     
+		<result property="digitSpanForwardBackwardP"                     column="DIGIT_SPAN_FORWARD_BACKWARD_P"    />                     
+		<result property="letterCancellation"                            column="LETTER_CANCELLATION"    />              
+		<result property="neglect"                                       column="NEGLECT"    />             
+		<result property="spontaneousSpeechFluency"                      column="SPONTANEOUS_SPEECH_FLUENCY"    />                         
+		<result property="spontaneousSpeechContents"                     column="SPONTANEOUS_SPEECH_CONTENTS"    />                       
+		<result property="comprehension"                                 column="COMPREHENSION"    />                         
+		<result property="repetition"                                    column="REPETITION"    />       
+		<result property="repetitionZ"                                   column="REPETITION_Z"    />    
+		<result property="repetitionP"                                   column="REPETITION_P"    />    
+		<result property="namingKBnt"                                    column="NAMING_K_BNT"    />     
+		<result property="namingKBntZ"                                   column="NAMING_K_BNT_Z"    />                          
+		<result property="namingKBntP"                                   column="NAMING_K_BNT_P"    />                          
+		<result property="namingSKBntForm"                               column="NAMING_S_K_BNT_FORM"    />                 
+		<result property="namingSKBntScore"                              column="NAMING_S_K_BNT_SCORE"    />               
+		<result property="namingAdjustedSKBntScore"                      column="NAMING_ADJUSTED_S_K_BNT_SCORE"    />                      
+		<result property="namingAdjustedSKBntScoreZ"                     column="NAMING_ADJUSTED_S_K_BNT_SCORE_Z"    />                   
+		<result property="namingAdjustedSKBntScoreP"                     column="NAMING_ADJUSTED_S_K_BNT_SCORE_P"    />                   
+		<result property="reading"                                       column="READING"    />             
+		<result property="writing"                                       column="WRITING"    />             
+		<result property="fingerNaming"                                  column="FINGER_NAMING"    />                          
+		<result property="rightLeftOrientation"                          column="RIGHT_LEFT_ORIENTATION"    />         
+		<result property="bodyPartIdentification"                        column="BODY_PART_IDENTIFICATION"    />     
+		<result property="praxisIdeomotor"                               column="PRAXIS_IDEOMOTOR"    />                    
+		<result property="praxisIdeomotorZ"                              column="PRAXIS_IDEOMOTOR_Z"    />                 
+		<result property="praxisIdeomotorP"                              column="PRAXIS_IDEOMOTOR_P"    />                 
+		<result property="praxisBuccofacial"                             column="PRAXIS_BUCCOFACIAL"    />                
+		<result property="calculationAdd"                                column="CALCULATION_ADD"    />                      
+		<result property="calculationAddZ"                               column="CALCULATION_ADD_Z"    />                   
+		<result property="calculationAddP"                               column="CALCULATION_ADD_P"    />                   
+		<result property="calculationSub"                                column="CALCULATION_SUB"    />                      
+		<result property="calculationSubZ"                               column="CALCULATION_SUB_Z"    />                   
+		<result property="calculationSubP"                               column="CALCULATION_SUB_P"    />                   
+		<result property="calculationMul"                                column="CALCULATION_MUL"    />                      
+		<result property="calculationMulZ"                               column="CALCULATION_MUL_Z"    />                   
+		<result property="calculationMulP"                               column="CALCULATION_MUL_P"    />                   
+		<result property="calculationDiv"                                column="CALCULATION_DIV"    />                      
+		<result property="calculationDivZ"                               column="CALCULATION_DIV_Z"    />                   
+		<result property="calculationDivP"                               column="CALCULATION_DIV_P"    />                   
+		<result property="calculationTotalScore"                         column="CALCULATION_TOTAL_SCORE"    />       
+		<result property="calculationTotalScoreZ"                        column="CALCULATION_TOTAL_SCORE_Z"    />    
+		<result property="calculationTotalScoreP"                        column="CALCULATION_TOTAL_SCORE_P"    />    
+		<result property="interlockingPentagon"                          column="INTERLOCKING_PENTAGON"    />          
+		<result property="interlockingPentagonZ"                         column="INTERLOCKING_PENTAGON_Z"    />       
+		<result property="interlockingPentagonP"                         column="INTERLOCKING_PENTAGON_P"    />       
+		<result property="reyCftCopyScore"                               column="REY_CFT_COPY_SCORE"    />                  
+		<result property="reyCftCopyScoreZ"                              column="REY_CFT_COPY_SCORE_Z"    />               
+		<result property="reyCftCopyScoreP"                              column="REY_CFT_COPY_SCORE_P"    />               
+		<result property="reyCftCopyScoreS"                              column="REY_CFT_COPY_SCORE_S"    />               
+		<result property="reyCftCopyTime"                                column="REY_CFT_COPY_TIME"    />                    
+		<result property="reyCftCopyTimeZ"                               column="REY_CFT_COPY_TIME_Z"    />                 
+		<result property="reyCftCopyTimeP"                               column="REY_CFT_COPY_TIME_P"    />                 
+		<result property="reyCftCopyTimeS"                               column="REY_CFT_COPY_TIME_S"    />                 
+		<result property="memKMmseRegistration"                          column="MEM_K_MMSE_REGISTRATION"    />        
+		<result property="memKMmseRegistrationZ"                         column="MEM_K_MMSE_REGISTRATION_Z"    />     
+		<result property="memKMmseRegistrationP"                         column="MEM_K_MMSE_REGISTRATION_P"    />     
+		<result property="memKMmseRecall"                                column="MEM_K_MMSE_RECALL"    />                    
+		<result property="memKMmseRecallP"                               column="MEM_K_MMSE_RECALL_P"    />                 
+		<result property="memKMmseRecallZ"                               column="MEM_K_MMSE_RECALL_Z"    />                 
+		<result property="svltRecallTrial1"                              column="SVLT_RECALL_TRIAL1"    />                 
+		<result property="svltRecallTrial2"                              column="SVLT_RECALL_TRIAL2"    />                 
+		<result property="svltRecallTrial3"                              column="SVLT_RECALL_TRIAL3"    />                 
+		<result property="svltRecallTotalScore"                          column="SVLT_RECALL_TOTAL_SCORE"    />        
+		<result property="svltRecallTotalScoreP"                         column="SVLT_RECALL_TOTAL_SCORE_P"    />     
+		<result property="svltRecallTotalScoreZ"                         column="SVLT_RECALL_TOTAL_SCORE_Z"    />     
+		<result property="svltRecallTotalScoreS"                         column="SVLT_RECALL_TOTAL_SCORE_S"    />     
+		<result property="svltDelayedRecall"                             column="SVLT_DELAYED_RECALL"    />               
+		<result property="svltDelayedRecallP"                            column="SVLT_DELAYED_RECALL_P"    />            
+		<result property="svltDelayedRecallZ"                            column="SVLT_DELAYED_RECALL_Z"    />            
+		<result property="svltDelayedRecallS"                            column="SVLT_DELAYED_RECALL_S"    />            
+		<result property="svltRecognitionTp"                             column="SVLT_RECOGNITION_TP"    />               
+		<result property="svltRecognitionTpP"                            column="SVLT_RECOGNITION_TP_P"    />            
+		<result property="svltRecognitionTpZ"                            column="SVLT_RECOGNITION_TP_Z"    />            
+		<result property="svltRecognitionTpS"                            column="SVLT_RECOGNITION_TP_S"    />            
+		<result property="svltRecognitionFp"                             column="SVLT_RECOGNITION_FP"    />               
+		<result property="svltRecognitionFpP"                            column="SVLT_RECOGNITION_FP_P"    />            
+		<result property="svltRecognitionFpZ"                            column="SVLT_RECOGNITION_FP_Z"    />            
+		<result property="svltRecognitionFpS"                            column="SVLT_RECOGNITION_FP_S"    />            
+		<result property="svltRecognitionScore"                          column="SVLT_RECOGNITION_SCORE"    />         
+		<result property="svltRecognitionScoreP"                         column="SVLT_RECOGNITION_SCORE_P"    />      
+		<result property="svltRecognitionScoreZ"                         column="SVLT_RECOGNITION_SCORE_Z"    />      
+		<result property="svltRecognitionScoreS"                         column="SVLT_RECOGNITION_SCORE_S"    />      
+		<result property="svltRecognitionDiscriminabilityIndex"          column="SVLT_RECOGNITION_DISCRIMINABILITY_INDEX"    />                        
+		<result property="svltRecognitionDiscriminabilityIndexP"         column="SVLT_RECOGNITION_DISCRIMINABILITY_INDEX_P"    />                     
+		<result property="svltRecognitionDiscriminabilityIndexZ"         column="SVLT_RECOGNITION_DISCRIMINABILITY_INDEX_Z"    />                     
+		<result property="svltRecognitionDiscriminabilityIndexS"         column="SVLT_RECOGNITION_DISCRIMINABILITY_INDEX_S"    />                     
+		<result property="rcftImmediateRecall"                           column="RCFT_IMMEDIATE_RECALL"    />           
+		<result property="rcftImmediateRecallP"                          column="RCFT_IMMEDIATE_RECALL_P"    />        
+		<result property="rcftImmediateRecallZ"                          column="RCFT_IMMEDIATE_RECALL_Z"    />        
+		<result property="rcftImmediateRecallS"                          column="RCFT_IMMEDIATE_RECALL_S"    />        
+		<result property="rcftDelayedRecall"                             column="RCFT_DELAYED_RECALL"    />               
+		<result property="rcftDelayedRecallP"                            column="RCFT_DELAYED_RECALL_P"    />            
+		<result property="rcftDelayedRecallZ"                            column="RCFT_DELAYED_RECALL_Z"    />            
+		<result property="rcftDelayedRecallS"                            column="RCFT_DELAYED_RECALL_S"    />            
+		<result property="rcftRecognitionTp"                             column="RCFT_RECOGNITION_TP"    />               
+		<result property="rcftRecognitionTpP"                            column="RCFT_RECOGNITION_TP_P"    />            
+		<result property="rcftRecognitionTpZ"                            column="RCFT_RECOGNITION_TP_Z"    />            
+		<result property="rcftRecognitionFp"                             column="RCFT_RECOGNITION_FP"    />               
+		<result property="rcftRecognitionFpP"                            column="RCFT_RECOGNITION_FP_P"    />            
+		<result property="rcftRecognitionFpZ"                            column="RCFT_RECOGNITION_FP_Z"    />            
+		<result property="rcftRecognitionScore"                          column="RCFT_RECOGNITION_SCORE"    />         
+		<result property="rcftRecognitionScoreP"                         column="RCFT_RECOGNITION_SCORE_P"    />      
+		<result property="rcftRecognitionScoreZ"                         column="RCFT_RECOGNITION_SCORE_Z"    />      
+		<result property="rcftRecognitionDiscriminabilityIndex"          column="RCFT_RECOGNITION_DISCRIMINABILITY_INDEX"    />                        
+		<result property="rcftRecognitionDiscriminabilityIndexP"         column="RCFT_RECOGNITION_DISCRIMINABILITY_INDEX_P"    />                     
+		<result property="rcftRecognitionDiscriminabilityIndexZ"         column="RCFT_RECOGNITION_DISCRIMINABILITY_INDEX_Z"    />                     
+		<result property="motorImpersistence"                            column="MOTOR_IMPERSISTENCE"    />              
+		<result property="contrastingProgram"                            column="CONTRASTING_PROGRAM"    />              
+		<result property="contrastingProgramP"                           column="CONTRASTING_PROGRAM_P"    />           
+		<result property="contrastingProgramZ"                           column="CONTRASTING_PROGRAM_Z"    />           
+		<result property="goNoGo"                                        column="GO_NO_GO"    />             
+		<result property="goNoGoP"                                       column="GO_NO_GO_P"    />          
+		<result property="goNoGoZ"                                       column="GO_NO_GO_Z"    />          
+		<result property="fistEdgePalm"                                  column="FIST_EDGE_PALM"    />                         
+		<result property="alternatingHandMovement"                       column="ALTERNATING_HAND_MOVEMENT"    />   
+		<result property="alternatingSquareAndTriangle"                  column="ALTERNATING_SQUARE_AND_TRIANGLE"    />                
+		<result property="luriaLoop"                                     column="LURIA_LOOP"    />        
+		<result property="cowatAnimal"                                   column="COWAT_ANIMAL"    />    
+		<result property="cowatAnimalP"                                  column="COWAT_ANIMAL_P"    />                         
+		<result property="cowatAnimalZ"                                  column="COWAT_ANIMAL_Z"    />                         
+		<result property="cowatSupermarket"                              column="COWAT_SUPERMARKET"    />                  
+		<result property="cowatSupermarketP"                             column="COWAT_SUPERMARKET_P"    />               
+		<result property="cowatSupermarketZ"                             column="COWAT_SUPERMARKET_Z"    />               
+		<result property="cowatSupermarketS"                             column="COWAT_SUPERMARKET_S"    />               
+		<result property="cowatGiut"                                     column="COWAT_GIUT"    />        
+		<result property="cowatGiutP"                                    column="COWAT_GIUT_P"    />     
+		<result property="cowatGiutZ"                                    column="COWAT_GIUT_Z"    />     
+		<result property="cowatIung"                                     column="COWAT_IUNG"    />        
+		<result property="cowatIungP"                                    column="COWAT_IUNG_P"    />     
+		<result property="cowatIungZ"                                    column="COWAT_IUNG_Z"    />     
+		<result property="cowatSiut"                                     column="COWAT_SIUT"    />        
+		<result property="cowatSiutP"                                    column="COWAT_SIUT_P"    />     
+		<result property="cowatSiutZ"                                    column="COWAT_SIUT_Z"    />     
+		<result property="cowatPhonemicTotalScore"                       column="COWAT_PHONEMIC_TOTAL_SCORE"    />  
+		<result property="cowatPhonemicTotalScoreP"                      column="COWAT_PHONEMIC_TOTAL_SCORE_P"    />                       
+		<result property="cowatPhonemicTotalScoreZ"                      column="COWAT_PHONEMIC_TOTAL_SCORE_Z"    />                       
+		<result property="strooptestWordreadingCorrect"                  column="STROOPTEST_WORDREADING_CORRECT"    />                 
+		<result property="strooptestWordreadingCorrectP"                 column="STROOPTEST_WORDREADING_CORRECT_P"    />              
+		<result property="strooptestWordreadingCorrectZ"                 column="STROOPTEST_WORDREADING_CORRECT_Z"    />              
+		<result property="strooptestWordreadingError"                    column="STROOPTEST_WORDREADING_ERROR"    />                     
+		<result property="strooptestWordreadingErrorP"                   column="STROOPTEST_WORDREADING_ERROR_P"    />                  
+		<result property="strooptestWordreadingErrorZ"                   column="STROOPTEST_WORDREADING_ERROR_Z"    />                  
+		<result property="strooptestWordreadingTime"                     column="STROOPTEST_WORDREADING_TIME"    />                       
+		<result property="strooptestWordreadingTimeP"                    column="STROOPTEST_WORDREADING_TIME_P"    />                    
+		<result property="strooptestWordreadingTimeZ"                    column="STROOPTEST_WORDREADING_TIME_Z"    />                    
+		<result property="strooptestWordreadingCorrectResponseRate"      column="STROOPTEST_WORDREADING_CORRECT_RESPONSE_RATE"    />               
+		<result property="strooptestWordreadingCorrectResponseRateP"     column="STROOPTEST_WORDREADING_CORRECT_RESPONSE_RATE_P"    />            
+		<result property="strooptestWordreadingCorrectResponseRateZ"     column="STROOPTEST_WORDREADING_CORRECT_RESPONSE_RATE_Z"    />            
+		<result property="strooptestWordreadingTimePerItem"              column="STROOPTEST_WORDREADING_TIME_PER_ITEM"    />       
+		<result property="strooptestWordreadingTimePerItemP"             column="STROOPTEST_WORDREADING_TIME_PER_ITEM_P"    />    
+		<result property="strooptestWordreadingTimePerItemZ"             column="STROOPTEST_WORDREADING_TIME_PER_ITEM_Z"    />    
+		<result property="strooptestColorreadingCorrect"                 column="STROOPTEST_COLORREADING_CORRECT"    />               
+		<result property="strooptestColorreadingCorrectP"                column="STROOPTEST_COLORREADING_CORRECT_P"    />            
+		<result property="strooptestColorreadingCorrectZ"                column="STROOPTEST_COLORREADING_CORRECT_Z"    />            
+		<result property="strooptestColorreadingCorrectS"                column="STROOPTEST_COLORREADING_CORRECT_S"    />            
+		<result property="strooptestColorreadingError"                   column="STROOPTEST_COLORREADING_ERROR"    />                   
+		<result property="strooptestColorreadingErrorP"                  column="STROOPTEST_COLORREADING_ERROR_P"    />                
+		<result property="strooptestColorreadingErrorZ"                  column="STROOPTEST_COLORREADING_ERROR_Z"    />                
+		<result property="strooptestColorreadingTime"                    column="STROOPTEST_COLORREADING_TIME"    />                     
+		<result property="strooptestColorreadingTimeP"                   column="STROOPTEST_COLORREADING_TIME_P"    />                  
+		<result property="strooptestColorreadingTimeZ"                   column="STROOPTEST_COLORREADING_TIME_Z"    />                  
+		<result property="strooptestColorreadingCorrectResponseRate"     column="STROOPTEST_COLORREADING_CORRECT_RESPONSE_RATE"    />             
+		<result property="strooptestColorreadingCorrectResponseRateP"    column="STROOPTEST_COLORREADING_CORRECT_RESPONSE_RATE_P"    />          
+		<result property="strooptestColorreadingCorrectResponseRateZ"    column="STROOPTEST_COLORREADING_CORRECT_RESPONSE_RATE_Z"    />          
+		<result property="strooptestColorreadingCorrectResponseRateS"    column="STROOPTEST_COLORREADING_CORRECT_RESPONSE_RATE_S"    />          
+		<result property="strooptestColorreadingTimePerItem"             column="STROOPTEST_COLORREADING_TIME_PER_ITEM"    />     
+		<result property="strooptestColorreadingTimePerItemP"            column="STROOPTEST_COLORREADING_TIME_PER_ITEM_P"    />  
+		<result property="strooptestColorreadingTimePerItemZ"            column="STROOPTEST_COLORREADING_TIME_PER_ITEM_Z"    />  
+		<result property="strooptestColorreadingTimePerItemS"            column="STROOPTEST_COLORREADING_TIME_PER_ITEM_S"    />  
+		<result property="strooptestInterferenceScore"                   column="STROOPTEST_INTERFERENCE_SCORE"    />                   
+		<result property="strooptestInterferenceScoreP"                  column="STROOPTEST_INTERFERENCE_SCORE_P"    />                
+		<result property="strooptestInterferenceScoreZ"                  column="STROOPTEST_INTERFERENCE_SCORE_Z"    />                
+		<result property="strooptestInterferenceScoreS"                  column="STROOPTEST_INTERFERENCE_SCORE_S"    />                
+		<result property="kMmseOrientationToTime"                        column="K_MMSE_ORIENTATION_TO_TIME"    />   
+		<result property="kMmseOrientationToTimeP"                       column="K_MMSE_ORIENTATION_TO_TIME_P"    />                        
+		<result property="kMmseOrientationToTimeZ"                       column="K_MMSE_ORIENTATION_TO_TIME_Z"    />                        
+		<result property="kMmseOrientationToPlace"                       column="K_MMSE_ORIENTATION_TO_PLACE"    />                         
+		<result property="kMmseOrientationToPlaceP"                      column="K_MMSE_ORIENTATION_TO_PLACE_P"    />                      
+		<result property="kMmseOrientationToPlaceZ"                      column="K_MMSE_ORIENTATION_TO_PLACE_Z"    />                      
+		<result property="kMmseRegistation"                              column="K_MMSE_REGISTATION"    />                 
+		<result property="kMmseRegistationP"                             column="K_MMSE_REGISTATION_P"    />              
+		<result property="kMmseRegistationZ"                             column="K_MMSE_REGISTATION_Z"    />              
+		<result property="kMmseAttentionAndCalculation"                  column="K_MMSE_ATTENTION_AND_CALCULATION"    />               
+		<result property="kMmseAttentionAndCalculationP"                 column="K_MMSE_ATTENTION_AND_CALCULATION_P"    />            
+		<result property="kMmseAttentionAndCalculationZ"                 column="K_MMSE_ATTENTION_AND_CALCULATION_Z"    />            
+		<result property="kMmseRecall"                                   column="K_MMSE_RECALL"    />   
+		<result property="kMmseRecallP"                                  column="K_MMSE_RECALL_P"    />                        
+		<result property="kMmseRecallZ"                                  column="K_MMSE_RECALL_Z"    />                        
+		<result property="kMmseLanguage"                                 column="K_MMSE_LANGUAGE"    />                       
+		<result property="kMmseLanguageP"                                column="K_MMSE_LANGUAGE_P"    />                    
+		<result property="kMmseLanguageZ"                                column="K_MMSE_LANGUAGE_Z"    />                    
+		<result property="kMmseDrawing"                                  column="K_MMSE_DRAWING"    />                         
+		<result property="kMmseDrawingP"                                 column="K_MMSE_DRAWING_P"    />                      
+		<result property="kMmseDrawingZ"                                 column="K_MMSE_DRAWING_Z"    />                      
+		<result property="kMmseTotalScore"                               column="K_MMSE_TOTAL_SCORE"    />                  
+		<result property="kMmseTotalScoreP"                              column="K_MMSE_TOTAL_SCORE_P"    />               
+		<result property="kMmseTotalScoreZ"                              column="K_MMSE_TOTAL_SCORE_Z"    />               
+		<result property="cdr"                                           column="CDR"    />                     
+		<result property="bAdl"                                          column="B_ADL"    />                  
+		<result property="s1Gds"                                         column="S1_GDS"    />                
+		<result property="sumOfBoxes"                                    column="SUM_OF_BOXES"    />     
+		<result property="digitSpanForwardS"                             column="DIGIT_SPAN_FORWARD_S"    />              
+		<result property="digitSpanBackwardS"                            column="DIGIT_SPAN_BACKWARD_S"    />            
+		<result property="selectionlNum"                                 column="SELECTIONL_NUM"    />                        
+		<result property="illiteracy"                                    column="ILLITERACY"    />       
+		<result property="educationLevel"                                column="EDUCATION_LEVEL"    />                      
+		<result property="ages"                                          column="AGES"    />                   
+		<result property="dateofonset"                                   column="DATEOFONSET"    />     
+		<result property="vigilance"                                     column="VIGILANCE"    />         
+		<result property="comprehensionTotalScore"                       column="COMPREHENSION_TOTAL_SCORE"    />   
+		<result property="namingKBntS"                                   column="NAMING_K_BNT_S"    />                          
+		<result property="namingSKBnt"                                   column="NAMING_S_K_BNT"    />                          
+		<result property="namingSKBntZ"                                  column="NAMING_S_K_BNT_Z"    />                       
+		<result property="namingSKBntP"                                  column="NAMING_S_K_BNT_P"    />                       
+		<result property="namingSKBntS"                                  column="NAMING_S_K_BNT_S"    />                       
+		<result property="kMmseTotalScoreS"                              column="K_MMSE_TOTAL_SCORE_S"    />               
+		<result property="digitSpanForwardPlusBackward"                  column="DIGIT_SPAN_FORWARD_PLUS_BACKWARD"    />               
+		<result property="digitSpanForwardPlusBackwardZ"                 column="DIGIT_SPAN_FORWARD_PLUS_BACKWARD_Z"    />            
+		<result property="digitSpanForwardPlusBackwardP"                 column="DIGIT_SPAN_FORWARD_PLUS_BACKWARD_P"    />            
+		<result property="cowatAnimalGiut"                               column="COWAT_ANIMAL_GIUT"    />                   
+		<result property="rcftRecognitionTpS"                            column="RCFT_RECOGNITION_TP_S"    />            
+		<result property="rcftRecognitionScoreS"                         column="RCFT_RECOGNITION_SCORE_S"    />      
+		<result property="insertDate"                                    column="INSERT_DATE"    />      
+		<result property="insertUserid"                                  column="INSERT_USERID"    />                          
+		<result property="updateDate"                                    column="UPDATE_DATE"    />      
+		<result property="updateUserid"                                  column="UPDATE_USERID"    />                          
+			
+	</resultMap>
+	
+	<resultMap id="dataIntegrationSnsbMap2" type="DataIntegrationSnsbVO2">
+		<result property="mriId"                                    column="MRI_ID"    />                                         
+		<result property="familyId"                                 column="FAMILY_ID"    />                                      
+		<result property="individualId"                             column="INDIVIDUAL_ID"    />                                  
+		<result property="objectIdx"                                column="OBJECT_IDX"    />     
+		<result property="diagSeq"    								column="DIAG_SEQ"    />                                
+		<result property="diagNm1"    								column="DIAG_NM1"    />                                
+		<result property="diagNm2"    								column="DIAG_NM2"    />                                
+		<result property="doctorName"    							column="DOCTOR_NAME"    />                                
+		<result property="unum"                                     column="UNUM"    />                                           
+		<result property="cdtContour"                               column="CDT_CONTOUR"    />                                    
+		<result property="cdtNumbers"                               column="CDT_NUMBERS"    />                                    
+		<result property="cdtTimeSetting"                           column="CDT_TIME_SETTING"    />                               
+		<result property="cdtTotalScore"                            column="CDT_TOTAL_SCORE"    />                                
+		<result property="cdtTotalScoreP"                           column="CDT_TOTAL_SCORE_P"    />                              
+		<result property="kCwst60WordreadingCorrect"                column="K_CWST_60_WORDREADING_CORRECT"    />                  
+		<result property="kCwst60WordreadingCorrectP"               column="K_CWST_60_WORDREADING_CORRECT_P"    />                
+		<result property="kCwst60WordreadingError"                  column="K_CWST_60_WORDREADING_ERROR"    />                    
+		<result property="kCwst60WordreadingErrorP"                 column="K_CWST_60_WORDREADING_ERROR_P"    />                  
+		<result property="kCwst60WordresponseTime"                  column="K_CWST_60_WORDRESPONSE_TIME"    />                    
+		<result property="kCwst60ColorreadingCorrect"               column="K_CWST_60_COLORREADING_CORRECT"    />                 
+		<result property="kCwst60ColorreadingCorrectP"              column="K_CWST_60_COLORREADING_CORRECT_P"    />               
+		<result property="kCwst60ColorreadingCorrectZ"              column="K_CWST_60_COLORREADING_CORRECT_Z"    />               
+		<result property="kCwst60ColorreadingCorrectS"              column="K_CWST_60_COLORREADING_CORRECT_S"    />               
+		<result property="kCwst60ColorreadingError"                 column="K_CWST_60_COLORREADING_ERROR"    />                   
+		<result property="kCwst60ColorreadingErrorP"                column="K_CWST_60_COLORREADING_ERROR_P"    />                 
+		<result property="kCwst60ColorresponseTime"                 column="K_CWST_60_COLORRESPONSE_TIME"    />                   
+		<result property="dscCorrect"                               column="DSC_CORRECT"    />                                    
+		<result property="dscCorrectP"                              column="DSC_CORRECT_P"    />                                  
+		<result property="dscCorrectZ"                              column="DSC_CORRECT_Z"    />                                  
+		<result property="dscCorrectS"                              column="DSC_CORRECT_S"    />                                  
+		<result property="dscError"                                 column="DSC_ERROR"    />                                      
+		<result property="dscErrorP"                                column="DSC_ERROR_P"    />                                    
+		<result property="kTmtEASuccess"                            column="K_TMT_E_A_SUCCESS"    />                              
+		<result property="kTmtEATime"                               column="K_TMT_E_A_TIME"    />                                 
+		<result property="kTmtEATimeP"                              column="K_TMT_E_A_TIME_P"    />                               
+		<result property="kTmtEATimeZ"                              column="K_TMT_E_A_TIME_Z"    />                               
+		<result property="kTmtEATimeS"                              column="K_TMT_E_A_TIME_S"    />                               
+		<result property="kTmtEAError"                              column="K_TMT_E_A_ERROR"    />                                
+		<result property="kTmtE_bSuccess"                           column="K_TMT_E_B_SUCCESS"    />                              
+		<result property="kTmtE_bTime"                              column="K_TMT_E_B_TIME"    />                                 
+		<result property="kTmtE_bTimeP"                             column="K_TMT_E_B_TIME_P"    />                               
+		<result property="kTmtE_bTimeZ"                             column="K_TMT_E_B_TIME_Z"    />                               
+		<result property="kTmtE_bTimeS"                             column="K_TMT_E_B_TIME_S"    />                               
+		<result property="kTmtE_bError"                             column="K_TMT_E_B_ERROR"    />                                
+		<result property="kTmtE_bErrorP"                            column="K_TMT_E_B_ERROR_P"    />                              
+		<result property="rcftRecognitionDiscriminabilityIndexS"    column="RCFT_RECOGNITION_DISCRIMINABILITY_INDEX_S"    />      
+		<result property="cowatAnimalS"                             column="COWAT_ANIMAL_S"    />                                 
+		<result property="cowatSiutS"                               column="COWAT_SIUT_S"    />                                   
+		<result property="fistEdgePalmRight"                        column="FIST_EDGE_PALM_RIGHT"    />                           
+		<result property="fistEdgePalmLeft"                         column="FIST_EDGE_PALM_LEFT"    />                            
+		<result property="cowatAnimalGiutP"                         column="COWAT_ANIMAL_GIUT_P"    />                            
+		<result property="cowatAnimalGiutZ"                         column="COWAT_ANIMAL_GIUT_Z"    />                            
+		<result property="cowatAnimalGiutS"                         column="COWAT_ANIMAL_GIUT_S"    />                            
+		<result property="sgds"                                     column="SGDS"    />                                           
+		<result property="kIadlTotalScore"                          column="K_IADL_TOTAL_SCORE"    />                             
+		<result property="kIadlXcount"                              column="K_IADL_XCOUNT"    />                                  
+		<result property="kIadlScore"                               column="K_IADL_SCORE"    />                                   
+		<result property="globalDs"                                 column="GLOBAL_DS"    />                                      
+		<result property="snsbIiDomainAttention"                    column="SNSB_II_DOMAIN_ATTENTION"    />                       
+		<result property="snsbIiDomainAttentionP"                   column="SNSB_II_DOMAIN_ATTENTION_P"    />                     
+		<result property="snsbIiDomainAttentionZ"                   column="SNSB_II_DOMAIN_ATTENTION_Z"    />                     
+		<result property="snsbIiDomainAttentionT"                   column="SNSB_II_DOMAIN_ATTENTION_T"    />                     
+		<result property="snsbIiDomainAttentionS"                   column="SNSB_II_DOMAIN_ATTENTION_S"    />                     
+		<result property="snsbIiDomainLanguage"                     column="SNSB_II_DOMAIN_LANGUAGE"    />                        
+		<result property="snsbIiDomainLanguageP"                    column="SNSB_II_DOMAIN_LANGUAGE_P"    />                      
+		<result property="snsbIiDomainLanguageZ"                    column="SNSB_II_DOMAIN_LANGUAGE_Z"    />                      
+		<result property="snsbIiDomainLanguageT"                    column="SNSB_II_DOMAIN_LANGUAGE_T"    />                      
+		<result property="snsbIiDomainLanguageS"                    column="SNSB_II_DOMAIN_LANGUAGE_S"    />                      
+		<result property="snsbIiDomainVisuospatial"                 column="SNSB_II_DOMAIN_VISUOSPATIAL"    />                    
+		<result property="snsbIiDomainVisuospatialP"                column="SNSB_II_DOMAIN_VISUOSPATIAL_P"    />                  
+		<result property="snsbIiDomainVisuospatialZ"                column="SNSB_II_DOMAIN_VISUOSPATIAL_Z"    />                  
+		<result property="snsbIiDomainVisuospatialT"                column="SNSB_II_DOMAIN_VISUOSPATIAL_T"    />                  
+		<result property="snsbIiDomainVisuospatialS"                column="SNSB_II_DOMAIN_VISUOSPATIAL_S"    />                  
+		<result property="snsbIiDomainMemory"                       column="SNSB_II_DOMAIN_MEMORY"    />                          
+		<result property="snsbIiDomainMemoryP"                      column="SNSB_II_DOMAIN_MEMORY_P"    />                        
+		<result property="snsbIiDomainMemoryZ"                      column="SNSB_II_DOMAIN_MEMORY_Z"    />                        
+		<result property="snsbIiDomainMemoryT"                      column="SNSB_II_DOMAIN_MEMORY_T"    />                        
+		<result property="snsbIiDomainMemoryS"                      column="SNSB_II_DOMAIN_MEMORY_S"    />                        
+		<result property="snsbIiDomainFrontal"                      column="SNSB_II_DOMAIN_FRONTAL"    />                         
+		<result property="snsbIiDomainFrontalP"                     column="SNSB_II_DOMAIN_FRONTAL_P"    />                       
+		<result property="snsbIiDomainFrontalZ"                     column="SNSB_II_DOMAIN_FRONTAL_Z"    />                       
+		<result property="snsbIiDomainFrontalT"                     column="SNSB_II_DOMAIN_FRONTAL_T"    />                       
+		<result property="snsbIiDomainFrontalS"                     column="SNSB_II_DOMAIN_FRONTAL_S"    />                       
+		<result property="snsbCAniGiut"                             column="SNSB_C_ANI_GIUT"    />                                
+		<result property="snsbCAniGiutP"                            column="SNSB_C_ANI_GIUT_P"    />                              
+		<result property="snsbCAniGiutZ"                            column="SNSB_C_ANI_GIUT_Z"    />                              
+		<result property="snsbCAniGiutT"                            column="SNSB_C_ANI_GIUT_T"    />                              
+		<result property="snsbCAniGiutS"                            column="SNSB_C_ANI_GIUT_S"    />                              
+		<result property="dm"                                       column="DM"    />                                             
+		<result property="hibp"                                     column="HIBP"    />                                           
+		<result property="hylipid"                                  column="HYLIPID"    />                                        
+		<result property="cardiacds"                                column="CARDIACDS"    />                                      
+		<result property="stroke"                                   column="STROKE"    />                                         
+		<result property="brdamageacc"                              column="BRDAMAGEACC"    />                                    
+		<result property="co"                                       column="CO"    />                                             
+		<result property="brainsurgery"                             column="BRAINSURGERY"    />                                   
+		<result property="syphi"                                    column="SYPHI"    />                                          
+		<result property="thyroid"                                  column="THYROID"    />                                        
+		<result property="encephalitis"                             column="ENCEPHALITIS"    />                                   
+		<result property="liverdis"                                 column="LIVERDIS"    />                                       
+		<result property="depression"                               column="DEPRESSION"    />                                     
+		<result property="kidneydis"                                column="KIDNEYDIS"    />                                      
+		<result property="lungdis"                                  column="LUNGDIS"    />                                        
+		<result property="arthritis"                                column="ARTHRITIS"    />                                      
+		<result property="sleepdis"                                 column="SLEEPDIS"    />                                       
+		<result property="famhis"                                   column="FAMHIS"    />                                         
+		<result property="metabbrdis"                               column="METABBRDIS"    />                                     
+		<result property="mentaldis"                                column="MENTALDIS"    />                                      
+		<result property="mentalret"                                column="MENTALRET"    />                                      
+		<result property="braintumor"                               column="BRAINTUMOR"    />                                     
+		<result property="gastrodis"                                column="GASTRODIS"    />                                      
+		<result property="cancer"                                   column="CANCER"    />                                         
+		<result property="fracture"                                 column="FRACTURE"    />                                       
+		<result property="anemia"                                   column="ANEMIA"    />                                         
+		<result property="epilepsy"                                 column="EPILEPSY"    />                                       
+		<result property="drugabu"                                  column="DRUGABU"    />                                        
+		<result property="alcoabu"                                  column="ALCOABU"    />                                        
+		<result property="lossconsc"                                column="LOSSCONSC"    />                                      
+		<result property="other"                                    column="OTHER"    />                                          
+		<result property="insertDate"                               column="INSERT_DATE"    />                                    
+		<result property="insertUserid"                             column="INSERT_USERID"    />                                  
+		<result property="updateDate"                               column="UPDATE_DATE"    />                                    
+		<result property="updateUserid"                             column="UPDATE_USERID"    />                                  
+	</resultMap>
+	
+	<resultMap id="dataIntegrationMmseMap" type="DataIntegrationMmseVO">
+		<result property="mriId"        column="MRI_ID"    />                         
+		<result property="familyId"     column="FAMILY_ID"    />                   
+		<result property="individualId" column="INDIVIDUAL_ID"    />           
+		<result property="subjectIdx"   column="SUBJECT_IDX"    />               
+		<result property="objectIdx"    column="OBJECT_IDX"    />        
+		<result property="diagSeq"    column="DIAG_SEQ"    />
+		<result property="diagNm1"    column="DIAG_NM1"    />
+		<result property="diagNm2"    column="DIAG_NM2"    />
+		<result property="doctorName"    column="DOCTOR_NAME"    />
+		<result property="mmseNum"      column="MMSE_NUM"    />                     
+		<result property="mmseKind"     column="MMSE_KIND"    />                   
+		<result property="q01"          column="Q01"    />                              
+		<result property="q02"          column="Q02"    />                              
+		<result property="q03"          column="Q03"    />                              
+		<result property="q04"          column="Q04"    />                              
+		<result property="q05"          column="Q05"    />                              
+		<result property="q06"          column="Q06"    />                              
+		<result property="q07"          column="Q07"    />                              
+		<result property="q08"          column="Q08"    />                              
+		<result property="q09"          column="Q09"    />                              
+		<result property="q10"          column="Q10"    />                              
+		<result property="q11_1"        column="Q11_1"    />                          
+		<result property="q11_2"        column="Q11_2"    />                          
+		<result property="q11_3"        column="Q11_3"    />                          
+		<result property="q12_1"        column="Q12_1"    />                          
+		<result property="q12_2"        column="Q12_2"    />                          
+		<result property="q12_3"        column="Q12_3"    />                          
+		<result property="q12_4"        column="Q12_4"    />                          
+		<result property="q12_5"        column="Q12_5"    />                          
+		<result property="q12Total"     column="Q12_TOTAL"    />                   
+		<result property="q13_1"        column="Q13_1"    />                          
+		<result property="q13_2"        column="Q13_2"    />                          
+		<result property="q13_3"        column="Q13_3"    />                          
+		<result property="q14_1"        column="Q14_1"    />                          
+		<result property="q14_2"        column="Q14_2"    />                          
+		<result property="q15"          column="Q15"    />                              
+		<result property="q16_1"        column="Q16_1"    />                          
+		<result property="q16_2"        column="Q16_2"    />                          
+		<result property="q16_3"        column="Q16_3"    />                          
+		<result property="q17"          column="Q17"    />                              
+		<result property="q18"          column="Q18"    />                              
+		<result property="q19"          column="Q19"    />                              
+		<result property="mmseTotal"    column="TOTAL"    />                          
+		<result property="testDay"      column="TEST_DAY"    />                     
+		<result property="flag"         column="FLAG"    />                            
+		<result property="insertDate"   column="INSERT_DATE"    />               
+		<result property="insertUserid" column="INSERT_USERID"    />           
+		<result property="updateDate"   column="UPDATE_DATE"    />               
+		<result property="updateUserid" column="UPDATE_USERID"    />           
+			
+	</resultMap>
+	
+	<resultMap id="dataIntegrationBioMaterialMap" type="DataIntegrationbioMaterialVO">
+		<result property="objectId"          column="OBJECT_IDX"    />                       
+		<result property="bloodId"           column="BLOOD_ID"    />                       
+		<result property="diagSeq"           column="DIAG_SEQ"    />                         
+		<result property="diagNm1"           column="DIAG_NM1"    />                         
+		<result property="diagNm2"           column="DIAG_NM2"    />                         
+		<result property="doctorName"        column="DOCTOR_NAME"    />                         
+		<result property="chartno"           column="CHARTNO"    />                          
+		<result property="height"            column="HEIGHT"    />                           
+		<result property="weight"            column="WEIGHT"    />                           
+		<result property="abo"               column="ABO"    />                              
+		<result property="bpressure1"        column="BPRESSURE1"    />                       
+		<result property="bpressure2"        column="BPRESSURE2"    />                       
+		<result property="whiteblood"        column="WHITEBLOOD"    />                       
+		<result property="redblood"          column="REDBLOOD"    />                         
+		<result property="thrombocyt"        column="THROMBOCYT"    />                       
+		<result property="hemoglobin"        column="HEMOGLOBIN"    />                       
+		<result property="hematocrit"        column="HEMATOCRIT"    />                       
+		<result property="wbcdiff1"          column="WBCDIFF1"    />                         
+		<result property="wbcdiff2"          column="WBCDIFF2"    />                         
+		<result property="wbcdiff3"          column="WBCDIFF3"    />                         
+		<result property="wbcdiff4"          column="WBCDIFF4"    />                         
+		<result property="wbcdiff5"          column="WBCDIFF5"    />                         
+		<result property="wbcdiff6"          column="WBCDIFF6"    />                         
+		<result property="protein"           column="PROTEIN"    />                          
+		<result property="albumin"           column="ALBUMIN"    />                          
+		<result property="cholestero"        column="CHOLESTERO"    />                       
+		<result property="triglyceri"        column="TRIGLYCERI"    />                       
+		<result property="astsgot"           column="ASTSGOT"    />                          
+		<result property="altsgpt"           column="ALTSGPT"    />                          
+		<result property="bun"               column="BUN"    />                              
+		<result property="creatinine"        column="CREATININE"    />                       
+		<result property="hbaic"             column="HBAIC"    />                            
+		<result property="t3"                column="T3"    />                               
+		<result property="t4"                column="T4"    />                               
+		<result property="tsh"               column="TSH"    />                              
+		<result property="modifyusid"        column="MODIFYUSID"    />                       
+		<result property="modifydate"        column="MODIFYDATE"    />                       
+		<result property="mriid"             column="MRIID"    />                            
+		<result property="ldlchole"          column="LDLCHOLE"    />                         
+		<result property="hdlchole"          column="HDLCHOLE"    />                         
+		<result property="bpressure3"        column="BPRESSURE3"    />                       
+		<result property="bpressure4"        column="BPRESSURE4"    />                       
+		<result property="glucose"           column="GLUCOSE"    />                          
+				
+	</resultMap>
+	
+	<resultMap id="brainwaveBeamMap" type="BrainwaveBeamVO">
+		<result property="rownum"          column="ROWNUM"/>
+		<result property="beamId"  		column="BEAM_ID"  />
+		<result property="integrationYn" column="INTEGRATION_YN"  />
+		<result property="objectId"  	column="OBJECT_ID"  />
+		<result property="diagSeq"  	column="DIAG_SEQ"  />
+		<result property="diagNm1"  	column="DIAG_NM1"  />
+		<result property="diagNm2"  	column="DIAG_NM2"  />
+		<result property="doctorName"  	column="DOCTOR_NAME"  />
+		<result property="patientSex" 	column="PATIENT_SEX"  />
+		<result property="birthYyyy"  	column="BIRTH_YYYY"  />
+		<result property="age"  		column="AGE"  />
+		<result property="device"  		column="DEVICE"  />
+		<result property="dNum"  		column="D_NUM"  />
+		<result property="peakMef"  	column="PEAK_MEF"  />
+		<result property="peakFreq"  	column="PEAK_FREQ"  />
+		<result property="peakPower"  	column="PEAK_POWER"  />
+		<result property="lTheta"  		column="L_THETA"  />
+		<result property="lAlpha"  		column="L_ALPHA"  />
+		<result property="lLbeta"  		column="L_LBETA"  />
+		<result property="lMbeta" 		column="L_MBETA"  />
+		<result property="lHbeta" 		column="L_HBETA"  />
+		<result property="lGamma"  		column="L_GAMMA"  />
+		<result property="rTheta"  		column="R_THETA"  />
+		<result property="rAlpha"  		column="R_ALPHA"  />
+		<result property="rLbeta"  		column="R_LBETA"  />
+		<result property="rMbeta"  		column="R_MBETA"  />
+		<result property="rHbeta"  		column="R_HBETA"  />
+		<result property="rGamma"  		column="R_GAMMA"  />
+		<result property="btRatio"  	column="BT_RATIO"  />
+		<result property="abRatio"  	column="AB_RATIO"  />
+		<result property="mef450"  		column="MEF450"  />
+		<result property="gamma"  		column="GAMMA"  />
+		<result property="relA"  		column="REL_A"  />
+		<result property="alpahAsym"  	column="ALPAH_ASYM"  />
+		<result property="gammaAsym"  	column="GAMMA_ASYM"  />
+		<result property="lrCc"  		column="LR_CC"  />
+		<result property="lEogMf"  		column="L_EOG_MF"  />
+		<result property="rEogMf"  		column="R_EOG_MF"  />
+		<result property="l100Outr"  	column="L_100_OUTR"  />
+		<result property="r100Outr"  	column="R_100_OUTR"  />
+		<result property="lBlink"  		column="L_BLINK"  />
+		<result property="rBlink"  		column="R_BLINK"  />
+		
+	</resultMap>
+	
+	<resultMap id="brainwaveSensoryMap" type="BrainwaveSensoryVO">
+		<result property="rownum"          column="ROWNUM"/>
+		<result property="sensoryId"    	column="SENSORY_ID"  />
+		<result property="integrationYn"    column="INTEGRATION_YN"  />
+		<result property="diagSeq"  	    column="DIAG_SEQ"  />
+		<result property="diagNm1"  	    column="DIAG_NM1"  />
+		<result property="diagNm2"  	    column="DIAG_NM2"  />
+		<result property="doctorName"  	    column="DOCTOR_NAME"  />
+		<result property="objectId"  		column="OBJECT_ID"  />
+		<result property="fileYn"    		column="FILE_YN"  />
+		<result property="patientSex"  		column="PATIENT_SEX"  />
+		<result property="birthYyyy"    	column="BIRTH_YYYY"  />
+		<result property="age"    			column="AGE"  />
+		<result property="device"    		column="DEVICE"  />
+		<result property="dNum"    			column="D_NUM"  />
+		<result property="amp125"    		column="AMP125"  />
+		<result property="amp250"    		column="AMP250"  />
+		<result property="amp500"    		column="AMP500"  />
+		<result property="amp750"    		column="AMP750"  />
+		<result property="amp1500"    		column="AMP1500"  />
+		<result property="amp2000"    		column="AMP2000"  />
+		<result property="amp3000"    		column="AMP3000"  />
+		<result property="amp4000"    		column="AMP4000"  />
+		<result property="lAmpAvr"    		column="L_AMP_AVR"  />
+		<result property="rAmpAvr"    		column="R_AMP_AVR"  />
+		<result property="ampSd"    		column="AMP_SD"  />
+		<result property="lLatencyAvr"    	column="L_LATENCY_AVR"  />
+		<result property="rLatencyAvr"    	column="R_LATENCY_AVR"  />
+		<result property="latencySd"    	column="LATENCY_SD"  />
+		<result property="lrEogMef"    		column="LR_EOG_MEF"  />
+		<result property="lTheta"   		column="L_THETA"  />
+		<result property="lAlpha"    		column="L_ALPHA"  />
+		<result property="lLbeta"    		column="L_LBETA"  />
+		<result property="lMbeta"    		column="L_MBETA"  />
+		<result property="lHbeta"    		column="L_HBETA"  />
+		<result property="lGamma"    		column="L_GAMMA"  />
+		<result property="rTheta"    		column="R_THETA"  />
+		<result property="rAlpha"    		column="R_ALPHA"  />
+		<result property="rLbeta"    		column="R_LBETA"  />
+		<result property="rMbeta"    		column="R_MBETA"  />
+		<result property="rHbeta"    		column="R_HBETA"  />
+		<result property="rGamma"    		column="R_GAMMA"  />
+		<result property="btRatio"    		column="BT_RATIO"  />
+		<result property="abRatio"    		column="AB_RATIO"  />
+		<result property="mef450"    		column="MEF450"  />
+		<result property="gamma"    		column="GAMMA"  />
+		<result property="relA"    			column="REL_A"  />
+		<result property="alpahAsym"    	column="ALPAH_ASYM"  />
+		<result property="gammaAsym"    	column="GAMMA_ASYM"  />
+		<result property="lrCc"    			column="LR_CC"  />
+		<result property="lEogMf"    		column="L_EOG_MF"  />
+		<result property="rEogMf"    		column="R_EOG_MF"  />
+		<result property="l100Outr"    		column="L_100_OUTR"  />
+		<result property="r100Outr"    		column="R_100_OUTR"  />
+		<result property="lBlink"    		column="L_BLINK"  />
+		<result property="rBlink"    		column="R_BLINK"  />
+	</resultMap>
+	
+	<resultMap id="brainwaveAttentionMap" type="BrainwaveAttentionVO">
+		<result property="rownum"          	column="ROWNUM"/>
+		<result property="attentionId"    	column="ATTENTION_ID"  />
+		<result property="integrationYn" 	column="INTEGRATION_YN"  />
+		<result property="objectId"  		column="OBJECT_ID"  />
+		<result property="diagSeq"  		column="DIAG_SEQ"  />
+		<result property="diagNm1"  		column="DIAG_NM1"  />
+		<result property="diagNm2"  		column="DIAG_NM2"  />
+		<result property="doctorName"  		column="DOCTOR_NAME"  />
+		<result property="fileYn"    		column="FILE_YN"  />
+		<result property="patientSex"    	column="PATIENT_SEX"  />
+		<result property="birthYyyy"    	column="BIRTH_YYYY"  />
+		<result property="age"    			column="AGE"  />
+		<result property="device"    		column="DEVICE"  />
+		<result property="dNum"    			column="D_NUM"  />
+		<result property="wellCnt"    		column="WELL_CNT"  />
+		<result property="wrongCnt"    		column="WRONG_CNT"  />
+		<result property="reactTime"    	column="REACT_TIME"  />
+		<result property="backErpCnt"    	column="BACK_ERP_CNT"  />
+		<result property="oddErpCnt"    	column="ODD_ERP_CNT"  />
+		<result property="backErpMin"    		column="BACK_ERP_MIN"  />
+		<result property="backErpMinLatency"    column="BACK_ERP_MIN_LATENCY"  />
+		<result property="backErpMax"    		column="BACK_ERP_MAX"  />
+		<result property="backErpMaxLatency"    column="BACK_ERP_MAX_LATENCY"  />
+		<result property="oddErpMin"    		column="ODD_ERP_MIN"  />
+		<result property="oddErpMinLatency"    	column="ODD_ERP_MIN_LATENCY"  />
+		<result property="oddErpMax"    		column="ODD_ERP_MAX"  />
+		<result property="oddErpMaxLatency"   	column="ODD_ERP_MAX_LATENCY"  />
+		<result property="lEogMef"    			column="L_EOG_MEF"  />
+		<result property="rEogMef"    		column="R_EOG_MEF"  />
+		<result property="lTheta"   		column="L_THETA"  />
+		<result property="lAlpha"    		column="L_ALPHA"  />
+		<result property="lLbeta"    		column="L_LBETA"  />
+		<result property="lMbeta"    		column="L_MBETA"  />
+		<result property="lHbeta"    		column="L_HBETA"  />
+		<result property="lGamma"    		column="L_GAMMA"  />
+		<result property="rTheta"    		column="R_THETA"  />
+		<result property="rAlpha"    		column="R_ALPHA"  />
+		<result property="rLbeta"    		column="R_LBETA"  />
+		<result property="rMbeta"    		column="R_MBETA"  />
+		<result property="rHbeta"    		column="R_HBETA"  />
+		<result property="rGamma"    		column="R_GAMMA"  />
+		<result property="btRatio"    		column="BT_RATIO"  />
+		<result property="abRatio"    		column="AB_RATIO"  />
+		<result property="mef450"    		column="MEF450"  />
+		<result property="gamma"    		column="GAMMA"  />
+		<result property="relA"    			column="REL_A"  />
+		<result property="alpahAsym"    	column="ALPAH_ASYM"  />
+		<result property="gammaAsym"    	column="GAMMA_ASYM"  />
+		<result property="lrCc"    			column="LR_CC"  />
+		<result property="lEogMf"    		column="L_EOG_MF"  />
+		<result property="rEogMf"    		column="R_EOG_MF"  />
+		<result property="l100Outr"    		column="L_100_OUTR"  />
+		<result property="r100Outr"    		column="R_100_OUTR"  />
+		<result property="lBlink"    		column="L_BLINK"  />
+		<result property="rBlink"    		column="R_BLINK"  />
+		
+	</resultMap>
+	
+	<resultMap id="dataIntegrationMriSubMap" type="DataIntegrationMriSubVO">
+		<result property="objectId"   	   column="OBJECT_ID"   />
+		<result property="medicId"         column="MEDIC_ID"   />
+		<result property="petId"           column="PET_ID"   />
+		<result property="diagSeq"         column="DIAG_SEQ"   />
+		<result property="diagNm1"         column="DIAG_NM1"   />
+		<result property="diagNm2"         column="DIAG_NM2"   />
+		<result property="doctorName"      column="DOCTOR_NAME"   />
+		<result property="lLatVent"        column="L_LAT_VENT"   />
+		<result property="rLatVent"        column="R_LAT_VENT"   />
+		<result property="lThal"   	       column="L_THAL"   />
+		<result property="rThal" 	       column="R_THAL"   />
+		<result property="lCaud" 	       column="L_CAUD"   />
+		<result property="rCaud"           column="R_CAUD"   />
+		<result property="lPut"      	   column="L_PUT"   />
+		<result property="rPut"      	   column="R_PUT"   />
+		<result property="lPal"      	   column="L_PAL"   />
+		<result property="rPal"      	   column="R_PAL"   />
+		<result property="lHippo"      	   column="L_HIPPO"   />
+		<result property="rHippo"          column="R_HIPPO"   />
+		<result property="lAmyg"           column="L_AMYG"   />
+		<result property="rAmyg"           column="R_AMYG"   />
+		<result property="lAccumb"         column="L_ACCUMB"   />
+		<result property="rAccumb"         column="R_ACCUMB"   />
+		<result property="icv"             column="ICV"   />
+	</resultMap>
+	
+	<resultMap id="dataIntegrationMriSurfaceMap" type="DataIntegrationMriSurfaceVO">
+	
+		<result property="objectId"   							   column="OBJECT_ID"   />
+		<result property="medicId"    						   	   column="MEDIC_ID"   />
+		<result property="petId"           						   column="PET_ID"   />
+		<result property="diagSeq"        						   column="DIAG_SEQ"   />                                           
+		<result property="diagNm1"         						   column="DIAG_NM1"   />                                           
+		<result property="diagNm2"         						   column="DIAG_NM2"   />                                           
+		<result property="doctorName"         					   column="DOCTOR_NAME"   />                                           
+		<result property="lCaudalanteriorcingulateSurfavg"         column="L_CAUDALANTERIORCINGULATE_SURFAVG"   />                   
+		<result property="lCaudalmiddlefrontalSurfavg"             column="L_CAUDALMIDDLEFRONTAL_SURFAVG"   />                       
+		<result property="lCuneusSurfavg"                          column="L_CUNEUS_SURFAVG"   />                                    
+		<result property="lEntorhinalSurfavg"                      column="L_ENTORHINAL_SURFAVG"   />                                
+		<result property="lFusiformSurfavg"                        column="L_FUSIFORM_SURFAVG"   />                                  
+		<result property="lInferiorparietalSurfavg"                column="L_INFERIORPARIETAL_SURFAVG"   />                          
+		<result property="lInferiortemporalSurfavg"                column="L_INFERIORTEMPORAL_SURFAVG"   />                          
+		<result property="lIsthmuscingulateSurfavg"                column="L_ISTHMUSCINGULATE_SURFAVG"   />                          
+		<result property="lLateraloccipitalSurfavg"                column="L_LATERALOCCIPITAL_SURFAVG"   />                          
+		<result property="lLateralorbitofrontalSurfavg"            column="L_LATERALORBITOFRONTAL_SURFAVG"   />                      
+		<result property="lLingualSurfavg"                         column="L_LINGUAL_SURFAVG"   />                                   
+		<result property="lMedialorbitofrontalSurfavg"             column="L_MEDIALORBITOFRONTAL_SURFAVG"   />                       
+		<result property="lMiddletemporalSurfavg"                  column="L_MIDDLETEMPORAL_SURFAVG"   />                            
+		<result property="lParahippocampalSurfavg"                 column="L_PARAHIPPOCAMPAL_SURFAVG"   />                           
+		<result property="lParacentralSurfavg"                     column="L_PARACENTRAL_SURFAVG"   />                               
+		<result property="lParsopercularisSurfavg"                 column="L_PARSOPERCULARIS_SURFAVG"   />                           
+		<result property="lParsorbitalisSurfavg"                   column="L_PARSORBITALIS_SURFAVG"   />                             
+		<result property="lParstriangularisSurfavg"                column="L_PARSTRIANGULARIS_SURFAVG"   />                          
+		<result property="lPericalcarineSurfavg"                   column="L_PERICALCARINE_SURFAVG"   />                             
+		<result property="lPostcentralSurfavg"                     column="L_POSTCENTRAL_SURFAVG"   />                               
+		<result property="lPosteriorcingulateSurfavg"              column="L_POSTERIORCINGULATE_SURFAVG"   />                        
+		<result property="lPrecentralSurfavg"                      column="L_PRECENTRAL_SURFAVG"   />                                
+		<result property="lPrecuneusSurfavg"                       column="L_PRECUNEUS_SURFAVG"   />                                 
+		<result property="lRostralanteriorcingulateSurfavg"        column="L_ROSTRALANTERIORCINGULATE_SURFAVG"   />                  
+		<result property="lRostralmiddlefrontalSurfavg"            column="L_ROSTRALMIDDLEFRONTAL_SURFAVG"   />                      
+		<result property="lSuperiorfrontalSurfavg"                 column="L_SUPERIORFRONTAL_SURFAVG"   />                           
+		<result property="lSuperiorparietalSurfavg"                column="L_SUPERIORPARIETAL_SURFAVG"   />                          
+		<result property="lSuperiortemporalSurfavg"                column="L_SUPERIORTEMPORAL_SURFAVG"   />                          
+		<result property="lSupramarginalSurfavg"                   column="L_SUPRAMARGINAL_SURFAVG"   />                             
+		<result property="lTransversetemporalSurfavg"              column="L_TRANSVERSETEMPORAL_SURFAVG"   />                        
+		<result property="lInsulaSurfavg"                          column="L_INSULA_SURFAVG"   />                                    
+		<result property="rCaudalanteriorcingulateSurfavg"         column="R_CAUDALANTERIORCINGULATE_SURFAVG"   />                   
+		<result property="rCaudalmiddlefrontalSurfavg"             column="R_CAUDALMIDDLEFRONTAL_SURFAVG"   />                       
+		<result property="rCuneusSurfavg"                          column="R_CUNEUS_SURFAVG"   />                                    
+		<result property="rEntorhinalSurfavg"                      column="R_ENTORHINAL_SURFAVG"   />                                
+		<result property="rFusiformSurfavg"                        column="R_FUSIFORM_SURFAVG"   />                                  
+		<result property="rInferiorparietalSurfavg"                column="R_INFERIORPARIETAL_SURFAVG"   />                          
+		<result property="rInferiortemporalSurfavg"                column="R_INFERIORTEMPORAL_SURFAVG"   />                          
+		<result property="rIsthmuscingulateSurfavg"                column="R_ISTHMUSCINGULATE_SURFAVG"   />                          
+		<result property="rLateraloccipitalSurfavg"                column="R_LATERALOCCIPITAL_SURFAVG"   />                          
+		<result property="rLateralorbitofrontalSurfavg"            column="R_LATERALORBITOFRONTAL_SURFAVG"   />                      
+		<result property="rLingualSurfavg"                         column="R_LINGUAL_SURFAVG"   />                                   
+		<result property="rMedialorbitofrontalSurfavg"             column="R_MEDIALORBITOFRONTAL_SURFAVG"   />                       
+		<result property="rMiddletemporalSurfavg"                  column="R_MIDDLETEMPORAL_SURFAVG"   />                            
+		<result property="rParahippocampalSurfavg"                 column="R_PARAHIPPOCAMPAL_SURFAVG"   />                           
+		<result property="rParacentralSurfavg"                     column="R_PARACENTRAL_SURFAVG"   />                               
+		<result property="rParsopercularisSurfavg"                 column="R_PARSOPERCULARIS_SURFAVG"   />                           
+		<result property="rParsorbitalisSurfavg"                   column="R_PARSORBITALIS_SURFAVG"   />                             
+		<result property="rParstriangularisSurfavg"                column="R_PARSTRIANGULARIS_SURFAVG"   />                          
+		<result property="rPericalcarineSurfavg"                   column="R_PERICALCARINE_SURFAVG"   />                             
+		<result property="rPostcentralSurfavg"                     column="R_POSTCENTRAL_SURFAVG"   />                               
+		<result property="rPosteriorcingulateSurfavg"              column="R_POSTERIORCINGULATE_SURFAVG"   />                        
+		<result property="rPrecentralSurfavg"                      column="R_PRECENTRAL_SURFAVG"   />                                
+		<result property="rPrecuneusSurfavg"                       column="R_PRECUNEUS_SURFAVG"   />                                 
+		<result property="rRostralanteriorcingulateSurfavg"        column="R_ROSTRALANTERIORCINGULATE_SURFAVG"   />                  
+		<result property="rRostralmiddlefrontalSurfavg"            column="R_ROSTRALMIDDLEFRONTAL_SURFAVG"   />                      
+		<result property="rSuperiorfrontalSurfavg"                 column="R_SUPERIORFRONTAL_SURFAVG"   />                           
+		<result property="rSuperiorparietalSurfavg"                column="R_SUPERIORPARIETAL_SURFAVG"   />                          
+		<result property="rSuperiortemporalSurfavg"                column="R_SUPERIORTEMPORAL_SURFAVG"   />                          
+		<result property="rSupramarginalSurfavg"                   column="R_SUPRAMARGINAL_SURFAVG"   />                             
+		<result property="rTransversetemporalSurfavg"              column="R_TRANSVERSETEMPORAL_SURFAVG"   />                        
+		<result property="rInsulaSurfavg"                          column="R_INSULA_SURFAVG"   />                                    
+		<result property="lEntorhinalExvivoSurfavg"                column="L_ENTORHINAL_EXVIVO_SURFAVG"   />                         
+		<result property="rEntorhinalExvivoSurfavg"                column="R_ENTORHINAL_EXVIVO_SURFAVG"   />                         
+		<result property="lSurfArea"                               column="L_SURF_AREA"   />                                           
+		<result property="rSurfArea"                               column="R_SURF_AREA"   />                                           
+				
+	</resultMap>
+
+
+	<resultMap id="dataIntegrationMriThickMap" type="DataIntegrationMriThickVO">
+		<result property="objectId"                                     column="OBJECT_ID"   />                               
+		<result property="medicId"                                      column="MEDIC_ID"   />   
+		<result property="petId"           								column="PET_ID"   />                          
+		<result property="diagSeq"                                      column="DIAG_SEQ"   />
+		<result property="diagNm1"                                      column="DIAG_NM1"   />
+		<result property="diagNm2"                                      column="DIAG_NM2"   />
+		<result property="doctorName"                                   column="DOCTOR_NAME"   />
+		<result property="lCaudalanteriorcingulateThickavg"             column="L_CAUDALANTERIORCINGULATE_THICKAVG"   />      
+		<result property="lCaudalmiddlefrontalThickavg"                 column="L_CAUDALMIDDLEFRONTAL_THICKAVG"   />          
+		<result property="lCuneusThickavg"                              column="L_CUNEUS_THICKAVG"   />                       
+		<result property="lEntorhinalThickavg"                          column="L_ENTORHINAL_THICKAVG"   />                   
+		<result property="lFusiformThickavg"                            column="L_FUSIFORM_THICKAVG"   />                     
+		<result property="lInferiorparietalThickavg"                    column="L_INFERIORPARIETAL_THICKAVG"   />             
+		<result property="lInferiortemporalThickavg"                    column="L_INFERIORTEMPORAL_THICKAVG"   />             
+		<result property="lIsthmuscingulateThickavg"                    column="L_ISTHMUSCINGULATE_THICKAVG"   />             
+		<result property="lLateraloccipitalThickavg"                    column="L_LATERALOCCIPITAL_THICKAVG"   />             
+		<result property="lLateralorbitofrontalThickavg"                column="L_LATERALORBITOFRONTAL_THICKAVG"   />         
+		<result property="lLingualThickavg"                             column="L_LINGUAL_THICKAVG"   />                      
+		<result property="lMedialorbitofrontalThickavg"                 column="L_MEDIALORBITOFRONTAL_THICKAVG"   />          
+		<result property="lMiddletemporalThickavg"                      column="L_MIDDLETEMPORAL_THICKAVG"   />               
+		<result property="lParahippocampalThickavg"                     column="L_PARAHIPPOCAMPAL_THICKAVG"   />              
+		<result property="lParacentralThickavg"                         column="L_PARACENTRAL_THICKAVG"   />                  
+		<result property="lParsopercularisThickavg"                     column="L_PARSOPERCULARIS_THICKAVG"   />              
+		<result property="lParsorbitalisThickavg"                       column="L_PARSORBITALIS_THICKAVG"   />                
+		<result property="lParstriangularisThickavg"                    column="L_PARSTRIANGULARIS_THICKAVG"   />             
+		<result property="lPericalcarineThickavg"                       column="L_PERICALCARINE_THICKAVG"   />                
+		<result property="lPostcentralThickavg"                         column="L_POSTCENTRAL_THICKAVG"   />                  
+		<result property="lPosteriorcingulateThickavg"                  column="L_POSTERIORCINGULATE_THICKAVG"   />           
+		<result property="lPrecentralThickavg"                          column="L_PRECENTRAL_THICKAVG"   />                   
+		<result property="lPrecuneusThickavg"                           column="L_PRECUNEUS_THICKAVG"   />                    
+		<result property="lRostralanteriorcingulateThickavg"            column="L_ROSTRALANTERIORCINGULATE_THICKAVG"   />     
+		<result property="lRostralmiddlefrontalThickavg"                column="L_ROSTRALMIDDLEFRONTAL_THICKAVG"   />         
+		<result property="lSuperiorfrontalThickavg"                     column="L_SUPERIORFRONTAL_THICKAVG"   />              
+		<result property="lSuperiorparietalThickavg"                    column="L_SUPERIORPARIETAL_THICKAVG"   />             
+		<result property="lSuperiortemporalThickavg"                    column="L_SUPERIORTEMPORAL_THICKAVG"   />             
+		<result property="lSupramarginalThickavg"                       column="L_SUPRAMARGINAL_THICKAVG"   />                
+		<result property="lTransversetemporalThickavg"                  column="L_TRANSVERSETEMPORAL_THICKAVG"   />           
+		<result property="lInsulaThickavg"                              column="L_INSULA_THICKAVG"   />                       
+		<result property="rCaudalanteriorcingulateThickavg"             column="R_CAUDALANTERIORCINGULATE_THICKAVG"   />      
+		<result property="rCaudalmiddlefrontalThickavg"                 column="R_CAUDALMIDDLEFRONTAL_THICKAVG"   />          
+		<result property="rCuneusThickavg"                              column="R_CUNEUS_THICKAVG"   />                       
+		<result property="rEntorhinalThickavg"                          column="R_ENTORHINAL_THICKAVG"   />                   
+		<result property="rFusiformThickavg"                            column="R_FUSIFORM_THICKAVG"   />                     
+		<result property="rInferiorparietalThickavg"                    column="R_INFERIORPARIETAL_THICKAVG"   />             
+		<result property="rInferiortemporalThickavg"                    column="R_INFERIORTEMPORAL_THICKAVG"   />             
+		<result property="rIsthmuscingulateThickavg"                    column="R_ISTHMUSCINGULATE_THICKAVG"   />             
+		<result property="rLateraloccipitalThickavg"                    column="R_LATERALOCCIPITAL_THICKAVG"   />             
+		<result property="rLateralorbitofrontalThickavg"                column="R_LATERALORBITOFRONTAL_THICKAVG"   />         
+		<result property="rLingualThickavg"                             column="R_LINGUAL_THICKAVG"   />                      
+		<result property="rMedialorbitofrontalThickavg"                 column="R_MEDIALORBITOFRONTAL_THICKAVG"   />          
+		<result property="rMiddletemporalThickavg"                      column="R_MIDDLETEMPORAL_THICKAVG"   />               
+		<result property="rParahippocampalThickavg"                     column="R_PARAHIPPOCAMPAL_THICKAVG"   />              
+		<result property="rParacentralThickavg"                         column="R_PARACENTRAL_THICKAVG"   />                  
+		<result property="rParsopercularisThickavg"                     column="R_PARSOPERCULARIS_THICKAVG"   />              
+		<result property="rParsorbitalisThickavg"                       column="R_PARSORBITALIS_THICKAVG"   />                
+		<result property="rParstriangularisThickavg"                    column="R_PARSTRIANGULARIS_THICKAVG"   />             
+		<result property="rPericalcarineThickavg"                       column="R_PERICALCARINE_THICKAVG"   />                
+		<result property="rPostcentralThickavg"                         column="R_POSTCENTRAL_THICKAVG"   />                  
+		<result property="rPosteriorcingulateThickavg"                  column="R_POSTERIORCINGULATE_THICKAVG"   />           
+		<result property="rPrecentralThickavg"                          column="R_PRECENTRAL_THICKAVG"   />                   
+		<result property="rPrecuneusThickavg"                           column="R_PRECUNEUS_THICKAVG"   />                    
+		<result property="rRostralanteriorcingulateThickavg"            column="R_ROSTRALANTERIORCINGULATE_THICKAVG"   />     
+		<result property="rRostralmiddlefrontalThickavg"                column="R_ROSTRALMIDDLEFRONTAL_THICKAVG"   />         
+		<result property="rSuperiorfrontalThickavg"                     column="R_SUPERIORFRONTAL_THICKAVG"   />              
+		<result property="rSuperiorparietalThickavg"                    column="R_SUPERIORPARIETAL_THICKAVG"   />             
+		<result property="rSuperiortemporalThickavg"                    column="R_SUPERIORTEMPORAL_THICKAVG"   />             
+		<result property="rSupramarginalThickavg"                       column="R_SUPRAMARGINAL_THICKAVG"   />                
+		<result property="rTransversetemporalThickavg"                  column="R_TRANSVERSETEMPORAL_THICKAVG"   />           
+		<result property="rInsulaThickavg"                              column="R_INSULA_THICKAVG"   />                       
+		<result property="lEntorhinalExvivoThickavg"                    column="L_ENTORHINAL_EXVIVO_THICKAVG"   />            
+		<result property="rEntorhinalExvivoThickavg"                    column="R_ENTORHINAL_EXVIVO_THICKAVG"   />            
+		<result property="lthickness"                                   column="L_THICKNESS"   />                             
+		<result property="rthickness"                                   column="R_THICKNESS"   />                             
+	</resultMap>
+	
+	<resultMap id="dataIntegrationPetResultMap" type="DataIntegrationPetResultVO">
+			<result property="objectId"         column="OBJECT_ID"    />  
+			<result property="selectionNum"     column="SELECTION_NUM"    />
+			<result property="diagSeq"          column="DIAG_SEQ"    />    
+			<result property="petResult"        column="PET_RESULT"    />  
+			<result property="rctuRemark"       column="RCTU_REMARK"    />  
+			<result property="rctu03l"          column="RCTU_03L"    />  
+			<result property="rctu03r"          column="RCTU_03R"    />  
+			<result property="rctu04l"          column="RCTU_04L"    />  
+			<result property="rctu04r"          column="RCTU_04R"    />  
+			<result property="rctu05l"          column="RCTU_05L"    />  
+			<result property="rctu05r"          column="RCTU_05R"    />  
+			<result property="rctu06"           column="RCTU_06"    />  
+			<result property="rctuBapl"         column="RCTU_BAPL"    />  
+			<result property="petSuvr"        column="PET_SUVR"    />  
+			<result property="petAiSuvr"        column="PET_AI_SUVR"    />  
+			<result property="testDay"          column="TEST_DAY"    />
+			<result property="petid"            column="PETID"    />    
+	</resultMap>
+	
+	<resultMap id="dataIntegrationCdrMap" type="DataIntegrationCdrVO">
+		<result property="objectId"          column="OBJECT_ID"    />  
+		<result property="selectionNum"      column="SELECTION_NUM"    />
+		<result property="diagSeq"           column="DIAG_SEQ"    />    
+		<result property="cdrM"              column="CDR_M"    />  
+		<result property="cdrO"              column="CDR_O"    />  
+		<result property="cdrJ"              column="CDR_J"    />  
+		<result property="cdrS"              column="CDR_S"    />  
+		<result property="cdrH"              column="CDR_H"    />  
+		<result property="cdrP"              column="CDR_P"    />  
+		<result property="cdrStep"           column="CDR_STEP"    />  
+		<result property="testDay"           column="TEST_DAY"    />  
+	</resultMap>
+	
+	<select id="dataIntegrationListTotal" parameterType="map" resultType="int">
+		SELECT 
+			COUNT(*) AS TOTAL
+		FROM(
+			SELECT RI.OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+			FROM (
+				SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+				FROM (
+						SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+						FROM RD_INTEGRATION_INFO RII
+						LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+							 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+						WHERE 1=1
+						
+						<if test="objectId !=null and objectId != '' ">
+								AND RII.OBJECT_ID IN (${objectId})
+						</if>
+						<if test="patientSex !=null and patientSex != '' ">
+								AND RII.PATIENT_SEX = #{patientSex}
+						</if>
+						<if test="startAge !=null and startAge != '' ">
+								AND RII.AGE &gt;= #{startAge}
+						</if>
+						<if test="endAge !=null and endAge != '' ">
+								AND RII.AGE &lt;= #{endAge}
+						</if>
+						<if test="diagLastSeq !=null and diagLastSeq != '' ">
+								AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+						</if>
+						<if test="petResult !=null and petResult != '' ">
+								AND ${petResult}
+						</if>
+						<if test="genomeChipNm !=null and genomeChipNm != '' ">
+								AND ${genomeChipNm}
+						</if>
+						<if test="cdrStep !=null and cdrStep != '' ">
+								AND ${cdrStep}
+						</if>
+						<if test="apoeCd !=null and apoeCd != '' ">
+							 <choose>
+								<when test="apoeCd == 'ALL'">
+									AND IFNULL(APOE_CD,'') != ''
+								</when>
+								<otherwise>
+									AND (${apoeCd})
+								</otherwise>
+							</choose>
+						</if>
+						<if test="eduLevel !=null and eduLevel != '' ">
+							 <choose>
+								<when test="eduLevel == 'ALL'">
+									AND IFNULL(EDU_LEVEL,'') != ''
+								</when>
+								<otherwise>
+									AND (${eduLevel})
+								</otherwise>
+							</choose>
+						</if>
+						<if test="brainwaveSearch !=null and brainwaveSearch != '' ">
+							<choose>
+								<when test="brainwaveSearch == '001'">
+									AND IFNULL(brainwave,'') != ''
+								</when>
+								<when test="brainwaveSearch == '002'">
+									AND IFNULL(brainwave,'') = ''
+								</when>
+							</choose>
+						</if>
+						<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+							AND ( 
+								<if test="schKeyWord !=null and schKeyWord != '' ">
+									 <![CDATA[ ${schKeyWord} ]]>
+									 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+									 OR
+									 </if>
+								</if>
+								
+								<if test="diagNm1 !=null and diagNm1 != '' ">
+									 (<![CDATA[ ${diagNm1} ]]>)
+									 <if test="diagNm2 !=null and diagNm2 != '' ">
+									 	OR
+									 </if>
+								</if>
+								<if test="diagNm2 !=null and diagNm2 != '' ">
+									 (<![CDATA[ ${diagNm2} ]]>)
+								</if>
+								)
+						</if>
+						<if test="grade == '002'">
+						 AND NOT EXISTS(SELECT 
+						 					1 
+						 				FROM 
+						 					RD_INTEGRATION_INFO B 
+										WHERE 
+											RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+						</if>
+						<if test="grade == '003'">
+						 AND EXISTS(SELECT 
+					 					1 
+					 				FROM 
+					 					RD_INTEGRATION_INFO B 
+									WHERE 
+										RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+						</if>
+						
+					 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM, RII.APOE_CD ) RII
+					 LEFT JOIN RD_PILOT_STUDY PS 
+			         ON RII.OBJECT_ID = PS.OBJECT_ID
+			         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+            					  GROUP BY OBJECT_IDX)MTB
+            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+			)RI
+			WHERE 1=1 
+				<if test="instCode !=null and instCode != '' ">
+					 AND INST_CODE IN (${instCode})
+				</if>
+				<if test="abo !=null and abo != '' ">
+					<choose>
+						<when test="abo == 'ALL'">
+							AND IFNULL(ABO,'') != ''
+						</when>
+						<otherwise>
+							AND (${abo})
+						</otherwise>
+					</choose>
+				</if>
+			) A
+	</select>
+	
+	<select id="dataIntegrationListMaxSeq" parameterType="map" resultType="int">
+		SELECT
+			IFNULL(MAX(A.DIAG_LAST_SEQ),0) MAX_SEQ
+		FROM(
+			SELECT RI.OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+			FROM (
+				SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+				FROM (
+						SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+						FROM RD_INTEGRATION_INFO RII
+						LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+							 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+						WHERE 1=1
+						
+						<if test="objectId !=null and objectId != '' ">
+								AND RII.OBJECT_ID IN (${objectId})
+						</if>
+						<if test="patientSex !=null and patientSex != '' ">
+								AND RII.PATIENT_SEX = #{patientSex}
+						</if>
+						<if test="startAge !=null and startAge != '' ">
+								AND RII.AGE &gt;= #{startAge}
+						</if>
+						<if test="endAge !=null and endAge != '' ">
+								AND RII.AGE &lt;= #{endAge}
+						</if>
+						<if test="diagLastSeq !=null and diagLastSeq != '' ">
+								AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+						</if>
+						<if test="petResult !=null and petResult != '' ">
+								AND ${petResult}
+						</if>
+						<if test="genomeChipNm !=null and genomeChipNm != '' ">
+								AND ${genomeChipNm}
+						</if>
+						<if test="cdrStep !=null and cdrStep != '' ">
+								AND ${cdrStep}
+						</if>
+						<if test="apoeCd !=null and apoeCd != '' ">
+							 <choose>
+								<when test="apoeCd == 'ALL'">
+									AND IFNULL(APOE_CD,'') != ''
+								</when>
+								<otherwise>
+									AND (${apoeCd})
+								</otherwise>
+							</choose>
+						</if>
+						<if test="eduLevel !=null and eduLevel != '' ">
+							 <choose>
+								<when test="eduLevel == 'ALL'">
+									AND IFNULL(EDU_LEVEL,'') != ''
+								</when>
+								<otherwise>
+									AND (${eduLevel})
+								</otherwise>
+							</choose>
+						</if>
+						<if test="brainwaveSearch !=null and brainwaveSearch != '' ">
+							<choose>
+								<when test="brainwaveSearch == '001'">
+									AND IFNULL(brainwave,'') != ''
+								</when>
+								<when test="brainwaveSearch == '002'">
+									AND IFNULL(brainwave,'') = ''
+								</when>
+							</choose>
+						</if>
+						<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+							AND ( 
+								<if test="schKeyWord !=null and schKeyWord != '' ">
+									 <![CDATA[ ${schKeyWord} ]]>
+									 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+									 OR
+									 </if>
+								</if>
+								
+								<if test="diagNm1 !=null and diagNm1 != '' ">
+									 (<![CDATA[ ${diagNm1} ]]>)
+									 <if test="diagNm2 !=null and diagNm2 != '' ">
+									 	OR
+									 </if>
+								</if>
+								<if test="diagNm2 !=null and diagNm2 != '' ">
+									 (<![CDATA[ ${diagNm2} ]]>)
+								</if>
+								)
+						</if>
+						<if test="grade == '002'">
+						 AND NOT EXISTS(SELECT 
+						 					1 
+						 				FROM 
+						 					RD_INTEGRATION_INFO B 
+										WHERE 
+											RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+						</if>
+						<if test="grade == '003'">
+						 AND EXISTS(SELECT 
+					 					1 
+					 				FROM 
+					 					RD_INTEGRATION_INFO B 
+									WHERE 
+										RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+						</if>
+						
+						
+					 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM, RII.APOE_CD ) RII
+					 LEFT JOIN RD_PILOT_STUDY PS 
+			         ON RII.OBJECT_ID = PS.OBJECT_ID
+			         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+            					  GROUP BY OBJECT_IDX)MTB
+            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+			)RI
+			WHERE 1=1 
+				<if test="instCode !=null and instCode != '' ">
+					 AND INST_CODE IN (${instCode})
+				</if>
+				<if test="abo !=null and abo != '' ">
+					<choose>
+						<when test="abo == 'ALL'">
+							AND IFNULL(ABO,'') != ''
+						</when>
+						<otherwise>
+							AND (${abo})
+						</otherwise>
+					</choose>
+				</if>
+			<if test="limit !=0">
+			LIMIT #{start}, #{limit} 
+			</if>
+			) A
+	</select>
+	
+	<select id="dataIntegrationList" parameterType="map" resultMap="dataIntegrationMap">
+		SELECT RI.OBJECT_ID, CONCAT(INST_CODE,PATIENT_SEX,LPAD(RI.OBJECT_ID,5,'0')) SUBJECT_ID
+	       , NAME, AGE, PATIENT_SEX, DIAG_SEQ, DIAG_LAST_SEQ, DIAG_NM1, DIAG_NM2, DIAG_AGE, DIAG_DATE
+		   , DOCTOR_NAME, MMSE, SNSB, MRI, PET, BLOOD, CSF, BRAINWAVE, GENOME_CHIP_NM, PET_RESULT, PET_SUBJECT, PET_RESULT_V, CDR_STEP
+	       , DIAG_NM_BG_COLOR ,DIAG_NM_COLOR, ABO
+	       , APOE_CD
+	       , PET_SUVR
+	       , PET_AI_SUVR
+	       , EDU_LEVEL
+		FROM (
+				SELECT RII.OBJECT_ID, NAME, AGE, PATIENT_SEX, DIAG_SEQ, DIAG_LAST_SEQ, DIAG_NM1, DIAG_NM2, DIAG_AGE, DIAG_DATE
+				  	   , CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE
+					   , DOCTOR_NAME, MMSE, SNSB, MRI, PET, BLOOD, CSF, BRAINWAVE, GENOME_CHIP_NM, MR.PET_RESULT, MR.PET_SUBJECT, PET_RESULT_V, CDR_STEP
+					   , DIAG_NM_BG_COLOR
+					   , DIAG_NM_COLOR
+					   , APOE_CD
+					   , RII.ABO ABO
+					   , RII.PET_SUVR
+					   , RII.PET_AI_SUVR
+					   , RII.EDU_LEVEL
+				FROM (
+						SELECT RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX
+					       , GROUP_CONCAT(RII.DIAG_SEQ ORDER BY RII.DIAG_SEQ SEPARATOR',' ) DIAG_SEQ
+					       , DIAG_LAST_SEQ
+					       , GROUP_CONCAT(IFNULL(RII.DIAG_NM1,'') ORDER BY RII.DIAG_SEQ, DOCTOR_NAME, DIAG_DATE SEPARATOR',' ) DIAG_NM1
+					       , GROUP_CONCAT(IFNULL(RII.DIAG_NM2,'') ORDER BY RII.DIAG_SEQ, DOCTOR_NAME, DIAG_DATE SEPARATOR',' ) DIAG_NM2
+					       , GROUP_CONCAT(IFNULL(RII.DIAG_AGE,'') ORDER BY RII.DIAG_SEQ, DOCTOR_NAME, DIAG_DATE SEPARATOR',' ) DIAG_AGE
+					       , GROUP_CONCAT(IFNULL(RII.DIAG_DATE,'') ORDER BY RII.DIAG_SEQ, DOCTOR_NAME, DIAG_DATE SEPARATOR',' ) DIAG_DATE
+					       , GROUP_CONCAT(IFNULL(RII.DOCTOR_NAME,'')  ORDER BY RII.DIAG_SEQ, DOCTOR_NAME, DIAG_DATE SEPARATOR',') DOCTOR_NAME
+					       , GROUP_CONCAT(IFNULL(RII.MMSE,'')  ORDER BY RII.DIAG_SEQ, DOCTOR_NAME, DIAG_DATE SEPARATOR',')   MMSE
+					       , GROUP_CONCAT(IFNULL(RII.SNSB,'')  ORDER BY RII.DIAG_SEQ,  DOCTOR_NAME, DIAG_DATE SEPARATOR',')   SNSB
+					       , IFNULL(RII.MRI,'') MRI
+					       , IFNULL(RII.PET,'') PET
+					       , IFNULL(RII.BLOOD,'') BLOOD
+					       , IFNULL(RII.CSF,'') CSF
+					       , IFNULL(RII.BRAINWAVE,'') BRAINWAVE
+					       , IFNULL(RII.PET_RESULT,'') PET_RESULT_V
+					       , GROUP_CONCAT(IFNULL(RII.CDR_STEP,'')  ORDER BY RII.DIAG_SEQ, DOCTOR_NAME, DIAG_DATE SEPARATOR',') CDR_STEP
+					       , IFNULL(RII.GENOME_CHIP_NM,'') GENOME_CHIP_NM
+					       , GROUP_CONCAT(IFNULL(DIAG_NM_CD.DESC2,'') ORDER BY RII.DIAG_SEQ, DOCTOR_NAME, DIAG_DATE SEPARATOR',') DIAG_NM_BG_COLOR
+					       , GROUP_CONCAT(IFNULL(DIAG_NM_CD.DESC3,'') ORDER BY RII.DIAG_SEQ, DOCTOR_NAME, DIAG_DATE SEPARATOR',') DIAG_NM_COLOR
+					       , RII.APOE_CD
+					       , RII.ABO
+					       , RII.PET_SUVR
+					       , RII.PET_AI_SUVR
+					       <!--, CASE WHEN RII.PET_SUVR = '0.00' THEN '-' WHEN RII.PET_SUVR IS NULL OR RII.PET_SUVR = '' THEN '-' ELSE RII.PET_SUVR END PET_SUVR -->
+					       <!-- , CASE WHEN RII.PET_AI_SUVR = '0.00' THEN '-' WHEN RII.PET_AI_SUVR IS NULL OR RII.PET_AI_SUVR = '' THEN '-' ELSE RII.PET_AI_SUVR END PET_AI_SUVR -->
+					       , RII.EDU_LEVEL
+						FROM RD_INTEGRATION_INFO RII
+						LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+							 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+						WHERE 1=1
+						
+						<if test="objectId !=null and objectId != '' ">
+								AND RII.OBJECT_ID IN (${objectId})
+						</if>
+						<if test="patientSex !=null and patientSex != '' ">
+								AND RII.PATIENT_SEX = #{patientSex}
+						</if>
+						<if test="startAge !=null and startAge != '' ">
+								AND RII.AGE &gt;= #{startAge}
+						</if>
+						<if test="endAge !=null and endAge != '' ">
+								AND RII.AGE &lt;= #{endAge}
+						</if>
+						<if test="diagLastSeq !=null and diagLastSeq != '' ">
+								AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+						</if>
+						<if test="petResult !=null and petResult != '' ">
+								AND ${petResult}
+						</if>
+						<if test="genomeChipNm !=null and genomeChipNm != '' ">
+								AND ${genomeChipNm}
+						</if>
+						<if test="cdrStep !=null and cdrStep != '' ">
+								AND ${cdrStep}
+						</if>
+						<if test="apoeCd !=null and apoeCd != '' ">
+							 <choose>
+								<when test="apoeCd == 'ALL'">
+									AND IFNULL(APOE_CD,'') != ''
+								</when>
+								<otherwise>
+									AND (${apoeCd})
+								</otherwise>
+							</choose>
+						</if>
+						<if test="eduLevel !=null and eduLevel != '' ">
+							 <choose>
+								<when test="eduLevel == 'ALL'">
+									AND IFNULL(EDU_LEVEL,'') != ''
+								</when>
+								<otherwise>
+									AND (${eduLevel})
+								</otherwise>
+							</choose>
+						</if>
+						<if test="brainwaveSearch !=null and brainwaveSearch != '' ">
+							<choose>
+								<when test="brainwaveSearch == '001'">
+									AND IFNULL(brainwave,'') != ''
+								</when>
+								<when test="brainwaveSearch == '002'">
+									AND IFNULL(brainwave,'') = ''
+								</when>
+							</choose>
+						</if>
+						<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+							AND ( 
+								<if test="schKeyWord !=null and schKeyWord != '' ">
+									 <![CDATA[ ${schKeyWord} ]]>
+									 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+									 OR
+									 </if>
+								</if>
+								
+								<if test="diagNm1 !=null and diagNm1 != '' ">
+									 (<![CDATA[ ${diagNm1} ]]>)
+									 <if test="diagNm2 !=null and diagNm2 != '' ">
+									 	OR
+									 </if>
+								</if>
+								<if test="diagNm2 !=null and diagNm2 != '' ">
+									 (<![CDATA[ ${diagNm2} ]]>)
+								</if>
+								)
+						</if>
+						 
+						 
+						<if test="grade == '002'">
+						 AND NOT EXISTS(SELECT 
+						 					1 
+						 				FROM 
+						 					RD_INTEGRATION_INFO B 
+										WHERE 
+											RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+						</if>
+						<if test="grade == '003'">
+						 AND EXISTS(SELECT 
+					 					1 
+					 				FROM 
+					 					RD_INTEGRATION_INFO B 
+									WHERE 
+										RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+						</if>
+						
+						
+						GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM, RII.APOE_CD, RII.EDU_LEVEL) RII
+					LEFT JOIN (SELECT  MR.OBJECT_IDX
+								, GROUP_CONCAT(CASE MR.RCTU_01 WHEN '0' THEN 'Negative (-)' 
+															   WHEN '0.5' THEN 'Negative (0.5)' 
+															   WHEN '1' THEN 'Positive (+)' 
+															   ELSE 'Error' END   ORDER BY MR.SELECTION_NUM SEPARATOR' : ')  PET_RESULT
+								, GROUP_CONCAT((SELECT NAME FROM csbrain2.mb_subject ms WHERE IDX = SUBJECT_IDX) ORDER BY MR.SELECTION_NUM SEPARATOR' : ') PET_SUBJECT
+							FROM csbrain2.mb_rctu MR WHERE FLAG ='U'
+							GROUP BY MR.OBJECT_IDX) MR
+			         ON RII.OBJECT_ID = MR.OBJECT_IDX	
+					 LEFT JOIN RD_PILOT_STUDY PS 
+			         ON RII.OBJECT_ID = PS.OBJECT_ID       	     	
+			)RI
+			WHERE 1=1 
+				<if test="instCode !=null and instCode != '' ">
+					 AND INST_CODE IN (${instCode})
+				</if>				
+				<if test="abo !=null and abo != '' ">
+					<choose>
+						<when test="abo == 'ALL'">
+							AND IFNULL(ABO,'') != ''
+						</when>
+						<otherwise>
+							AND (${abo})
+						</otherwise>
+					</choose>
+				</if>
+			LIMIT #{start}, #{limit}
+	</select>
+	
+
+	<select id="snsbExcelDownloadList" parameterType="map" resultMap="dataIntegrationSnsbMap">
+		SELECT 
+		(select group_concat(m.mriid) from csbrain2.mb_resemri m where m.object_idx = s.object_idx and m.mriyn = '1' and substr(m.resedate,1,6) = substr(a.test_day,1,6)) as MRI_ID,
+		(select group_concat(g2.family_id) from nrcd.RD_GENOME_PED g1 inner join nrcd.RD_GENOME_APPEND g2 on g1.family_id = g2.family_id and g1.individual_id = g2.individual_id where g2.object_id = s.object_idx) as FAMILY_ID,
+		(select group_concat(g2.individual_id) from nrcd.RD_GENOME_PED g1 inner join nrcd.RD_GENOME_APPEND g2 on g1.family_id = g2.family_id and g1.individual_id = g2.individual_id where g2.object_id = s.object_idx) as INDIVIDUAL_ID,
+		s.OBJECT_IDX,
+		b.DIAG_SEQ,
+		b.DIAG_NM1,
+		b.DIAG_NM2,
+		b.DOCTOR_NAME,
+		UNUM,
+		RECORD_NUM,
+		a.TEST_DAY,
+		AGE,
+		BIRTH,
+		GENDER,
+		EDUCATION,
+		YEARSOFEDUCATION,
+		JOB,
+		HANDGRIP,
+		REFER_DOCTOR,
+		REFER_DEPT,
+		DIAGNOSIS,
+		DURATION,
+		SUBJECT_NM,
+		INSPECTION_ENGINE,
+		REMARK,
+		DIGIT_SPAN_FORWARD,
+		DIGIT_SPAN_FORWARD_Z,
+		DIGIT_SPAN_FORWARD_P,
+		DIGIT_SPAN_BACKWARD,
+		DIGIT_SPAN_BACKWARD_Z,
+		DIGIT_SPAN_BACKWARD_P,
+		DIGIT_SPAN_FORWARD_BACKWARD,
+		DIGIT_SPAN_FORWARD_BACKWARD_Z,
+		DIGIT_SPAN_FORWARD_BACKWARD_P,
+		LETTER_CANCELLATION,
+		NEGLECT,
+		SPONTANEOUS_SPEECH_FLUENCY,
+		SPONTANEOUS_SPEECH_CONTENTS,
+		COMPREHENSION,
+		REPETITION,
+		REPETITION_Z,
+		REPETITION_P,
+		NAMING_K_BNT,
+		NAMING_K_BNT_Z,
+		NAMING_K_BNT_P,
+		NAMING_S_K_BNT_FORM,
+		NAMING_S_K_BNT_SCORE,
+		NAMING_ADJUSTED_S_K_BNT_SCORE,
+		NAMING_ADJUSTED_S_K_BNT_SCORE_Z,
+		NAMING_ADJUSTED_S_K_BNT_SCORE_P,
+		READING,
+		WRITING,
+		FINGER_NAMING,
+		RIGHT_LEFT_ORIENTATION,
+		BODY_PART_IDENTIFICATION,
+		PRAXIS_IDEOMOTOR,
+		PRAXIS_IDEOMOTOR_Z,
+		PRAXIS_IDEOMOTOR_P,
+		PRAXIS_BUCCOFACIAL,
+		CALCULATION_ADD,
+		CALCULATION_ADD_Z,
+		CALCULATION_ADD_P,
+		CALCULATION_SUB,
+		CALCULATION_SUB_Z,
+		CALCULATION_SUB_P,
+		CALCULATION_MUL,
+		CALCULATION_MUL_Z,
+		CALCULATION_MUL_P,
+		CALCULATION_DIV,
+		CALCULATION_DIV_Z,
+		CALCULATION_DIV_P,
+		CALCULATION_TOTAL_SCORE,
+		CALCULATION_TOTAL_SCORE_Z,
+		CALCULATION_TOTAL_SCORE_P,
+		INTERLOCKING_PENTAGON,
+		INTERLOCKING_PENTAGON_Z,
+		INTERLOCKING_PENTAGON_P,
+		REY_CFT_COPY_SCORE,
+		REY_CFT_COPY_SCORE_Z,
+		REY_CFT_COPY_SCORE_P,
+		REY_CFT_COPY_SCORE_S,
+		REY_CFT_COPY_TIME,
+		REY_CFT_COPY_TIME_Z,
+		REY_CFT_COPY_TIME_P,
+		REY_CFT_COPY_TIME_S,
+		MEM_K_MMSE_REGISTRATION,
+		MEM_K_MMSE_REGISTRATION_Z,
+		MEM_K_MMSE_REGISTRATION_P,
+		MEM_K_MMSE_RECALL,
+		MEM_K_MMSE_RECALL_P,
+		MEM_K_MMSE_RECALL_Z,
+		SVLT_RECALL_TRIAL1,
+		SVLT_RECALL_TRIAL2,
+		SVLT_RECALL_TRIAL3,
+		SVLT_RECALL_TOTAL_SCORE,
+		SVLT_RECALL_TOTAL_SCORE_P,
+		SVLT_RECALL_TOTAL_SCORE_Z,
+		SVLT_RECALL_TOTAL_SCORE_S,
+		SVLT_DELAYED_RECALL,
+		SVLT_DELAYED_RECALL_P,
+		SVLT_DELAYED_RECALL_Z,
+		SVLT_DELAYED_RECALL_S,
+		SVLT_RECOGNITION_TP,
+		SVLT_RECOGNITION_TP_P,
+		SVLT_RECOGNITION_TP_Z,
+		SVLT_RECOGNITION_TP_S,
+		SVLT_RECOGNITION_FP,
+		SVLT_RECOGNITION_FP_P,
+		SVLT_RECOGNITION_FP_Z,
+		SVLT_RECOGNITION_FP_S,
+		SVLT_RECOGNITION_SCORE,
+		SVLT_RECOGNITION_SCORE_P,
+		SVLT_RECOGNITION_SCORE_Z,
+		SVLT_RECOGNITION_SCORE_S,
+		SVLT_RECOGNITION_DISCRIMINABILITY_INDEX,
+		SVLT_RECOGNITION_DISCRIMINABILITY_INDEX_P,
+		SVLT_RECOGNITION_DISCRIMINABILITY_INDEX_Z,
+		SVLT_RECOGNITION_DISCRIMINABILITY_INDEX_S,
+		RCFT_IMMEDIATE_RECALL,
+		RCFT_IMMEDIATE_RECALL_P,
+		RCFT_IMMEDIATE_RECALL_Z,
+		RCFT_IMMEDIATE_RECALL_S,
+		RCFT_DELAYED_RECALL,
+		RCFT_DELAYED_RECALL_P,
+		RCFT_DELAYED_RECALL_Z,
+		RCFT_DELAYED_RECALL_S,
+		RCFT_RECOGNITION_TP,
+		RCFT_RECOGNITION_TP_P,
+		RCFT_RECOGNITION_TP_Z,
+		RCFT_RECOGNITION_FP,
+		RCFT_RECOGNITION_FP_P,
+		RCFT_RECOGNITION_FP_Z,
+		RCFT_RECOGNITION_SCORE,
+		RCFT_RECOGNITION_SCORE_P,
+		RCFT_RECOGNITION_SCORE_Z,
+		RCFT_RECOGNITION_DISCRIMINABILITY_INDEX,
+		RCFT_RECOGNITION_DISCRIMINABILITY_INDEX_P,
+		RCFT_RECOGNITION_DISCRIMINABILITY_INDEX_Z,
+		MOTOR_IMPERSISTENCE,
+		CONTRASTING_PROGRAM,
+		CONTRASTING_PROGRAM_P,
+		CONTRASTING_PROGRAM_Z,
+		GO_NO_GO,
+		GO_NO_GO_P,
+		GO_NO_GO_Z,
+		FIST_EDGE_PALM,
+		ALTERNATING_HAND_MOVEMENT,
+		ALTERNATING_SQUARE_AND_TRIANGLE,
+		LURIA_LOOP,
+		COWAT_ANIMAL,
+		COWAT_ANIMAL_P,
+		COWAT_ANIMAL_Z,
+		COWAT_SUPERMARKET,
+		COWAT_SUPERMARKET_P,
+		COWAT_SUPERMARKET_Z,
+		COWAT_SUPERMARKET_S,
+		COWAT_GIUT,
+		COWAT_GIUT_P,
+		COWAT_GIUT_Z,
+		COWAT_IUNG,
+		COWAT_IUNG_P,
+		COWAT_IUNG_Z,
+		COWAT_SIUT,
+		COWAT_SIUT_P,
+		COWAT_SIUT_Z,
+		COWAT_PHONEMIC_TOTAL_SCORE,
+		COWAT_PHONEMIC_TOTAL_SCORE_P,
+		COWAT_PHONEMIC_TOTAL_SCORE_Z,
+		STROOPTEST_WORDREADING_CORRECT,
+		STROOPTEST_WORDREADING_CORRECT_P,
+		STROOPTEST_WORDREADING_CORRECT_Z,
+		STROOPTEST_WORDREADING_ERROR,
+		STROOPTEST_WORDREADING_ERROR_P,
+		STROOPTEST_WORDREADING_ERROR_Z,
+		STROOPTEST_WORDREADING_TIME,
+		STROOPTEST_WORDREADING_TIME_P,
+		STROOPTEST_WORDREADING_TIME_Z,
+		STROOPTEST_WORDREADING_CORRECT_RESPONSE_RATE,
+		STROOPTEST_WORDREADING_CORRECT_RESPONSE_RATE_P,
+		STROOPTEST_WORDREADING_CORRECT_RESPONSE_RATE_Z,
+		STROOPTEST_WORDREADING_TIME_PER_ITEM,
+		STROOPTEST_WORDREADING_TIME_PER_ITEM_P,
+		STROOPTEST_WORDREADING_TIME_PER_ITEM_Z,
+		STROOPTEST_COLORREADING_CORRECT,
+		STROOPTEST_COLORREADING_CORRECT_P,
+		STROOPTEST_COLORREADING_CORRECT_Z,
+		STROOPTEST_COLORREADING_CORRECT_S,
+		STROOPTEST_COLORREADING_ERROR,
+		STROOPTEST_COLORREADING_ERROR_P,
+		STROOPTEST_COLORREADING_ERROR_Z,
+		STROOPTEST_COLORREADING_TIME,
+		STROOPTEST_COLORREADING_TIME_P,
+		STROOPTEST_COLORREADING_TIME_Z,
+		STROOPTEST_COLORREADING_CORRECT_RESPONSE_RATE,
+		STROOPTEST_COLORREADING_CORRECT_RESPONSE_RATE_P,
+		STROOPTEST_COLORREADING_CORRECT_RESPONSE_RATE_Z,
+		STROOPTEST_COLORREADING_CORRECT_RESPONSE_RATE_S,
+		STROOPTEST_COLORREADING_TIME_PER_ITEM,
+		STROOPTEST_COLORREADING_TIME_PER_ITEM_P,
+		STROOPTEST_COLORREADING_TIME_PER_ITEM_Z,
+		STROOPTEST_COLORREADING_TIME_PER_ITEM_S,
+		STROOPTEST_INTERFERENCE_SCORE,
+		STROOPTEST_INTERFERENCE_SCORE_P,
+		STROOPTEST_INTERFERENCE_SCORE_Z,
+		STROOPTEST_INTERFERENCE_SCORE_S,
+		K_MMSE_ORIENTATION_TO_TIME,
+		K_MMSE_ORIENTATION_TO_TIME_P,
+		K_MMSE_ORIENTATION_TO_TIME_Z,
+		K_MMSE_ORIENTATION_TO_PLACE,
+		K_MMSE_ORIENTATION_TO_PLACE_P,
+		K_MMSE_ORIENTATION_TO_PLACE_Z,
+		K_MMSE_REGISTATION,
+		K_MMSE_REGISTATION_P,
+		K_MMSE_REGISTATION_Z,
+		K_MMSE_ATTENTION_AND_CALCULATION,
+		K_MMSE_ATTENTION_AND_CALCULATION_P,
+		K_MMSE_ATTENTION_AND_CALCULATION_Z,
+		K_MMSE_RECALL,
+		K_MMSE_RECALL_P,
+		K_MMSE_RECALL_Z,
+		K_MMSE_LANGUAGE,
+		K_MMSE_LANGUAGE_P,
+		K_MMSE_LANGUAGE_Z,
+		K_MMSE_DRAWING,
+		K_MMSE_DRAWING_P,
+		K_MMSE_DRAWING_Z,
+		K_MMSE_TOTAL_SCORE,
+		K_MMSE_TOTAL_SCORE_P,
+		K_MMSE_TOTAL_SCORE_Z,
+		CDR,
+		B_ADL,
+		S1_GDS,
+		SUM_OF_BOXES,
+		DIGIT_SPAN_FORWARD_S,
+		DIGIT_SPAN_BACKWARD_S,
+		SELECTIONL_NUM,
+		ILLITERACY,
+		EDUCATION_LEVEL,
+		AGES,
+		DATEOFONSET,
+		VIGILANCE,
+		COMPREHENSION_TOTAL_SCORE,
+		NAMING_K_BNT_S,
+		NAMING_S_K_BNT,
+		NAMING_S_K_BNT_Z,
+		NAMING_S_K_BNT_P,
+		NAMING_S_K_BNT_S,
+		K_MMSE_TOTAL_SCORE_S,
+		DIGIT_SPAN_FORWARD_PLUS_BACKWARD,
+		DIGIT_SPAN_FORWARD_PLUS_BACKWARD_Z,
+		DIGIT_SPAN_FORWARD_PLUS_BACKWARD_P,
+		COWAT_ANIMAL_GIUT,
+		RCFT_RECOGNITION_TP_S,
+		RCFT_RECOGNITION_SCORE_S,
+		INSERT_DATE,
+		INSERT_USERID,
+		UPDATE_DATE,
+		UPDATE_USERID
+	  FROM csbrain2.mb_snsb2data_excel1 a
+	  LEFT JOIN csbrain2.mb_snsb s ON a.unum = s.snsb_unum AND flag = 'U'
+	  JOIN
+         	(SELECT OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ,
+         	(group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator',' )) as DIAG_NM1 ,
+         	(group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator',' )) as DIAG_NM2,
+            (group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator',')) as DOCTOR_NAME
+         	 FROM RD_INTEGRATION_INFO RII GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) b
+      ON s.OBJECT_IDX = b.OBJECT_ID
+      AND DATE_FORMAT(s.SNSB_DATE,'%Y%m%d') BETWEEN b.SEQ_FROM_DATE AND b.SEQ_TO_DATE
+	  
+	  WHERE 1=1
+	  	<if test="downType == 'select'">
+		  	<if test="objectId !=null and objectId != '' ">
+					AND s.OBJECT_IDX IN (${objectId})
+			</if>
+		</if>
+		<if test="downType == 'all'">
+		AND (EXISTS( SELECT 1 FROM (
+				SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+					FROM (
+							SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+							FROM (
+									SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+									FROM RD_INTEGRATION_INFO RII
+									LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+										 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+									WHERE 1=1
+									
+									<if test="objectId !=null and objectId != '' ">
+											AND RII.OBJECT_ID IN (${objectId})
+									</if>
+									<if test="patientSex !=null and patientSex != '' ">
+											AND RII.PATIENT_SEX = #{patientSex}
+									</if>
+									<if test="startAge !=null and startAge != '' ">
+											AND RII.AGE &gt;= #{startAge}
+									</if>
+									<if test="endAge !=null and endAge != '' ">
+											AND RII.AGE &lt;= #{endAge}
+									</if>
+									<if test="diagLastSeq !=null and diagLastSeq != '' ">
+											AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+									</if>
+									<if test="petResult !=null and petResult != '' ">
+											AND ${petResult}
+									</if>
+									<if test="genomeChipNm !=null and genomeChipNm != '' ">
+											AND ${genomeChipNm}
+									</if>
+									<if test="cdrStep !=null and cdrStep != '' ">
+											AND ${cdrStep}
+									</if>
+									<if test="apoeCd !=null and apoeCd != '' ">
+										 <choose>
+											<when test="apoeCd == 'ALL'">
+												AND IFNULL(APOE_CD,'') != ''
+											</when>
+											<otherwise>
+												AND (${apoeCd})
+											</otherwise>
+										</choose>
+									</if>
+									<if test="eduLevel !=null and eduLevel != '' ">
+										 <choose>
+											<when test="eduLevel == 'ALL'">
+												AND IFNULL(EDU_LEVEL,'') != ''
+											</when>
+											<otherwise>
+												AND (${eduLevel})
+											</otherwise>
+										</choose>
+									</if>
+									<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+										AND ( 
+											<if test="schKeyWord !=null and schKeyWord != '' ">
+												 <![CDATA[ ${schKeyWord} ]]>
+												 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+												 OR
+												 </if>
+											</if>
+											
+											<if test="diagNm1 !=null and diagNm1 != '' ">
+												 (<![CDATA[ ${diagNm1} ]]>)
+												 <if test="diagNm2 !=null and diagNm2 != '' ">
+												 	OR
+												 </if>
+											</if>
+											<if test="diagNm2 !=null and diagNm2 != '' ">
+												 (<![CDATA[ ${diagNm2} ]]>)
+											</if>
+											)
+									</if>
+									<if test="grade == '002'">
+									 AND NOT EXISTS(SELECT 
+									 					1 
+									 				FROM 
+									 					RD_INTEGRATION_INFO B 
+													WHERE 
+														RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+									</if>
+									<if test="grade == '003'">
+									 AND EXISTS(SELECT 
+								 					1 
+								 				FROM 
+								 					RD_INTEGRATION_INFO B 
+												WHERE 
+													RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+									</if>
+								 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+								 LEFT JOIN RD_PILOT_STUDY PS 
+						         ON RII.OBJECT_ID = PS.OBJECT_ID
+						         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+            								 GROUP BY OBJECT_IDX)MTB
+            	   				 ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+						)RI
+						WHERE 1=1 
+							<if test="instCode !=null and instCode != '' ">
+								 AND INST_CODE  IN (${instCode})
+							</if>
+							<if test="abo !=null and abo != '' ">
+								<choose>
+									<when test="abo == 'ALL'">
+										AND IFNULL(ABO,'') != ''
+									</when>
+									<otherwise>
+										AND (${abo})
+									</otherwise>
+								</choose>
+							</if>
+						)T1
+						WHERE s.OBJECT_IDX = T1.OBJECT_ID
+					)
+				)
+			</if>
+			
+	  ORDER BY s.OBJECT_IDX, b.DIAG_SEQ, a.UNUM
+	</select>
+	
+	<select id="snsbExcelDownloadList2" parameterType="map" resultMap="dataIntegrationSnsbMap2">
+			SELECT
+		        (select group_concat(m.mriid) from csbrain2.mb_resemri m where m.object_idx = s.object_idx and m.mriyn = '1' and substr(m.resedate,1,6) = substr(a.test_day,1,6)) as mri_id,
+		        (select group_concat(g2.family_id) from nrcd.RD_GENOME_PED g1 inner join nrcd.RD_GENOME_APPEND g2 on g1.family_id = g2.family_id and g1.individual_id = g2.individual_id where g2.object_id = s.object_idx) as family_id,
+		        (select group_concat(g2.individual_id) from nrcd.RD_GENOME_PED g1 inner join nrcd.RD_GENOME_APPEND g2 on g1.family_id = g2.family_id and g1.individual_id = g2.individual_id where g2.object_id = s.object_idx) as individual_id,
+		        s.object_idx,
+		        c.DIAG_SEQ,
+		        c.DIAG_NM1,
+		        c.DIAG_NM2,
+				c.DOCTOR_NAME,
+			    b.UNUM,
+		        b.CDT_CONTOUR,
+		        b.CDT_NUMBERS,
+		        b.CDT_TIME_SETTING,
+		        b.CDT_TOTAL_SCORE,
+		        b.CDT_TOTAL_SCORE_P,
+		        b.K_CWST_60_WORDREADING_CORRECT,
+		        b.K_CWST_60_WORDREADING_CORRECT_P,
+		        b.K_CWST_60_WORDREADING_ERROR,
+		        b.K_CWST_60_WORDREADING_ERROR_P,
+		        b.K_CWST_60_WORDRESPONSE_TIME,
+		        b.K_CWST_60_COLORREADING_CORRECT,
+		        b.K_CWST_60_COLORREADING_CORRECT_P,
+		        b.K_CWST_60_COLORREADING_CORRECT_Z,
+		        b.K_CWST_60_COLORREADING_CORRECT_S,
+		        b.K_CWST_60_COLORREADING_ERROR,
+		        b.K_CWST_60_COLORREADING_ERROR_P,
+		        b.K_CWST_60_COLORRESPONSE_TIME,
+		        b.DSC_CORRECT,
+		        b.DSC_CORRECT_P,
+		        b.DSC_CORRECT_Z,
+		        b.DSC_CORRECT_S,
+		        b.DSC_ERROR,
+		        b.DSC_ERROR_P,
+		        b.K_TMT_E_A_SUCCESS,
+		        b.K_TMT_E_A_TIME,
+		        b.K_TMT_E_A_TIME_P,
+		        b.K_TMT_E_A_TIME_Z,
+		        b.K_TMT_E_A_TIME_S,
+		        b.K_TMT_E_A_ERROR,
+		        b.K_TMT_E_B_SUCCESS,
+		        b.K_TMT_E_B_TIME,
+		        b.K_TMT_E_B_TIME_P,
+		        b.K_TMT_E_B_TIME_Z,
+		        b.K_TMT_E_B_TIME_S,
+		        b.K_TMT_E_B_ERROR,
+		        b.K_TMT_E_B_ERROR_P,
+		        b.RCFT_RECOGNITION_DISCRIMINABILITY_INDEX_S,
+		        b.COWAT_ANIMAL_S,
+		        b.COWAT_SIUT_S,
+		        b.FIST_EDGE_PALM_RIGHT,
+		        b.FIST_EDGE_PALM_LEFT,
+		        b.COWAT_ANIMAL_GIUT_P,
+		        b.COWAT_ANIMAL_GIUT_Z,
+		        b.COWAT_ANIMAL_GIUT_S,
+		        b.SGDS,
+		        b.K_IADL_TOTAL_SCORE,
+		        b.K_IADL_XCOUNT,
+		        b.K_IADL_SCORE,
+		        b.GLOBAL_DS,
+		        b.SNSB_II_DOMAIN_ATTENTION,
+		        b.SNSB_II_DOMAIN_ATTENTION_P,
+		        b.SNSB_II_DOMAIN_ATTENTION_Z,
+		        b.SNSB_II_DOMAIN_ATTENTION_T,
+		        b.SNSB_II_DOMAIN_ATTENTION_S,
+		        b.SNSB_II_DOMAIN_LANGUAGE,
+		        b.SNSB_II_DOMAIN_LANGUAGE_P,
+		        b.SNSB_II_DOMAIN_LANGUAGE_Z,
+		        b.SNSB_II_DOMAIN_LANGUAGE_T,
+		        b.SNSB_II_DOMAIN_LANGUAGE_S,
+		        b.SNSB_II_DOMAIN_VISUOSPATIAL,
+		        b.SNSB_II_DOMAIN_VISUOSPATIAL_P,
+		        b.SNSB_II_DOMAIN_VISUOSPATIAL_Z,
+		        b.SNSB_II_DOMAIN_VISUOSPATIAL_T,
+		        b.SNSB_II_DOMAIN_VISUOSPATIAL_S,
+		        b.SNSB_II_DOMAIN_MEMORY,
+		        b.SNSB_II_DOMAIN_MEMORY_P,
+		        b.SNSB_II_DOMAIN_MEMORY_Z,
+		        b.SNSB_II_DOMAIN_MEMORY_T,
+		        b.SNSB_II_DOMAIN_MEMORY_S,
+		        b.SNSB_II_DOMAIN_FRONTAL,
+		        b.SNSB_II_DOMAIN_FRONTAL_P,
+		        b.SNSB_II_DOMAIN_FRONTAL_Z,
+		        b.SNSB_II_DOMAIN_FRONTAL_T,
+		        b.SNSB_II_DOMAIN_FRONTAL_S,
+		        b.SNSB_C_ANI_GIUT,
+		        b.SNSB_C_ANI_GIUT_P,
+		        b.SNSB_C_ANI_GIUT_Z,
+		        b.SNSB_C_ANI_GIUT_T,
+		        b.SNSB_C_ANI_GIUT_S,
+		        b.DM,
+		        b.HIBP,
+		        b.HYLIPID,
+		        b.CARDIACDS,
+		        b.STROKE,
+		        b.BRDAMAGEACC,
+		        b.CO,
+		        b.BRAINSURGERY,
+		        b.SYPHI,
+		        b.THYROID,
+		        b.ENCEPHALITIS,
+		        b.LIVERDIS,
+		        b.DEPRESSION,
+		        b.KIDNEYDIS,
+		        b.LUNGDIS,
+		        b.ARTHRITIS,
+		        b.SLEEPDIS,
+		        b.FAMHIS,
+		        b.METABBRDIS,
+		        b.MENTALDIS,
+		        b.MENTALRET,
+		        b.BRAINTUMOR,
+		        b.GASTRODIS,
+		        b.CANCER,
+		        b.FRACTURE,
+		        b.ANEMIA,
+		        b.EPILEPSY,
+		        b.DRUGABU,
+		        b.ALCOABU,
+		        b.LOSSCONSC,
+		        b.OTHER,
+		        b.INSERT_DATE,
+		        b.INSERT_USERID,
+		        b.UPDATE_DATE,
+		        b.UPDATE_USERID
+		  FROM csbrain2.mb_snsb2data_excel1 a
+		  JOIN csbrain2.mb_snsb2data_excel2 b ON a.unum = b.unum
+		  LEFT JOIN csbrain2.mb_snsb s on a.unum = s.snsb_unum AND flag = 'U'
+		  JOIN
+		        (SELECT OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ,
+		        (group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator',' )) as DIAG_NM1 ,
+		        (group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator',' )) as DIAG_NM2,
+           		(group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator',')) as DOCTOR_NAME
+		        FROM RD_INTEGRATION_INFO RII GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) c
+		  ON s.OBJECT_IDX = c.OBJECT_ID
+		  AND DATE_FORMAT(s.SNSB_DATE,'%Y%m%d') BETWEEN c.SEQ_FROM_DATE AND c.SEQ_TO_DATE
+		  WHERE 1=1
+		  	  
+		      <if test="downType == 'select'">
+			  	<if test="objectId !=null and objectId != '' ">
+						AND s.OBJECT_IDX IN (${objectId})
+				</if>
+			</if>
+			<if test="downType == 'all'">
+			AND (EXISTS( SELECT 1 FROM (
+					SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+						FROM (
+								SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+								FROM (
+										SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+										FROM RD_INTEGRATION_INFO RII
+										LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+											 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+										WHERE 1=1
+										
+										<if test="objectId !=null and objectId != '' ">
+												AND RII.OBJECT_ID IN (${objectId})
+										</if>
+										<if test="patientSex !=null and patientSex != '' ">
+												AND RII.PATIENT_SEX = #{patientSex}
+										</if>
+										<if test="startAge !=null and startAge != '' ">
+												AND RII.AGE &gt;= #{startAge}
+										</if>
+										<if test="endAge !=null and endAge != '' ">
+												AND RII.AGE &lt;= #{endAge}
+										</if>
+										<if test="diagLastSeq !=null and diagLastSeq != '' ">
+												AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+										</if>
+										<if test="petResult !=null and petResult != '' ">
+												AND ${petResult}
+										</if>
+										<if test="genomeChipNm !=null and genomeChipNm != '' ">
+												AND ${genomeChipNm}
+										</if>
+										<if test="cdrStep !=null and cdrStep != '' ">
+												AND ${cdrStep}
+										</if>
+										<if test="apoeCd !=null and apoeCd != '' ">
+											 <choose>
+												<when test="apoeCd == 'ALL'">
+													AND IFNULL(APOE_CD,'') != ''
+												</when>
+												<otherwise>
+													AND (${apoeCd})
+												</otherwise>
+											</choose>
+										</if>
+										<if test="eduLevel !=null and eduLevel != '' ">
+											 <choose>
+												<when test="eduLevel == 'ALL'">
+													AND IFNULL(EDU_LEVEL,'') != ''
+												</when>
+												<otherwise>
+													AND (${eduLevel})
+												</otherwise>
+											</choose>
+										</if>
+										<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+											AND ( 
+												<if test="schKeyWord !=null and schKeyWord != '' ">
+													 <![CDATA[ ${schKeyWord} ]]>
+													 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+													 OR
+													 </if>
+												</if>
+												
+												<if test="diagNm1 !=null and diagNm1 != '' ">
+													 (<![CDATA[ ${diagNm1} ]]>)
+													 <if test="diagNm2 !=null and diagNm2 != '' ">
+													 	OR
+													 </if>
+												</if>
+												<if test="diagNm2 !=null and diagNm2 != '' ">
+													 (<![CDATA[ ${diagNm2} ]]>)
+												</if>
+												)
+										</if>
+										<if test="grade == '002'">
+										 AND NOT EXISTS(SELECT 
+										 					1 
+										 				FROM 
+										 					RD_INTEGRATION_INFO B 
+														WHERE 
+															RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+										</if>
+										<if test="grade == '003'">
+										 AND EXISTS(SELECT 
+									 					1 
+									 				FROM 
+									 					RD_INTEGRATION_INFO B 
+													WHERE 
+														RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+										</if>
+									 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+									 LEFT JOIN RD_PILOT_STUDY PS 
+							         ON RII.OBJECT_ID = PS.OBJECT_ID
+							         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+				            					  GROUP BY OBJECT_IDX)MTB
+				            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+							)RI
+							WHERE 1=1 
+								<if test="instCode !=null and instCode != '' ">
+									 AND INST_CODE  IN (${instCode})
+								</if>
+								<if test="abo !=null and abo != '' ">
+									<choose>
+										<when test="abo == 'ALL'">
+											AND IFNULL(ABO,'') != ''
+										</when>
+										<otherwise>
+											AND (${abo})
+										</otherwise>
+									</choose>
+								</if>
+							)T1
+							WHERE s.OBJECT_IDX = T1.OBJECT_ID
+						)
+					)
+				</if>
+		  ORDER BY s.object_idx, c.DIAG_SEQ, a.unum
+	
+	</select>
+	
+	<select id="mmseExcelDownloadList" parameterType="map" resultMap="dataIntegrationMmseMap">
+		SELECT
+			(select group_concat(m.mriid) from csbrain2.mb_resemri m where m.object_idx = a.object_idx and m.mriyn = '1' and substr(m.resedate,1,6) = substr(DATE_FORMAT(a.test_day,'%Y%m%d'),1,6)) as MRI_ID,
+			(select group_concat(g2.family_id) from nrcd.RD_GENOME_PED g1 inner join nrcd.RD_GENOME_APPEND g2 on g1.family_id = g2.family_id and g1.individual_id = g2.individual_id where g2.object_id = a.object_idx) as FAMILY_ID,
+			(select group_concat(g2.individual_id) from nrcd.RD_GENOME_PED g1 inner join nrcd.RD_GENOME_APPEND g2 on g1.family_id = g2.family_id and g1.individual_id = g2.individual_id where g2.object_id = a.object_idx) as INDIVIDUAL_ID,
+			a.SUBJECT_IDX,
+			a.OBJECT_IDX,
+			b.DIAG_SEQ,
+			b.DIAG_NM1,
+			b.DIAG_NM2,
+            b.DOCTOR_NAME,
+			a.MMSE_NUM,
+			a.MMSE_KIND,
+			a.Q01,
+			a.Q02,
+			a.Q03,
+			a.Q04,
+			a.Q05,
+			a.Q06,
+			a.Q07,
+			a.Q08,
+			a.Q09,
+			a.Q10,
+			a.Q11_1,
+			a.Q11_2,
+			a.Q11_3,
+			a.Q12_1,
+			a.Q12_2,
+			a.Q12_3,
+			a.Q12_4,
+			a.Q12_5,
+			a.Q12_TOTAL,
+			a.Q13_1,
+			a.Q13_2,
+			a.Q13_3,
+			a.Q14_1,
+			a.Q14_2,
+			a.Q15,
+			a.Q16_1,
+			a.Q16_2,
+			a.Q16_3,
+			a.Q17,
+			a.Q18,
+			a.Q19,
+			a.TOTAL,
+			a.TEST_DAY,
+			a.FLAG,
+			a.INSERT_DATE,
+			a.INSERT_USERID,
+			a.UPDATE_DATE,
+			a.UPDATE_USERID    
+			     
+		FROM csbrain2.mb_mmse a 
+		JOIN
+         	(SELECT OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ,
+         	(group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator',' )) as DIAG_NM1 ,
+         	(group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator',' )) as DIAG_NM2,
+            (group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator',')) as DOCTOR_NAME
+         	 FROM RD_INTEGRATION_INFO RII 
+         	 GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) b
+        ON a.OBJECT_IDX = b.OBJECT_ID
+        AND DATE_FORMAT(a.TEST_DAY,'%Y%m%d') BETWEEN b.SEQ_FROM_DATE AND b.SEQ_TO_DATE
+		WHERE 1=1 
+		 	AND a.FLAG='U'
+		<if test="downType == 'select'">
+		  	<if test="objectId !=null and objectId != '' ">
+					AND a.OBJECT_IDX IN (${objectId})
+			</if>
+		</if>
+		<if test="downType == 'all'">
+		AND (EXISTS( SELECT 1 FROM (
+				SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+					FROM (
+							SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+							FROM (
+									SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+									FROM RD_INTEGRATION_INFO RII
+									LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+										 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+									WHERE 1=1
+									
+									<if test="objectId !=null and objectId != '' ">
+											AND RII.OBJECT_ID IN (${objectId})
+									</if>
+									<if test="patientSex !=null and patientSex != '' ">
+											AND RII.PATIENT_SEX = #{patientSex}
+									</if>
+									<if test="startAge !=null and startAge != '' ">
+											AND RII.AGE &gt;= #{startAge}
+									</if>
+									<if test="endAge !=null and endAge != '' ">
+											AND RII.AGE &lt;= #{endAge}
+									</if>
+									<if test="diagLastSeq !=null and diagLastSeq != '' ">
+											AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+									</if>
+									<if test="petResult !=null and petResult != '' ">
+											AND ${petResult}
+									</if>
+									<if test="genomeChipNm !=null and genomeChipNm != '' ">
+											AND ${genomeChipNm}
+									</if>
+									<if test="cdrStep !=null and cdrStep != '' ">
+											AND ${cdrStep}
+									</if>
+									<if test="apoeCd !=null and apoeCd != '' ">
+										 <choose>
+											<when test="apoeCd == 'ALL'">
+												AND IFNULL(APOE_CD,'') != ''
+											</when>
+											<otherwise>
+												AND (${apoeCd})
+											</otherwise>
+										</choose>
+									</if>
+									<if test="eduLevel !=null and eduLevel != '' ">
+										 <choose>
+											<when test="eduLevel == 'ALL'">
+												AND IFNULL(EDU_LEVEL,'') != ''
+											</when>
+											<otherwise>
+												AND (${eduLevel})
+											</otherwise>
+										</choose>
+									</if>
+									<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+										AND ( 
+											<if test="schKeyWord !=null and schKeyWord != '' ">
+												 <![CDATA[ ${schKeyWord} ]]>
+												 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+												 OR
+												 </if>
+											</if>
+											
+											<if test="diagNm1 !=null and diagNm1 != '' ">
+												 (<![CDATA[ ${diagNm1} ]]>)
+												 <if test="diagNm2 !=null and diagNm2 != '' ">
+												 	OR
+												 </if>
+											</if>
+											<if test="diagNm2 !=null and diagNm2 != '' ">
+												 (<![CDATA[ ${diagNm2} ]]>)
+											</if>
+											)
+									</if>
+									<if test="grade == '002'">
+									 AND NOT EXISTS(SELECT 
+									 					1 
+									 				FROM 
+									 					RD_INTEGRATION_INFO B 
+													WHERE 
+														RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+									</if>
+									<if test="grade == '003'">
+									 AND EXISTS(SELECT 
+								 					1 
+								 				FROM 
+								 					RD_INTEGRATION_INFO B 
+												WHERE 
+													RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+									</if>
+								 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+								 LEFT JOIN RD_PILOT_STUDY PS 
+						         ON RII.OBJECT_ID = PS.OBJECT_ID
+						         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+			            					  GROUP BY OBJECT_IDX)MTB
+			            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+						)RI
+						WHERE 1=1 
+							<if test="instCode !=null and instCode != '' ">
+								 AND INST_CODE  IN (${instCode})
+							</if>
+							<if test="abo !=null and abo != '' ">
+								<choose>
+									<when test="abo == 'ALL'">
+										AND IFNULL(ABO,'') != ''
+									</when>
+									<otherwise>
+										AND (${abo})
+									</otherwise>
+								</choose>
+							</if>
+						)T1
+						WHERE a.OBJECT_IDX = T1.OBJECT_ID
+					)
+				)
+			</if>
+		ORDER BY a.OBJECT_IDX, b.DIAG_SEQ
+	</select>
+	
+	<select id="bioMaterialExcelDownloadList" parameterType="map" resultMap="dataIntegrationBioMaterialMap">
+		SELECT 
+			OBJECT_IDX,
+			BI.BLOOD_ID,
+			b.DIAG_SEQ,
+			b.DIAG_NM1,
+			b.DIAG_NM2,
+			b.DOCTOR_NAME,
+			CHARTNO,
+			HEIGHT,
+			WEIGHT,
+			ABO,
+			BPRESSURE1,
+			BPRESSURE2,
+			WHITEBLOOD,
+			REDBLOOD,
+			THROMBOCYT,
+			HEMOGLOBIN,
+			HEMATOCRIT,
+			WBCDIFF1,
+			WBCDIFF2,
+			WBCDIFF3,
+			WBCDIFF4,
+			WBCDIFF5,
+			WBCDIFF6,
+			PROTEIN,
+			ALBUMIN,
+			CHOLESTERO,
+			TRIGLYCERI,
+			ASTSGOT,
+			ALTSGPT,
+			BUN,
+			CREATININE,
+			HBAIC,
+			T3,
+			T4,
+			TSH,
+			MODIFYUSID,
+			MODIFYDATE,
+			MRIID,
+			LDLCHOLE,
+			HDLCHOLE,
+			BPRESSURE3,
+			BPRESSURE4,
+			GLUCOSE
+		FROM csbrain2.mb_testblod a
+		JOIN
+		    (SELECT OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ,
+		    (group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator',' )) as DIAG_NM1 ,
+		    (group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator',' )) as DIAG_NM2,
+           	(group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator',')) as DOCTOR_NAME
+		     FROM RD_INTEGRATION_INFO RII GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) b
+		ON 
+			a.OBJECT_IDX = b.OBJECT_ID
+			AND DATE_FORMAT(a.TESTDATE,'%Y%m%d') BETWEEN b.SEQ_FROM_DATE AND b.SEQ_TO_DATE
+		LEFT JOIN
+			(SELECT 
+				A.specdate AS SPEC_DATE,
+				A.object_idx AS OBJECT_ID,
+				GROUP_CONCAT(DISTINCT (CASE
+					WHEN
+						(IFNULL(B.bloodid, '') = '')
+					THEN
+						(SELECT 
+								REPLACE(C.BIOMAT_ID, '-', '')
+							FROM
+								csbrain2.V_BIOMAT_INFO C
+							WHERE
+								((C.RESE_DATE = A.specdate)
+									AND (C.OBJECT_ID = A.object_idx)
+									AND (C.BIOMAT_TYPE = 'A001')))
+					ELSE B.bloodid
+				END) SEPARATOR ',') AS BLOOD_ID,
+				COUNT(0) AS DTL_CNT
+			FROM
+				(csbrain2.mb_specimdt A
+				LEFT JOIN csbrain2.mb_specimhd B ON (((A.specdate = B.specdate)
+					AND (A.object_idx = B.object_idx))))
+			WHERE
+				(A.specdate BETWEEN '20140401' AND '20190831')
+			GROUP BY A.specdate , A.object_idx 
+			
+			UNION 
+			
+			SELECT 
+				A.TAKE_DATE AS SPEC_DATE,
+				A.OBJECT_ID AS OBJECT_ID,
+				GROUP_CONCAT(DISTINCT REPLACE(A.BIOMAT_ID, '-', '') SEPARATOR ',') AS BLOOD_ID,
+				COUNT(0) AS DTL_CNT
+			FROM
+				(nrcd.RD_BIOTAKE_MST A
+				JOIN nrcd.RD_BIOTAKE_DTL B ON (((A.TAKE_DATE = B.TAKE_DATE)
+					AND (A.OBJECT_ID = B.OBJECT_ID)
+					AND (A.BIOMAT_ID = B.BIOMAT_ID)
+					AND (A.BIOMAT_KIND = B.BIOMAT_KIND))))
+			WHERE
+				((A.BIOMAT_KIND = 'A001')
+					AND (A.TAKE_DATE >= '20190901'))
+			GROUP BY A.TAKE_DATE , A.OBJECT_ID) BI
+		ON
+			BI.OBJECT_ID = a.object_idx
+            AND BI.SPEC_DATE = a.testdate
+		WHERE 1=1
+			<if test="downType == 'select'">
+			  	<if test="objectId !=null and objectId != '' ">
+						AND a.OBJECT_IDX IN (${objectId})
+				</if>
+			</if>
+			<if test="downType == 'all'">
+			AND (EXISTS( SELECT 1 FROM (
+					SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+						FROM (
+								SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+								FROM (
+										SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+										FROM RD_INTEGRATION_INFO RII
+										LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+											 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+										WHERE 1=1
+										
+										<if test="objectId !=null and objectId != '' ">
+												AND RII.OBJECT_ID IN (${objectId})
+										</if>
+										<if test="patientSex !=null and patientSex != '' ">
+												AND RII.PATIENT_SEX = #{patientSex}
+										</if>
+										<if test="startAge !=null and startAge != '' ">
+												AND RII.AGE &gt;= #{startAge}
+										</if>
+										<if test="endAge !=null and endAge != '' ">
+												AND RII.AGE &lt;= #{endAge}
+										</if>
+										<if test="diagLastSeq !=null and diagLastSeq != '' ">
+												AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+										</if>
+										<if test="petResult !=null and petResult != '' ">
+												AND ${petResult}
+										</if>
+										<if test="genomeChipNm !=null and genomeChipNm != '' ">
+												AND ${genomeChipNm}
+										</if>
+										<if test="cdrStep !=null and cdrStep != '' ">
+												AND ${cdrStep}
+										</if>
+										<if test="apoeCd !=null and apoeCd != '' ">
+											 <choose>
+												<when test="apoeCd == 'ALL'">
+													AND IFNULL(APOE_CD,'') != ''
+												</when>
+												<otherwise>
+													AND (${apoeCd})
+												</otherwise>
+											</choose>
+										</if>
+										<if test="eduLevel !=null and eduLevel != '' ">
+											 <choose>
+												<when test="eduLevel == 'ALL'">
+													AND IFNULL(EDU_LEVEL,'') != ''
+												</when>
+												<otherwise>
+													AND (${eduLevel})
+												</otherwise>
+											</choose>
+										</if>
+										<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+											AND ( 
+												<if test="schKeyWord !=null and schKeyWord != '' ">
+													 <![CDATA[ ${schKeyWord} ]]>
+													 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+													 OR
+													 </if>
+												</if>
+												
+												<if test="diagNm1 !=null and diagNm1 != '' ">
+													 (<![CDATA[ ${diagNm1} ]]>)
+													 <if test="diagNm2 !=null and diagNm2 != '' ">
+													 	OR
+													 </if>
+												</if>
+												<if test="diagNm2 !=null and diagNm2 != '' ">
+													 (<![CDATA[ ${diagNm2} ]]>)
+												</if>
+												)
+										</if>
+										<if test="grade == '002'">
+										 AND NOT EXISTS(SELECT 
+										 					1 
+										 				FROM 
+										 					RD_INTEGRATION_INFO B 
+														WHERE 
+															RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+										</if>
+										<if test="grade == '003'">
+										 AND EXISTS(SELECT 
+									 					1 
+									 				FROM 
+									 					RD_INTEGRATION_INFO B 
+													WHERE 
+														RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+										</if>
+									 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+									 LEFT JOIN RD_PILOT_STUDY PS 
+							         ON RII.OBJECT_ID = PS.OBJECT_ID
+							         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+				            					  GROUP BY OBJECT_IDX)MTB
+				            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+							)RI
+							WHERE 1=1 
+								<if test="instCode !=null and instCode != '' ">
+									 AND INST_CODE  IN (${instCode})
+								</if>
+								<if test="abo !=null and abo != '' ">
+									<choose>
+										<when test="abo == 'ALL'">
+											AND IFNULL(ABO,'') != ''
+										</when>
+										<otherwise>
+											AND (${abo})
+										</otherwise>
+									</choose>
+								</if>
+							)T1
+							WHERE a.OBJECT_IDX = T1.OBJECT_ID
+						)
+					)
+			</if>
+		ORDER BY a.OBJECT_IDX,  b.DIAG_SEQ
+	</select>
+	
+	<select id="brainwaveBeamExcelDownloadList" parameterType="map" resultMap="brainwaveBeamMap">
+		SELECT 
+				@ROWNUM := @ROWNUM+1 ROWNUM
+				, A.* 
+			FROM 
+				(
+				SELECT
+					BEAM_ID
+					,'Y' INTEGRATION_YN
+					,RBB.OBJECT_ID
+					,B.DIAG_SEQ
+					,B.DIAG_NM1
+					,B.DIAG_NM2
+					,B.DOCTOR_NAME
+					,FILE_YN
+					,EXEC_DATE
+					,PATIENT_SEX
+					,BIRTH_YYYY
+					,AGE
+					,DEVICE
+					,D_NUM
+					,PEAK_MEF
+					,PEAK_FREQ
+					,PEAK_POWER
+					,L_THETA
+					,L_ALPHA
+					,L_LBETA
+					,L_MBETA
+					,L_HBETA
+					,L_GAMMA
+					,R_THETA
+					,R_ALPHA
+					,R_LBETA
+					,R_MBETA
+					,R_HBETA
+					,R_GAMMA
+					,BT_RATIO
+					,AB_RATIO
+					,MEF450
+					,GAMMA
+					,REL_A
+					,ALPAH_ASYM
+					,GAMMA_ASYM
+					,LR_CC
+					,L_EOG_MF
+					,R_EOG_MF
+					,L_100_OUTR
+					,R_100_OUTR
+					,L_BLINK
+					,R_BLINK
+				FROM RD_BRAINWAVE_BEAM RBB
+				JOIN (SELECT @ROWNUM:=0) AS R
+				JOIN
+				    (SELECT OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ,
+				    (group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator',' )) as DIAG_NM1 ,
+				    (group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator',' )) as DIAG_NM2,
+		           	(group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator',')) as DOCTOR_NAME
+				    FROM RD_INTEGRATION_INFO RII GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) B
+				ON RBB.OBJECT_ID = B.OBJECT_ID
+				AND RBB.EXEC_DATE BETWEEN B.SEQ_FROM_DATE AND B.SEQ_TO_DATE
+				WHERE 1=1
+				  <if test="downType == 'select'">
+				  	<if test="objectId !=null and objectId != '' ">
+							AND RBB.OBJECT_ID IN (${objectId})
+					</if>
+				</if>
+				<if test="downType == 'all'">
+				AND (EXISTS( SELECT 1 FROM (
+						SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+							FROM (
+									SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+									FROM (
+											SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+											FROM RD_INTEGRATION_INFO RII
+											LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+												 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+											WHERE 1=1
+											
+											<if test="objectId !=null and objectId != '' ">
+													AND RII.OBJECT_ID IN (${objectId})
+											</if>
+											<if test="patientSex !=null and patientSex != '' ">
+													AND RII.PATIENT_SEX = #{patientSex}
+											</if>
+											<if test="startAge !=null and startAge != '' ">
+													AND RII.AGE &gt;= #{startAge}
+											</if>
+											<if test="endAge !=null and endAge != '' ">
+													AND RII.AGE &lt;= #{endAge}
+											</if>
+											<if test="diagLastSeq !=null and diagLastSeq != '' ">
+													AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+											</if>
+											<if test="petResult !=null and petResult != '' ">
+													AND ${petResult}
+											</if>
+											<if test="genomeChipNm !=null and genomeChipNm != '' ">
+													AND ${genomeChipNm}
+											</if>
+											<if test="cdrStep !=null and cdrStep != '' ">
+													AND ${cdrStep}
+											</if>
+											<if test="apoeCd !=null and apoeCd != '' ">
+												 <choose>
+													<when test="apoeCd == 'ALL'">
+														AND IFNULL(APOE_CD,'') != ''
+													</when>
+													<otherwise>
+														AND (${apoeCd})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="eduLevel !=null and eduLevel != '' ">
+												 <choose>
+													<when test="eduLevel == 'ALL'">
+														AND IFNULL(EDU_LEVEL,'') != ''
+													</when>
+													<otherwise>
+														AND (${eduLevel})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+												AND ( 
+													<if test="schKeyWord !=null and schKeyWord != '' ">
+														 <![CDATA[ ${schKeyWord} ]]>
+														 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+														 OR
+														 </if>
+													</if>
+													
+													<if test="diagNm1 !=null and diagNm1 != '' ">
+														 (<![CDATA[ ${diagNm1} ]]>)
+														 <if test="diagNm2 !=null and diagNm2 != '' ">
+														 	OR
+														 </if>
+													</if>
+													<if test="diagNm2 !=null and diagNm2 != '' ">
+														 (<![CDATA[ ${diagNm2} ]]>)
+													</if>
+													)
+											</if>
+											<if test="grade == '002'">
+											 AND NOT EXISTS(SELECT 
+											 					1 
+											 				FROM 
+											 					RD_INTEGRATION_INFO B 
+															WHERE 
+																RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+											<if test="grade == '003'">
+											 AND EXISTS(SELECT 
+										 					1 
+										 				FROM 
+										 					RD_INTEGRATION_INFO B 
+														WHERE 
+															RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+										 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+										 LEFT JOIN RD_PILOT_STUDY PS 
+								         ON RII.OBJECT_ID = PS.OBJECT_ID
+								         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+					            					  GROUP BY OBJECT_IDX)MTB
+					            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+								)RI
+								WHERE 1=1 
+									<if test="instCode !=null and instCode != '' ">
+										 AND INST_CODE  IN (${instCode})
+									</if>
+									<if test="abo !=null and abo != '' ">
+										<choose>
+											<when test="abo == 'ALL'">
+												AND IFNULL(ABO,'') != ''
+											</when>
+											<otherwise>
+												AND (${abo})
+											</otherwise>
+										</choose>
+									</if>
+								)T1
+								WHERE RBB.OBJECT_ID= T1.OBJECT_ID
+							)
+						)
+					</if>
+				ORDER BY RBB.OBJECT_ID, B.DIAG_SEQ
+			) A
+		
+	</select>
+	
+	<select id="brainwaveSensoryExcelDownloadList" parameterType="map" resultMap="brainwaveSensoryMap">
+		SELECT 
+					@ROWNUM := @ROWNUM+1 ROWNUM
+					, A.* 
+				FROM 
+					(
+				SELECT
+					SENSORY_ID
+					,'Y' INTEGRATION_YN
+					,RBS.OBJECT_ID
+					,B.DIAG_SEQ
+					,B.DIAG_NM1
+					,B.DIAG_NM2
+					,B.DOCTOR_NAME
+					,PATIENT_SEX
+					,BIRTH_YYYY
+					,AGE
+					,DEVICE
+					,D_NUM
+					,AMP125
+					,AMP250
+					,AMP500
+					,AMP750
+					,AMP1500
+					,AMP2000
+					,AMP3000
+					,AMP4000
+					,L_AMP_AVR
+					,R_AMP_AVR
+					,AMP_SD
+					,L_LATENCY_AVR
+					,R_LATENCY_AVR
+					,LATENCY_SD
+					,LR_EOG_MEF
+					,L_THETA
+					,L_ALPHA
+					,L_LBETA
+					,L_MBETA
+					,L_HBETA
+					,L_GAMMA
+					,R_THETA
+					,R_ALPHA
+					,R_LBETA
+					,R_MBETA
+					,R_HBETA
+					,R_GAMMA
+					,BT_RATIO
+					,AB_RATIO
+					,MEF450
+					,GAMMA
+					,REL_A
+					,ALPAH_ASYM
+					,GAMMA_ASYM
+					,LR_CC
+					,L_EOG_MF
+					,R_EOG_MF
+					,L_100_OUTR
+					,R_100_OUTR
+					,L_BLINK
+					,R_BLINK
+				FROM RD_BRAINWAVE_SENSORY RBS
+				JOIN (SELECT @ROWNUM:=0) AS R
+				JOIN
+				    (SELECT OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ,
+				    (group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator',' )) as DIAG_NM1 ,
+				    (group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator',' )) as DIAG_NM2,
+		            (group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator',')) as DOCTOR_NAME
+				    FROM RD_INTEGRATION_INFO RII GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) B
+				ON RBS.OBJECT_ID = B.OBJECT_ID
+				AND RBS.EXEC_DATE BETWEEN B.SEQ_FROM_DATE AND B.SEQ_TO_DATE
+				WHERE 1=1
+				  <if test="downType == 'select'">
+					  	<if test="objectId !=null and objectId != '' ">
+								AND RBS.OBJECT_ID IN (${objectId})
+						</if>
+					</if>
+					<if test="downType == 'all'">
+					AND (EXISTS( SELECT 1 FROM (
+							SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+								FROM (
+										SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+										FROM (
+												SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+												FROM RD_INTEGRATION_INFO RII
+												LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+													 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+												WHERE 1=1
+												
+												<if test="objectId !=null and objectId != '' ">
+														AND RII.OBJECT_ID IN (${objectId})
+												</if>
+												<if test="patientSex !=null and patientSex != '' ">
+														AND RII.PATIENT_SEX = #{patientSex}
+												</if>
+												<if test="startAge !=null and startAge != '' ">
+														AND RII.AGE &gt;= #{startAge}
+												</if>
+												<if test="endAge !=null and endAge != '' ">
+														AND RII.AGE &lt;= #{endAge}
+												</if>
+												<if test="diagLastSeq !=null and diagLastSeq != '' ">
+														AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+												</if>
+												<if test="petResult !=null and petResult != '' ">
+														AND ${petResult}
+												</if>
+												<if test="genomeChipNm !=null and genomeChipNm != '' ">
+														AND ${genomeChipNm}
+												</if>
+												<if test="cdrStep !=null and cdrStep != '' ">
+														AND ${cdrStep}
+												</if>
+												<if test="apoeCd !=null and apoeCd != '' ">
+													 <choose>
+														<when test="apoeCd == 'ALL'">
+															AND IFNULL(APOE_CD,'') != ''
+														</when>
+														<otherwise>
+															AND (${apoeCd})
+														</otherwise>
+													</choose>
+												</if>
+												<if test="eduLevel !=null and eduLevel != '' ">
+													 <choose>
+														<when test="eduLevel == 'ALL'">
+															AND IFNULL(EDU_LEVEL,'') != ''
+														</when>
+														<otherwise>
+															AND (${eduLevel})
+														</otherwise>
+													</choose>
+												</if>
+												<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+													AND ( 
+														<if test="schKeyWord !=null and schKeyWord != '' ">
+															 <![CDATA[ ${schKeyWord} ]]>
+															 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+															 OR
+															 </if>
+														</if>
+														
+														<if test="diagNm1 !=null and diagNm1 != '' ">
+															 (<![CDATA[ ${diagNm1} ]]>)
+															 <if test="diagNm2 !=null and diagNm2 != '' ">
+															 	OR
+															 </if>
+														</if>
+														<if test="diagNm2 !=null and diagNm2 != '' ">
+															 (<![CDATA[ ${diagNm2} ]]>)
+														</if>
+														)
+												</if>
+												<if test="grade == '002'">
+												 AND NOT EXISTS(SELECT 
+												 					1 
+												 				FROM 
+												 					RD_INTEGRATION_INFO B 
+																WHERE 
+																	RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+												</if>
+												<if test="grade == '003'">
+												 AND EXISTS(SELECT 
+											 					1 
+											 				FROM 
+											 					RD_INTEGRATION_INFO B 
+															WHERE 
+																RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+												</if>
+											 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+											 LEFT JOIN RD_PILOT_STUDY PS 
+									         ON RII.OBJECT_ID = PS.OBJECT_ID
+									         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+						            					  GROUP BY OBJECT_IDX)MTB
+						            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+									)RI
+									WHERE 1=1 
+										<if test="instCode !=null and instCode != '' ">
+											 AND INST_CODE  IN (${instCode})
+										</if>
+										<if test="abo !=null and abo != '' ">
+											<choose>
+												<when test="abo == 'ALL'">
+													AND IFNULL(ABO,'') != ''
+												</when>
+												<otherwise>
+													AND (${abo})
+												</otherwise>
+											</choose>
+										</if>
+									)T1
+									WHERE RBS.OBJECT_ID = T1.OBJECT_ID
+								)
+							)
+						</if>
+				ORDER BY RBS.OBJECT_ID, B.DIAG_SEQ) A
+	</select>
+	
+	<select id="brainwaveAttentionExcelDownloadList" parameterType="map" resultMap="brainwaveAttentionMap">
+		SELECT 
+				@ROWNUM := @ROWNUM+1 ROWNUM
+				, A.* 
+			FROM 
+				(
+				SELECT
+					ATTENTION_ID
+					,'Y' INTEGRATION_YN
+					,RBA.OBJECT_ID
+					,B.DIAG_SEQ
+					,B.DIAG_NM1
+					,B.DIAG_NM2
+					,B.DOCTOR_NAME
+					,PATIENT_SEX
+					,BIRTH_YYYY
+					,AGE
+					,DEVICE
+					,D_NUM
+					,WELL_CNT
+					,WRONG_CNT
+					,REACT_TIME
+					,BACK_ERP_CNT
+					,ODD_ERP_CNT
+					,BACK_ERP_MIN
+					,BACK_ERP_MIN_LATENCY
+					,BACK_ERP_MAX
+					,BACK_ERP_MAX_LATENCY
+					,ODD_ERP_MIN
+					,ODD_ERP_MIN_LATENCY
+					,ODD_ERP_MAX
+					,ODD_ERP_MAX_LATENCY
+					,L_EOG_MEF
+					,R_EOG_MEF
+					,L_THETA
+					,L_ALPHA
+					,L_LBETA
+					,L_MBETA
+					,L_HBETA
+					,L_GAMMA
+					,R_THETA
+					,R_ALPHA
+					,R_LBETA
+					,R_MBETA
+					,R_HBETA
+					,R_GAMMA
+					,BT_RATIO
+					,AB_RATIO
+					,MEF450
+					,GAMMA
+					,REL_A
+					,ALPAH_ASYM
+					,GAMMA_ASYM
+					,LR_CC
+					,L_EOG_MF
+					,R_EOG_MF
+					,L_100_OUTR
+					,R_100_OUTR
+					,L_BLINK
+					,R_BLINK
+				FROM RD_BRAINWAVE_ATTENTION RBA
+				JOIN (SELECT @ROWNUM:=0) AS R
+				JOIN
+				    (SELECT OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ,
+				    (group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator',' )) as DIAG_NM1 ,
+				    (group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator',' )) as DIAG_NM2,
+		            (group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator',')) as DOCTOR_NAME
+				    FROM RD_INTEGRATION_INFO RII GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) B
+				ON RBA.OBJECT_ID = B.OBJECT_ID
+				AND RBA.EXEC_DATE BETWEEN B.SEQ_FROM_DATE AND B.SEQ_TO_DATE
+				WHERE 1=1
+				  <if test="downType == 'select'">
+					  	<if test="objectId !=null and objectId != '' ">
+								AND RBA.OBJECT_ID IN (${objectId})
+						</if>
+					</if>
+					<if test="downType == 'all'">
+					AND (EXISTS( SELECT 1 FROM (
+							SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+								FROM (
+										SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+										FROM (
+												SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+												FROM RD_INTEGRATION_INFO RII
+												LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+													 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+												WHERE 1=1
+												
+												<if test="objectId !=null and objectId != '' ">
+														AND RII.OBJECT_ID IN (${objectId})
+												</if>
+												<if test="patientSex !=null and patientSex != '' ">
+														AND RII.PATIENT_SEX = #{patientSex}
+												</if>
+												<if test="startAge !=null and startAge != '' ">
+														AND RII.AGE &gt;= #{startAge}
+												</if>
+												<if test="endAge !=null and endAge != '' ">
+														AND RII.AGE &lt;= #{endAge}
+												</if>
+												<if test="diagLastSeq !=null and diagLastSeq != '' ">
+														AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+												</if>
+												<if test="petResult !=null and petResult != '' ">
+														AND ${petResult}
+												</if>
+												<if test="genomeChipNm !=null and genomeChipNm != '' ">
+														AND ${genomeChipNm}
+												</if>
+												<if test="cdrStep !=null and cdrStep != '' ">
+														AND ${cdrStep}
+												</if>
+												<if test="apoeCd !=null and apoeCd != '' ">
+													 <choose>
+														<when test="apoeCd == 'ALL'">
+															AND IFNULL(APOE_CD,'') != ''
+														</when>
+														<otherwise>
+															AND (${apoeCd})
+														</otherwise>
+													</choose>
+												</if>
+												<if test="eduLevel !=null and eduLevel != '' ">
+													 <choose>
+														<when test="eduLevel == 'ALL'">
+															AND IFNULL(EDU_LEVEL,'') != ''
+														</when>
+														<otherwise>
+															AND (${eduLevel})
+														</otherwise>
+													</choose>
+												</if>
+												<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+													AND ( 
+														<if test="schKeyWord !=null and schKeyWord != '' ">
+															 <![CDATA[ ${schKeyWord} ]]>
+															 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+															 OR
+															 </if>
+														</if>
+														
+														<if test="diagNm1 !=null and diagNm1 != '' ">
+															 (<![CDATA[ ${diagNm1} ]]>)
+															 <if test="diagNm2 !=null and diagNm2 != '' ">
+															 	OR
+															 </if>
+														</if>
+														<if test="diagNm2 !=null and diagNm2 != '' ">
+															 (<![CDATA[ ${diagNm2} ]]>)
+														</if>
+														)
+												</if>
+												<if test="grade == '002'">
+												 AND NOT EXISTS(SELECT 
+												 					1 
+												 				FROM 
+												 					RD_INTEGRATION_INFO B 
+																WHERE 
+																	RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+												</if>
+												<if test="grade == '003'">
+												 AND EXISTS(SELECT 
+											 					1 
+											 				FROM 
+											 					RD_INTEGRATION_INFO B 
+															WHERE 
+																RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+												</if>
+											 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+											 LEFT JOIN RD_PILOT_STUDY PS 
+									         ON RII.OBJECT_ID = PS.OBJECT_ID
+									         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+						            					  GROUP BY OBJECT_IDX)MTB
+						            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+									)RI
+									WHERE 1=1 
+										<if test="instCode !=null and instCode != '' ">
+											 AND INST_CODE  IN (${instCode})
+										</if>
+										<if test="abo !=null and abo != '' ">
+											<choose>
+												<when test="abo == 'ALL'">
+													AND IFNULL(ABO,'') != ''
+												</when>
+												<otherwise>
+													AND (${abo})
+												</otherwise>
+											</choose>
+										</if>
+									)T1
+									WHERE RBA.OBJECT_ID = T1.OBJECT_ID
+								)
+							)
+						</if>
+				ORDER BY RBA.OBJECT_ID, B.DIAG_SEQ) A
+	</select>
+
+	<select id="mriSubExcelDownloadList" parameterType="map" resultMap="dataIntegrationMriSubMap">
+		SELECT 
+			MR.OBJECT_IDX OBJECT_ID,
+			MEDIC_ID,
+			RP.PET_ID,
+			DIAG_SEQ,
+			B.DIAG_NM1,
+			B.DIAG_NM2,
+			B.DOCTOR_NAME,
+			L_LAT_VENT,
+			R_LAT_VENT,
+			L_THAL,
+			R_THAL,
+			L_CAUD,
+			R_CAUD,
+			L_PUT,
+			R_PUT,
+			L_PAL,
+			R_PAL,
+			L_HIPPO,
+			R_HIPPO,
+			L_AMYG,
+			R_AMYG,
+			L_ACCUMB,
+			R_ACCUMB,
+			ICV
+		FROM 
+			RD_MRI_SUBCORTICAL MS 
+		JOIN 
+			(SELECT 
+				RESEDATE
+				, OBJECT_IDX
+				, MRIID 
+			FROM csbrain2.mb_resemri
+			WHERE 
+				MRIYN='1' 
+			GROUP BY RESEDATE, OBJECT_IDX, MRIID) MR
+		ON MS.MEDIC_ID = MR.MRIID
+		LEFT JOIN
+			(SELECT 
+				OBJECT_ID
+				, SEQ_FROM_DATE
+				, SEQ_TO_DATE, DIAG_SEQ
+				, group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator ',' ) as DIAG_NM1
+				, group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator ',') as DIAG_NM2
+				, group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator ',') as DOCTOR_NAME
+			FROM 
+				RD_INTEGRATION_INFO RII 
+			GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) B
+		ON MR.OBJECT_IDX = B.OBJECT_ID
+		   AND MR.RESEDATE BETWEEN B.SEQ_FROM_DATE AND  B.SEQ_TO_DATE
+        LEFT JOIN
+			(SELECT
+				OBJECT_IDX,
+                B.SEQ_FROM_DATE,
+                B.SEQ_TO_DATE,
+                RESEDATE,
+                GROUP_CONCAT(PETID ORDER BY RESEDATE SEPARATOR ',') PET_ID
+            FROM 
+            	csbrain2.mb_resepet RP
+			JOIN
+				(SELECT 
+					OBJECT_ID
+					, SEQ_FROM_DATE
+					, SEQ_TO_DATE
+					, DIAG_SEQ
+					, group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator ',') as DIAG_NM1 
+					, group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator ',') as DIAG_NM2
+					, group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator ',') as DOCTOR_NAME
+	           	FROM 
+	           		RD_INTEGRATION_INFO RII 
+	           	GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) B
+			ON 
+				RP.OBJECT_IDX = B.OBJECT_ID
+				AND RP.RESEDATE BETWEEN B.SEQ_FROM_DATE AND  B.SEQ_TO_DATE   
+	        GROUP BY RP.OBJECT_IDX, B.SEQ_FROM_DATE, B.SEQ_TO_DATE) RP
+		ON
+			MR.OBJECT_IDX = RP.OBJECT_IDX            
+            AND RP.RESEDATE BETWEEN B.SEQ_FROM_DATE AND B.SEQ_TO_DATE
+		WHERE 1=1
+			  	<if test="downType == 'select'">
+				  	<if test="objectId !=null and objectId != '' ">
+							AND MR.OBJECT_IDX IN (${objectId})
+					</if>
+				</if>
+				<if test="downType == 'all'">
+				AND (EXISTS( SELECT 1 FROM (
+						SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+							FROM (
+									SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+									FROM (
+											SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+											FROM RD_INTEGRATION_INFO RII
+											LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+												 ON DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+											WHERE 1=1
+											
+											<if test="objectId !=null and objectId != '' ">
+													AND RII.OBJECT_ID IN (${objectId})
+											</if>
+											<if test="patientSex !=null and patientSex != '' ">
+													AND RII.PATIENT_SEX = #{patientSex}
+											</if>
+											<if test="startAge !=null and startAge != '' ">
+													AND RII.AGE &gt;= #{startAge}
+											</if>
+											<if test="endAge !=null and endAge != '' ">
+													AND RII.AGE &lt;= #{endAge}
+											</if>
+											<if test="diagLastSeq !=null and diagLastSeq != '' ">
+													AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+											</if>
+											<if test="petResult !=null and petResult != '' ">
+													AND ${petResult}
+											</if>
+											<if test="genomeChipNm !=null and genomeChipNm != '' ">
+													AND ${genomeChipNm}
+											</if>
+											<if test="cdrStep !=null and cdrStep != '' ">
+													AND ${cdrStep}
+											</if>
+											<if test="apoeCd !=null and apoeCd != '' ">
+												 <choose>
+													<when test="apoeCd == 'ALL'">
+														AND IFNULL(APOE_CD,'') != ''
+													</when>
+													<otherwise>
+														AND (${apoeCd})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="eduLevel !=null and eduLevel != '' ">
+												 <choose>
+													<when test="eduLevel == 'ALL'">
+														AND IFNULL(EDU_LEVEL,'') != ''
+													</when>
+													<otherwise>
+														AND (${eduLevel})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+												AND ( 
+													<if test="schKeyWord !=null and schKeyWord != '' ">
+														 <![CDATA[ ${schKeyWord} ]]>
+														 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+														 OR
+														 </if>
+													</if>
+													
+													<if test="diagNm1 !=null and diagNm1 != '' ">
+														 (<![CDATA[ ${diagNm1} ]]>)
+														 <if test="diagNm2 !=null and diagNm2 != '' ">
+														 	OR
+														 </if>
+													</if>
+													<if test="diagNm2 !=null and diagNm2 != '' ">
+														 (<![CDATA[ ${diagNm2} ]]>)
+													</if>
+													)
+											</if>
+											<if test="grade == '002'">
+											 AND NOT EXISTS(SELECT 
+											 					1 
+											 				FROM 
+											 					RD_INTEGRATION_INFO B 
+															WHERE 
+																RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+											<if test="grade == '003'">
+											 AND EXISTS(SELECT 
+										 					1 
+										 				FROM 
+										 					RD_INTEGRATION_INFO B 
+														WHERE 
+															RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+										 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+										 LEFT JOIN RD_PILOT_STUDY PS 
+								         ON RII.OBJECT_ID = PS.OBJECT_ID
+								         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+					            					  GROUP BY OBJECT_IDX)MTB
+					            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+								)RI
+								WHERE 1=1 
+									<if test="instCode !=null and instCode != '' ">
+										 AND INST_CODE  IN (${instCode})
+									</if>
+									<if test="abo !=null and abo != '' ">
+										<choose>
+											<when test="abo == 'ALL'">
+												AND IFNULL(ABO,'') != ''
+											</when>
+											<otherwise>
+												AND (${abo})
+											</otherwise>
+										</choose>
+									</if>
+								)T1
+								WHERE MR.OBJECT_IDX = T1.OBJECT_ID
+							)
+						)
+					</if>
+		ORDER BY MR.OBJECT_IDX, MR.RESEDATE	
+	
+	</select>
+	
+	<select id="mriSurfaceExcelDownloadList" parameterType="map" resultMap="dataIntegrationMriSurfaceMap">
+		SELECT
+			MR.OBJECT_IDX OBJECT_ID,
+			MEDIC_ID,
+			RP.PET_ID,
+			DIAG_SEQ,
+			B.DIAG_NM1,
+			B.DIAG_NM2,
+			B.DOCTOR_NAME,
+			L_CAUDALANTERIORCINGULATE_SURFAVG,
+			L_CAUDALMIDDLEFRONTAL_SURFAVG,
+			L_CUNEUS_SURFAVG,
+			L_ENTORHINAL_SURFAVG,
+			L_FUSIFORM_SURFAVG,
+			L_INFERIORPARIETAL_SURFAVG,
+			L_INFERIORTEMPORAL_SURFAVG,
+			L_ISTHMUSCINGULATE_SURFAVG,
+			L_LATERALOCCIPITAL_SURFAVG,
+			L_LATERALORBITOFRONTAL_SURFAVG,
+			L_LINGUAL_SURFAVG,
+			L_MEDIALORBITOFRONTAL_SURFAVG,
+			L_MIDDLETEMPORAL_SURFAVG,
+			L_PARAHIPPOCAMPAL_SURFAVG,
+			L_PARACENTRAL_SURFAVG,
+			L_PARSOPERCULARIS_SURFAVG,
+			L_PARSORBITALIS_SURFAVG,
+			L_PARSTRIANGULARIS_SURFAVG,
+			L_PERICALCARINE_SURFAVG,
+			L_POSTCENTRAL_SURFAVG,
+			L_POSTERIORCINGULATE_SURFAVG,
+			L_PRECENTRAL_SURFAVG,
+			L_PRECUNEUS_SURFAVG,
+			L_ROSTRALANTERIORCINGULATE_SURFAVG,
+			L_ROSTRALMIDDLEFRONTAL_SURFAVG,
+			L_SUPERIORFRONTAL_SURFAVG,
+			L_SUPERIORPARIETAL_SURFAVG,
+			L_SUPERIORTEMPORAL_SURFAVG,
+			L_SUPRAMARGINAL_SURFAVG,
+			L_TRANSVERSETEMPORAL_SURFAVG,
+			L_INSULA_SURFAVG,
+			R_CAUDALANTERIORCINGULATE_SURFAVG,
+			R_CAUDALMIDDLEFRONTAL_SURFAVG,
+			R_CUNEUS_SURFAVG,
+			R_ENTORHINAL_SURFAVG,
+			R_FUSIFORM_SURFAVG,
+			R_INFERIORPARIETAL_SURFAVG,
+			R_INFERIORTEMPORAL_SURFAVG,
+			R_ISTHMUSCINGULATE_SURFAVG,
+			R_LATERALOCCIPITAL_SURFAVG,
+			R_LATERALORBITOFRONTAL_SURFAVG,
+			R_LINGUAL_SURFAVG,
+			R_MEDIALORBITOFRONTAL_SURFAVG,
+			R_MIDDLETEMPORAL_SURFAVG,
+			R_PARAHIPPOCAMPAL_SURFAVG,
+			R_PARACENTRAL_SURFAVG,
+			R_PARSOPERCULARIS_SURFAVG,
+			R_PARSORBITALIS_SURFAVG,
+			R_PARSTRIANGULARIS_SURFAVG,
+			R_PERICALCARINE_SURFAVG,
+			R_POSTCENTRAL_SURFAVG,
+			R_POSTERIORCINGULATE_SURFAVG,
+			R_PRECENTRAL_SURFAVG,
+			R_PRECUNEUS_SURFAVG,
+			R_ROSTRALANTERIORCINGULATE_SURFAVG,
+			R_ROSTRALMIDDLEFRONTAL_SURFAVG,
+			R_SUPERIORFRONTAL_SURFAVG,
+			R_SUPERIORPARIETAL_SURFAVG,
+			R_SUPERIORTEMPORAL_SURFAVG,
+			R_SUPRAMARGINAL_SURFAVG,
+			R_TRANSVERSETEMPORAL_SURFAVG,
+			R_INSULA_SURFAVG,
+			L_ENTORHINAL_EXVIVO_SURFAVG,
+			R_ENTORHINAL_EXVIVO_SURFAVG,
+			L_SURF_AREA,
+			R_SURF_AREA
+		FROM 
+			RD_MRI_SURFACE MS 
+		JOIN 
+			(SELECT 
+				RESEDATE
+				, OBJECT_IDX
+				, MRIID 
+			FROM 
+				csbrain2.mb_resemri 
+			WHERE 
+				MRIYN='1' 
+			GROUP BY RESEDATE, OBJECT_IDX, MRIID) MR
+		ON MS.MEDIC_ID = MR.MRIID
+		LEFT JOIN
+			(SELECT 
+				OBJECT_ID
+				, SEQ_FROM_DATE
+				, SEQ_TO_DATE
+				, DIAG_SEQ
+				, group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator ',') as DIAG_NM1 
+				, group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator ',') as DIAG_NM2
+				, group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator ',') as DOCTOR_NAME
+			FROM 
+				RD_INTEGRATION_INFO RII 
+			GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) B
+		ON MR.OBJECT_IDX = B.OBJECT_ID
+		   AND MR.RESEDATE BETWEEN B.SEQ_FROM_DATE AND  B.SEQ_TO_DATE
+        LEFT JOIN
+			(SELECT
+				OBJECT_IDX,
+                B.SEQ_FROM_DATE,
+                B.SEQ_TO_DATE,
+                RESEDATE,
+                GROUP_CONCAT(PETID ORDER BY RESEDATE SEPARATOR ',') PET_ID
+            FROM 
+            	csbrain2.mb_resepet RP
+			JOIN
+				(SELECT 
+					OBJECT_ID
+					, SEQ_FROM_DATE
+					, SEQ_TO_DATE
+					, DIAG_SEQ
+					, group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator ',') as DIAG_NM1
+					, group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator ',') as DIAG_NM2
+					, group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator ',') as DOCTOR_NAME
+	           	FROM 
+	           		RD_INTEGRATION_INFO RII 
+	           	GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) B
+			ON 
+				RP.OBJECT_IDX = B.OBJECT_ID
+				AND RP.RESEDATE BETWEEN B.SEQ_FROM_DATE AND  B.SEQ_TO_DATE   
+	        GROUP BY RP.OBJECT_IDX, B.SEQ_FROM_DATE, B.SEQ_TO_DATE) RP
+		ON
+			MR.OBJECT_IDX = RP.OBJECT_IDX            
+            AND RP.RESEDATE BETWEEN B.SEQ_FROM_DATE AND B.SEQ_TO_DATE
+		WHERE 1=1
+			 	<if test="downType == 'select'">
+				  	<if test="objectId !=null and objectId != '' ">
+							AND MR.OBJECT_IDX IN (${objectId})
+					</if>
+				</if>
+				<if test="downType == 'all'">
+				AND (EXISTS( SELECT 1 FROM (
+						SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+							FROM (
+									SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+									FROM (
+											SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+											FROM RD_INTEGRATION_INFO RII
+											LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+												 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+											WHERE 1=1
+											
+											<if test="objectId !=null and objectId != '' ">
+													AND RII.OBJECT_ID IN (${objectId})
+											</if>
+											<if test="patientSex !=null and patientSex != '' ">
+													AND RII.PATIENT_SEX = #{patientSex}
+											</if>
+											<if test="startAge !=null and startAge != '' ">
+													AND RII.AGE &gt;= #{startAge}
+											</if>
+											<if test="endAge !=null and endAge != '' ">
+													AND RII.AGE &lt;= #{endAge}
+											</if>
+											<if test="diagLastSeq !=null and diagLastSeq != '' ">
+													AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+											</if>
+											<if test="petResult !=null and petResult != '' ">
+													AND ${petResult}
+											</if>
+											<if test="genomeChipNm !=null and genomeChipNm != '' ">
+													AND ${genomeChipNm}
+											</if>
+											<if test="cdrStep !=null and cdrStep != '' ">
+													AND ${cdrStep}
+											</if>
+											<if test="apoeCd !=null and apoeCd != '' ">
+												 <choose>
+													<when test="apoeCd == 'ALL'">
+														AND IFNULL(APOE_CD,'') != ''
+													</when>
+													<otherwise>
+														AND (${apoeCd})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="eduLevel !=null and eduLevel != '' ">
+												 <choose>
+													<when test="eduLevel == 'ALL'">
+														AND IFNULL(EDU_LEVEL,'') != ''
+													</when>
+													<otherwise>
+														AND (${eduLevel})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+												AND ( 
+													<if test="schKeyWord !=null and schKeyWord != '' ">
+														 <![CDATA[ ${schKeyWord} ]]>
+														 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+														 OR
+														 </if>
+													</if>
+													
+													<if test="diagNm1 !=null and diagNm1 != '' ">
+														 (<![CDATA[ ${diagNm1} ]]>)
+														 <if test="diagNm2 !=null and diagNm2 != '' ">
+														 	OR
+														 </if>
+													</if>
+													<if test="diagNm2 !=null and diagNm2 != '' ">
+														 (<![CDATA[ ${diagNm2} ]]>)
+													</if>
+													)
+											</if>
+											<if test="grade == '002'">
+											 AND NOT EXISTS(SELECT 
+											 					1 
+											 				FROM 
+											 					RD_INTEGRATION_INFO B 
+															WHERE 
+																RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+											<if test="grade == '003'">
+											 AND EXISTS(SELECT 
+										 					1 
+										 				FROM 
+										 					RD_INTEGRATION_INFO B 
+														WHERE 
+															RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+										 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+										 LEFT JOIN RD_PILOT_STUDY PS 
+								         ON RII.OBJECT_ID = PS.OBJECT_ID
+								         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+					            					  GROUP BY OBJECT_IDX)MTB
+					            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+								)RI
+								WHERE 1=1 
+									<if test="instCode !=null and instCode != '' ">
+										 AND INST_CODE  IN (${instCode})
+									</if>
+									<if test="abo !=null and abo != '' ">
+										<choose>
+											<when test="abo == 'ALL'">
+												AND IFNULL(ABO,'') != ''
+											</when>
+											<otherwise>
+												AND (${abo})
+											</otherwise>
+										</choose>
+									</if>
+								)T1
+								WHERE MR.OBJECT_IDX = T1.OBJECT_ID
+							)
+						)
+					</if>
+		ORDER BY MR.OBJECT_IDX, MR.RESEDATE
+		
+	</select>
+	
+	
+	<select id="mriThickExcelDownloadList" parameterType="map" resultMap="dataIntegrationMriThickMap">
+		SELECT
+			MR.OBJECT_IDX OBJECT_ID,
+			MEDIC_ID,
+			RP.PET_ID,
+			DIAG_SEQ,
+			B.DIAG_NM1,
+			B.DIAG_NM2,
+			B.DOCTOR_NAME,
+			L_CAUDALANTERIORCINGULATE_THICKAVG,
+			L_CAUDALMIDDLEFRONTAL_THICKAVG,
+			L_CUNEUS_THICKAVG,
+			L_ENTORHINAL_THICKAVG,
+			L_FUSIFORM_THICKAVG,
+			L_INFERIORPARIETAL_THICKAVG,
+			L_INFERIORTEMPORAL_THICKAVG,
+			L_ISTHMUSCINGULATE_THICKAVG,
+			L_LATERALOCCIPITAL_THICKAVG,
+			L_LATERALORBITOFRONTAL_THICKAVG,
+			L_LINGUAL_THICKAVG,
+			L_MEDIALORBITOFRONTAL_THICKAVG,
+			L_MIDDLETEMPORAL_THICKAVG,
+			L_PARAHIPPOCAMPAL_THICKAVG,
+			L_PARACENTRAL_THICKAVG,
+			L_PARSOPERCULARIS_THICKAVG,
+			L_PARSORBITALIS_THICKAVG,
+			L_PARSTRIANGULARIS_THICKAVG,
+			L_PERICALCARINE_THICKAVG,
+			L_POSTCENTRAL_THICKAVG,
+			L_POSTERIORCINGULATE_THICKAVG,
+			L_PRECENTRAL_THICKAVG,
+			L_PRECUNEUS_THICKAVG,
+			L_ROSTRALANTERIORCINGULATE_THICKAVG,
+			L_ROSTRALMIDDLEFRONTAL_THICKAVG,
+			L_SUPERIORFRONTAL_THICKAVG,
+			L_SUPERIORPARIETAL_THICKAVG,
+			L_SUPERIORTEMPORAL_THICKAVG,
+			L_SUPRAMARGINAL_THICKAVG,
+			L_TRANSVERSETEMPORAL_THICKAVG,
+			L_INSULA_THICKAVG,
+			R_CAUDALANTERIORCINGULATE_THICKAVG,
+			R_CAUDALMIDDLEFRONTAL_THICKAVG,
+			R_CUNEUS_THICKAVG,
+			R_ENTORHINAL_THICKAVG,
+			R_FUSIFORM_THICKAVG,
+			R_INFERIORPARIETAL_THICKAVG,
+			R_INFERIORTEMPORAL_THICKAVG,
+			R_ISTHMUSCINGULATE_THICKAVG,
+			R_LATERALOCCIPITAL_THICKAVG,
+			R_LATERALORBITOFRONTAL_THICKAVG,
+			R_LINGUAL_THICKAVG,
+			R_MEDIALORBITOFRONTAL_THICKAVG,
+			R_MIDDLETEMPORAL_THICKAVG,
+			R_PARAHIPPOCAMPAL_THICKAVG,
+			R_PARACENTRAL_THICKAVG,
+			R_PARSOPERCULARIS_THICKAVG,
+			R_PARSORBITALIS_THICKAVG,
+			R_PARSTRIANGULARIS_THICKAVG,
+			R_PERICALCARINE_THICKAVG,
+			R_POSTCENTRAL_THICKAVG,
+			R_POSTERIORCINGULATE_THICKAVG,
+			R_PRECENTRAL_THICKAVG,
+			R_PRECUNEUS_THICKAVG,
+			R_ROSTRALANTERIORCINGULATE_THICKAVG,
+			R_ROSTRALMIDDLEFRONTAL_THICKAVG,
+			R_SUPERIORFRONTAL_THICKAVG,
+			R_SUPERIORPARIETAL_THICKAVG,
+			R_SUPERIORTEMPORAL_THICKAVG,
+			R_SUPRAMARGINAL_THICKAVG,
+			R_TRANSVERSETEMPORAL_THICKAVG,
+			R_INSULA_THICKAVG,
+			L_ENTORHINAL_EXVIVO_THICKAVG,
+			R_ENTORHINAL_EXVIVO_THICKAVG,
+			L_THICKNESS,
+			R_THICKNESS
+		FROM 
+			RD_MRI_THICKNESS MT 
+		JOIN 
+			(SELECT 
+				RESEDATE
+				, OBJECT_IDX
+				, MRIID 
+			FROM 
+				csbrain2.mb_resemri 
+			WHERE 
+				MRIYN='1' GROUP BY RESEDATE, OBJECT_IDX, MRIID) MR
+		ON MT.MEDIC_ID = MR.MRIID
+		LEFT JOIN
+			(SELECT 
+				OBJECT_ID
+				, SEQ_FROM_DATE
+				, SEQ_TO_DATE
+				, DIAG_SEQ
+				, group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator ',') as DIAG_NM1 
+				, group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator ',') as DIAG_NM2
+				, group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator ',') as DOCTOR_NAME
+           	FROM 
+           		RD_INTEGRATION_INFO RII 
+           	GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) B
+		ON MR.OBJECT_IDX = B.OBJECT_ID
+		   AND MR.RESEDATE BETWEEN B.SEQ_FROM_DATE AND  B.SEQ_TO_DATE
+		LEFT JOIN
+			(SELECT
+				OBJECT_IDX,
+                B.SEQ_FROM_DATE,
+                B.SEQ_TO_DATE,
+                RESEDATE,
+                GROUP_CONCAT(PETID ORDER BY RESEDATE SEPARATOR ',') PET_ID
+            FROM 
+            	csbrain2.mb_resepet RP
+			JOIN
+				(SELECT 
+					OBJECT_ID
+					, SEQ_FROM_DATE
+					, SEQ_TO_DATE
+					, DIAG_SEQ
+					, group_concat(IFNULL(RII.DIAG_NM1, '') order by RII.DIAG_NM1 separator ',') as DIAG_NM1
+					, group_concat(IF(RII.DIAG_NM2='',NULL,RII.DIAG_NM2) order by RII.DIAG_NM2 separator ',') as DIAG_NM2
+	           		, group_concat(IFNULL(RII.DOCTOR_NAME, '') order by RII.DIAG_NM1 separator ',') as DOCTOR_NAME
+	           	FROM 
+	           		RD_INTEGRATION_INFO RII 
+	           	GROUP BY OBJECT_ID, SEQ_FROM_DATE, SEQ_TO_DATE, DIAG_SEQ) B
+			ON 
+				RP.OBJECT_IDX = B.OBJECT_ID
+				AND RP.RESEDATE BETWEEN B.SEQ_FROM_DATE AND  B.SEQ_TO_DATE   
+	        GROUP BY RP.OBJECT_IDX, B.SEQ_FROM_DATE, B.SEQ_TO_DATE) RP
+		ON
+			MR.OBJECT_IDX = RP.OBJECT_IDX            
+            AND RP.RESEDATE BETWEEN B.SEQ_FROM_DATE AND B.SEQ_TO_DATE
+		WHERE 1=1
+			  	<if test="downType == 'select'">
+				  	<if test="objectId !=null and objectId != '' ">
+							AND MR.OBJECT_IDX IN (${objectId})
+					</if>
+				</if>
+				<if test="downType == 'all'">
+				AND (EXISTS( SELECT 1 FROM (
+						SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+							FROM (
+									SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+									FROM (
+											SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+											FROM RD_INTEGRATION_INFO RII
+											LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+												 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+											WHERE 1=1
+											
+											<if test="objectId !=null and objectId != '' ">
+													AND RII.OBJECT_ID IN (${objectId})
+											</if>
+											<if test="patientSex !=null and patientSex != '' ">
+													AND RII.PATIENT_SEX = #{patientSex}
+											</if>
+											<if test="startAge !=null and startAge != '' ">
+													AND RII.AGE &gt;= #{startAge}
+											</if>
+											<if test="endAge !=null and endAge != '' ">
+													AND RII.AGE &lt;= #{endAge}
+											</if>
+											<if test="diagLastSeq !=null and diagLastSeq != '' ">
+													AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+											</if>
+											<if test="petResult !=null and petResult != '' ">
+													AND ${petResult}
+											</if>
+											<if test="genomeChipNm !=null and genomeChipNm != '' ">
+													AND ${genomeChipNm}
+											</if>
+											<if test="cdrStep !=null and cdrStep != '' ">
+													AND ${cdrStep}
+											</if>
+											<if test="apoeCd !=null and apoeCd != '' ">
+												 <choose>
+													<when test="apoeCd == 'ALL'">
+														AND IFNULL(APOE_CD,'') != ''
+													</when>
+													<otherwise>
+														AND (${apoeCd})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="eduLevel !=null and eduLevel != '' ">
+												 <choose>
+													<when test="eduLevel == 'ALL'">
+														AND IFNULL(EDU_LEVEL,'') != ''
+													</when>
+													<otherwise>
+														AND (${eduLevel})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+												AND ( 
+													<if test="schKeyWord !=null and schKeyWord != '' ">
+														 <![CDATA[ ${schKeyWord} ]]>
+														 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+														 OR
+														 </if>
+													</if>
+													
+													<if test="diagNm1 !=null and diagNm1 != '' ">
+														 (<![CDATA[ ${diagNm1} ]]>)
+														 <if test="diagNm2 !=null and diagNm2 != '' ">
+														 	OR
+														 </if>
+													</if>
+													<if test="diagNm2 !=null and diagNm2 != '' ">
+														 (<![CDATA[ ${diagNm2} ]]>)
+													</if>
+													)
+											</if>
+											<if test="grade == '002'">
+											 AND NOT EXISTS(SELECT 
+											 					1 
+											 				FROM 
+											 					RD_INTEGRATION_INFO B 
+															WHERE 
+																RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+											<if test="grade == '003'">
+											 AND EXISTS(SELECT 
+										 					1 
+										 				FROM 
+										 					RD_INTEGRATION_INFO B 
+														WHERE 
+															RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+										 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+										 LEFT JOIN RD_PILOT_STUDY PS 
+								         ON RII.OBJECT_ID = PS.OBJECT_ID
+								         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+					            					  GROUP BY OBJECT_IDX)MTB
+					            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+								)RI
+								WHERE 1=1 
+									<if test="instCode !=null and instCode != '' ">
+										 AND INST_CODE  IN (${instCode})
+									</if>
+									<if test="abo !=null and abo != '' ">
+										<choose>
+											<when test="abo == 'ALL'">
+												AND IFNULL(ABO,'') != ''
+											</when>
+											<otherwise>
+												AND (${abo})
+											</otherwise>
+										</choose>
+									</if>
+								)T1
+								WHERE MR.OBJECT_IDX = T1.OBJECT_ID
+							)
+						)
+					</if>
+		ORDER BY MR.OBJECT_IDX, MR.RESEDATE
+	
+	</select>	
+	
+	<select id="petResultExcelDownloadList" parameterType="map" resultMap="dataIntegrationPetResultMap">
+		SELECT
+			MR.OBJECT_IDX OBJECT_ID,
+			MR.SELECTION_NUM,
+			RP.PETID,
+			IFNULL(RII.DIAG_SEQ,'-') DIAG_SEQ,
+			<![CDATA[ 
+			CASE MR.RCTU_01 
+				 WHEN '0' THEN 'Negative (-)' 
+				 WHEN '0.5' THEN 'Negative (0.5)' 
+				 WHEN '1' THEN 'Positive (+)' 
+				 ELSE '미판독' 
+			END PET_RESULT,
+			]]>
+			RCTU_REMARK,
+			RCTU_03L,
+			RCTU_03R,
+			RCTU_04L,
+			RCTU_04R,
+			RCTU_05L,
+			RCTU_05R,
+			RCTU_06,
+			RCTU_BAPL,
+			CASE WHEN TRUNCATE(P.PET_SUVR,2) = '0.00' THEN NULL
+                 ELSE TRUNCATE(P.PET_SUVR,2) 
+            END PET_SUVR,
+            CASE WHEN  TRUNCATE(P.PET_AI_SUVR,2) = '0.00' THEN NULL
+				 ELSE TRUNCATE(P.PET_AI_SUVR,2)
+            END PET_AI_SUVR,
+			DATE_FORMAT(TEST_DAY,'%Y%m%d') TEST_DAY
+		FROM csbrain2.mb_rctu MR 
+		LEFT JOIN (SELECT OBJECT_ID, DIAG_SEQ, SEQ_FROM_DATE,SEQ_TO_DATE,PET_SUVR,PET_AI_SUVR FROM RD_INTEGRATION_INFO GROUP BY OBJECT_ID, DIAG_SEQ, SEQ_FROM_DATE,SEQ_TO_DATE,PET_SUVR,PET_AI_SUVR )  RII
+        ON MR.OBJECT_IDX = RII.OBJECT_ID
+        AND DATE_FORMAT(MR.TEST_DAY,'%Y%m%d') BETWEEN RII.SEQ_FROM_DATE AND RII.SEQ_TO_DATE
+        LEFT JOIN csbrain2.mb_resepet RP
+        ON RP.OBJECT_IDX = MR.OBJECT_IDX
+        AND DATE_FORMAT(MR.TEST_DAY,'%Y%m%d') BETWEEN DATE_FORMAT(DATE_SUB(RP.RESEDATE, INTERVAL 1 MONTH),'%Y%m%d') 
+													 AND DATE_FORMAT(DATE_ADD(RP.RESEDATE,INTERVAL 10 MONTH),'%Y%m%d')
+		AND INSTR(RP.PETID,'P')>0
+		LEFT join nrcd.RD_PET_SUVR P on RP.PETID=P.MEDIC_ID
+        WHERE MR.FLAG='U'
+			  AND IFNULL(RCTU_01,'') != ''
+			  
+			  <if test="downType == 'select'">
+				  	<if test="objectId !=null and objectId != '' ">
+							AND MR.OBJECT_IDX IN (${objectId})
+					</if>
+				</if>
+				<if test="downType == 'all'">
+				AND (EXISTS( SELECT 1 FROM (
+						SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+							FROM (
+									SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+									       ,RII.PET_SUVR
+                                    	   ,RII.PET_AI_SUVR
+									FROM (
+											SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, RII.PET_SUVR, RII.PET_AI_SUVR
+											FROM RD_INTEGRATION_INFO RII
+											LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+												 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+											WHERE 1=1
+											
+											<if test="objectId !=null and objectId != '' ">
+													AND RII.OBJECT_ID IN (${objectId})
+											</if>
+											<if test="patientSex !=null and patientSex != '' ">
+													AND RII.PATIENT_SEX = #{patientSex}
+											</if>
+											<if test="startAge !=null and startAge != '' ">
+													AND RII.AGE &gt;= #{startAge}
+											</if>
+											<if test="endAge !=null and endAge != '' ">
+													AND RII.AGE &lt;= #{endAge}
+											</if>
+											<if test="diagLastSeq !=null and diagLastSeq != '' ">
+													AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+											</if>
+											<if test="petResult !=null and petResult != '' ">
+													AND ${petResult}
+											</if>
+											<if test="genomeChipNm !=null and genomeChipNm != '' ">
+													AND ${genomeChipNm}
+											</if>
+											<if test="cdrStep !=null and cdrStep != '' ">
+													AND ${cdrStep}
+											</if>
+											<if test="apoeCd !=null and apoeCd != '' ">
+												 <choose>
+													<when test="apoeCd == 'ALL'">
+														AND IFNULL(APOE_CD,'') != ''
+													</when>
+													<otherwise>
+														AND (${apoeCd})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="eduLevel !=null and eduLevel != '' ">
+												 <choose>
+													<when test="eduLevel == 'ALL'">
+														AND IFNULL(EDU_LEVEL,'') != ''
+													</when>
+													<otherwise>
+														AND (${eduLevel})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+												AND ( 
+													<if test="schKeyWord !=null and schKeyWord != '' ">
+														 <![CDATA[ ${schKeyWord} ]]>
+														 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+														 OR
+														 </if>
+													</if>
+													
+													<if test="diagNm1 !=null and diagNm1 != '' ">
+														 (<![CDATA[ ${diagNm1} ]]>)
+														 <if test="diagNm2 !=null and diagNm2 != '' ">
+														 	OR
+														 </if>
+													</if>
+													<if test="diagNm2 !=null and diagNm2 != '' ">
+														 (<![CDATA[ ${diagNm2} ]]>)
+													</if>
+													)
+											</if>
+											<if test="grade == '002'">
+											 AND NOT EXISTS(SELECT 
+											 					1 
+											 				FROM 
+											 					RD_INTEGRATION_INFO B 
+															WHERE 
+																RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+											<if test="grade == '003'">
+											 AND EXISTS(SELECT 
+										 					1 
+										 				FROM 
+										 					RD_INTEGRATION_INFO B 
+														WHERE 
+															RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+										 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+										 LEFT JOIN RD_PILOT_STUDY PS 
+								         ON RII.OBJECT_ID = PS.OBJECT_ID
+								         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+					            					  GROUP BY OBJECT_IDX)MTB
+					            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+								)RI
+								WHERE 1=1 
+									<if test="instCode !=null and instCode != '' ">
+										 AND INST_CODE  IN (${instCode})
+									</if>
+									<if test="abo !=null and abo != '' ">
+										<choose>
+											<when test="abo == 'ALL'">
+												AND IFNULL(ABO,'') != ''
+											</when>
+											<otherwise>
+												AND (${abo})
+											</otherwise>
+										</choose>
+									</if>
+								)T1
+								WHERE MR.OBJECT_IDX = T1.OBJECT_ID
+							)
+						)
+					</if>
+		ORDER BY MR.OBJECT_IDX, MR.SELECTION_NUM	
+	</select>	
+	
+	<select id="cdrExcelDownloadList" parameterType="map" resultMap="dataIntegrationCdrMap">
+		SELECT
+			OBJECT_IDX OBJECT_ID,
+			SELECTION_NUM,
+			IFNULL(RII.DIAG_SEQ,'-') DIAG_SEQ,
+			CDR_M,
+			CDR_O,
+			CDR_J,
+			CDR_S,
+			CDR_H,
+			CDR_P,
+			MC.CDR_STEP,
+			DATE_FORMAT(TEST_DAY,'%Y%m%d') TEST_DAY
+
+		FROM csbrain2.mb_cdr MC 
+		LEFT JOIN (SELECT OBJECT_ID, DIAG_SEQ, SEQ_FROM_DATE,SEQ_TO_DATE FROM RD_INTEGRATION_INFO GROUP BY OBJECT_ID, DIAG_SEQ, SEQ_FROM_DATE,SEQ_TO_DATE)  RII
+        ON MC.OBJECT_IDX = RII.OBJECT_ID
+        AND DATE_FORMAT(MC.TEST_DAY,'%Y%m%d') BETWEEN RII.SEQ_FROM_DATE AND RII.SEQ_TO_DATE
+		WHERE FLAG='U'
+			  AND IFNULL(CDR_M,'') != ''
+			  <if test="downType == 'select'">
+				  	<if test="objectId !=null and objectId != '' ">
+							AND MC.OBJECT_IDX IN (${objectId})
+					</if>
+				</if>
+				<if test="downType == 'all'">
+				AND (EXISTS( SELECT 1 FROM (
+						SELECT OBJECT_ID,DIAG_LAST_SEQ,INST_CODE
+							FROM (
+									SELECT RII.OBJECT_ID, DIAG_LAST_SEQ, CASE WHEN IFNULL(PS.OBJECT_ID,'') != '' THEN 'C' ELSE 'G' END INST_CODE, MTB.ABO
+									FROM (
+											SELECT RII.OBJECT_ID, DIAG_LAST_SEQ
+											FROM RD_INTEGRATION_INFO RII
+											LEFT JOIN ( SELECT DESC1, DESC2, DESC3 FROM csbrain2.mb_etccd WHERE KDCD = 'D002' AND UNUSEYN='N' GROUP BY  DESC1, DESC2) DIAG_NM_CD
+												 ON  DIAG_NM_CD.DESC1 = RII.DIAG_NM1
+											WHERE 1=1
+											
+											<if test="objectId !=null and objectId != '' ">
+													AND RII.OBJECT_ID IN (${objectId})
+											</if>
+											<if test="patientSex !=null and patientSex != '' ">
+													AND RII.PATIENT_SEX = #{patientSex}
+											</if>
+											<if test="startAge !=null and startAge != '' ">
+													AND RII.AGE &gt;= #{startAge}
+											</if>
+											<if test="endAge !=null and endAge != '' ">
+													AND RII.AGE &lt;= #{endAge}
+											</if>
+											<if test="diagLastSeq !=null and diagLastSeq != '' ">
+													AND RII.DIAG_LAST_SEQ IN (${diagLastSeq})
+											</if>
+											<if test="petResult !=null and petResult != '' ">
+													AND ${petResult}
+											</if>
+											<if test="genomeChipNm !=null and genomeChipNm != '' ">
+													AND ${genomeChipNm}
+											</if>
+											<if test="cdrStep !=null and cdrStep != '' ">
+													AND ${cdrStep}
+											</if>
+											<if test="apoeCd !=null and apoeCd != '' ">
+												 <choose>
+													<when test="apoeCd == 'ALL'">
+														AND IFNULL(APOE_CD,'') != ''
+													</when>
+													<otherwise>
+														AND (${apoeCd})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="eduLevel !=null and eduLevel != '' ">
+												 <choose>
+													<when test="eduLevel == 'ALL'">
+														AND IFNULL(EDU_LEVEL,'') != ''
+													</when>
+													<otherwise>
+														AND (${eduLevel})
+													</otherwise>
+												</choose>
+											</if>
+											<if test="(schKeyWord !=null and schKeyWord != '' ) or (diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '')">
+												AND ( 
+													<if test="schKeyWord !=null and schKeyWord != '' ">
+														 <![CDATA[ ${schKeyWord} ]]>
+														 <if test="(diagNm1 !=null and diagNm1 != '' ) or (diagNm2 !=null and diagNm2 != '') ">
+														 OR
+														 </if>
+													</if>
+													
+													<if test="diagNm1 !=null and diagNm1 != '' ">
+														 (<![CDATA[ ${diagNm1} ]]>)
+														 <if test="diagNm2 !=null and diagNm2 != '' ">
+														 	OR
+														 </if>
+													</if>
+													<if test="diagNm2 !=null and diagNm2 != '' ">
+														 (<![CDATA[ ${diagNm2} ]]>)
+													</if>
+													)
+											</if>
+											<if test="grade == '002'">
+											 AND NOT EXISTS(SELECT 
+											 					1 
+											 				FROM 
+											 					RD_INTEGRATION_INFO B 
+															WHERE 
+																RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+											<if test="grade == '003'">
+											 AND EXISTS(SELECT 
+										 					1 
+										 				FROM 
+										 					RD_INTEGRATION_INFO B 
+														WHERE 
+															RII.IDX = B.IDX AND DIAG_LAST_SEQ = 1 AND DIAG_NM1 = '미진단')
+											</if>
+										 GROUP BY RII.OBJECT_ID, RII.NAME, RII.AGE, RII.PATIENT_SEX, RII.DIAG_LAST_SEQ, RII.GENOME_CHIP_NM ) RII
+										 LEFT JOIN RD_PILOT_STUDY PS 
+								         ON RII.OBJECT_ID = PS.OBJECT_ID
+								         LEFT JOIN(SELECT OBJECT_IDX, GROUP_CONCAT(DISTINCT ABO ORDER BY testdate SEPARATOR' : ') ABO FROM csbrain2.mb_testblod WHERE IFNULL(ABO,'') != ''
+					            					  GROUP BY OBJECT_IDX)MTB
+					            	     ON RII.OBJECT_ID = MTB.OBJECT_IDX 
+								)RI
+								WHERE 1=1 
+									<if test="instCode !=null and instCode != '' ">
+										 AND INST_CODE  IN (${instCode})
+									</if>
+									<if test="abo !=null and abo != '' ">
+										<choose>
+											<when test="abo == 'ALL'">
+												AND IFNULL(ABO,'') != ''
+											</when>
+											<otherwise>
+												AND (${abo})
+											</otherwise>
+										</choose>
+									</if>
+								)T1
+								WHERE MC.OBJECT_IDX = T1.OBJECT_ID
+							)
+						)
+					</if>
+		ORDER BY OBJECT_IDX, MC.TEST_DAY, SELECTION_NUM	
+		
+	
+	</select>	
+</mapper>
+
+
+
+
+		

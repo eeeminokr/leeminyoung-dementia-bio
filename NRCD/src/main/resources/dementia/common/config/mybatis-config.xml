@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="ImagingInfoVO" type="dementia.imageryInfoMgt.service.ImagingInfoVO" />
+        <typeAlias alias="ResearchInfoVO" type="dementia.imageryInfoMgt.service.ResearchInfoVO" />
+        <typeAlias alias="DicomGrpDownVO" type="dementia.imageryInfoMgt.service.DicomGrpDownVO" />
+        <!--  <typeAlias alias="DicomGrpMstVO" type="dementia.imageryInfoMgt.service.DicomGrpMstVO" />-->
+        <typeAlias alias="imagingDownloadInfoVO" type="dementia.imageryInfoMgt.service.ImagingDownloadInfoVO" />
+        <typeAlias alias="EtccdVO" type="dementia.commoninfo.code.service.EtccdVO" />
+        <typeAlias alias="MemberVO" type="dementia.commoninfo.member.service.MemberVO" />
+        <typeAlias alias="ConfigUIVO" type="dementia.commoninfo.configuration.service.ConfigUIVO" />
+        <typeAlias alias="MailSvrInfoVO" type="dementia.commoninfo.mail.service.MailSvrInfoVO" />
+        <typeAlias alias="ManageSearchConditionsVO" type="dementia.basicinfo.service.ManageSearchConditionsVO" />
+        <typeAlias alias="AddSearchVO" type="dementia.basicinfo.service.AddSearchVO" />
+        <typeAlias alias="BrainwaveBeamVO" type="dementia.brainwaveMgt.service.BrainwaveBeamVO" />
+        <typeAlias alias="BrainwaveSensoryVO" type="dementia.brainwaveMgt.service.BrainwaveSensoryVO" />
+        <typeAlias alias="BrainwaveAttentionVO" type="dementia.brainwaveMgt.service.BrainwaveAttentionVO" />
+        <typeAlias alias="GenomeInfoVO" type="dementia.genomeInfoMgt.service.GenomeInfoVO" />
+        <typeAlias alias="ApoeInfoVO" type="dementia.genomeInfoMgt.service.ApoeInfoVO" />
+        <typeAlias alias="MenuVO" type="dementia.commoninfo.menu.service.MenuVO" />
+        <typeAlias alias="BioTakeMgtVO" type="dementia.bioMaterial.service.BioTakeMgtVO" />
+        <typeAlias alias="BiooutMstVO" type="dementia.bioMaterial.service.BiooutMstVO" />
+        <typeAlias alias="BiooutDtlVO" type="dementia.bioMaterial.service.BiooutDtlVO" />
+        <typeAlias alias="DashboardVO" type="dementia.main.service.DashboardVO" />
+        <typeAlias alias="ResidualViewVO" type="dementia.residualView.service.ResidualViewVO" />
+        <typeAlias alias="UsrAuthVO" type="dementia.basicinfo.service.UsrAuthVO" />
+        <typeAlias alias="DataIntegrationVO" type="dementia.dataIntegration.service.DataIntegrationVO" />
+        <typeAlias alias="CodeVO" type="dementia.commoninfo.code.service.CodeVO" />
+        <typeAlias alias="DataIntegrationMmseVO" type="dementia.dataIntegration.service.DataIntegrationMmseVO" />
+        <typeAlias alias="DataIntegrationSnsbVO" type="dementia.dataIntegration.service.DataIntegrationSnsbVO" />
+        <typeAlias alias="DataIntegrationSnsbVO2" type="dementia.dataIntegration.service.DataIntegrationSnsbVO2" />
+        <typeAlias alias="DataIntegrationBioMaterialVO" type="dementia.dataIntegration.service.DataIntegrationBioMaterialVO" />
+        <typeAlias alias="DataIntegrationMriSubVO" type="dementia.dataIntegration.service.DataIntegrationMriSubVO" />
+        <typeAlias alias="DataIntegrationMriSurfaceVO" type="dementia.dataIntegration.service.DataIntegrationMriSurfaceVO" />
+        <typeAlias alias="DataIntegrationMriThickVO" type="dementia.dataIntegration.service.DataIntegrationMriThickVO" />
+        <typeAlias alias="ImagingMriSubVO" type="dementia.imageryInfoMgt.service.ImagingMriSubVO" />
+        <typeAlias alias="ImagingMriSurfaceVO" type="dementia.imageryInfoMgt.service.ImagingMriSurfaceVO" />
+        <typeAlias alias="ImagingMriThickVO" type="dementia.imageryInfoMgt.service.ImagingMriThickVO" />
+        <typeAlias alias="DataIntegrationPetResultVO" type="dementia.dataIntegration.service.DataIntegrationPetResultVO" />
+        <typeAlias alias="DataIntegrationCdrVO" type="dementia.dataIntegration.service.DataIntegrationCdrVO" />
+        <typeAlias alias="PetSuvrVO" type="dementia.imageryInfoMgt.service.PetSuvrVO"/>
+    </typeAliases>
+</configuration>

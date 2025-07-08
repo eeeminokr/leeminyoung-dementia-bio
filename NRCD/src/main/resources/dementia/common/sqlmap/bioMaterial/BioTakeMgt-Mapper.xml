@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BioTakeMgt">
+	<resultMap id="bioTakeMgtMap" type="BioTakeMgtVO">
+		<result property="biomatId"  		column="BIOMAT_ID"  />
+		<result property="objectId"  		column="OBJECT_ID"  />
+		<result property="takeDate"  		column="TAKE_DATE"  />
+		<result property="biomatKind"  		column="BIOMAT_KIND"  />
+		<result property="remarks"  		column="REMARKS"  />
+		<result property="createDate"  		column="CREATE_DATE"  />
+		<result property="name"  			column="NAME"  />
+		<result property="birth"  			column="BIRTH"  />
+		<result property="takeAgency"  		column="TAKE_AGENCY"  />
+		<result property="takeAgencyCode"  	column="TAKE_AGENCY_code"  />
+		<result property="dtlCnt"  			column="DTL_CNT"  />
+	</resultMap>
+	
+ 	<resultMap id="bioTakeDtlMap" type="BioTakeMgtVO">
+ 		<result property="biomatId"  		column="BIOMAT_ID"  />
+ 		<result property="biomatKind"  		column="BIOMAT_KIND"  />
+		<result property="objectId"  		column="OBJECT_ID"  />
+		<result property="takeDate"  		column="TAKE_DATE"  />
+		<result property="takeAgency"  		column="TAKE_AGENCY"  />
+		<result property="biotakeSeq"  		column="BIOTAKE_SEQ"  />
+		<result property="biomatType"  		column="BIOMAT_TYPE"  />
+		<result property="storage"  		column="STORAGE"  />
+		<result property="boxNo"  			column="BOX_NO"  />
+		<result property="sizeKind"  		column="SIZE_KIND"  />
+		<result property="size"  			column="SIZE"  />
+		<result property="quantity"  		column="QUANTITY"  />
+		<result property="color"  			column="COLOR"  />
+		<result property="transparen"  		column="TRANSPAREN"  />
+		<result property="remarks"  		column="REMARKS"  />
+		<result property="remarksMst"  		column="REMARKS_MST"  />
+		<result property="createDate"  		column="CREATE_DATE"  />	
+	</resultMap>
+	
+	<resultMap id="bioTakeReseMap" type="BioTakeMgtVO">
+		<result property="reseDate"  		column="RESE_DATE"  />
+		<result property="objectId"  		column="OBJECT_ID"  />
+		<result property="biomatKind"  		column="BIOMAT_KIND"  />
+		<result property="biomatType"  		column="BIOMAT_TYPE"  />
+		<result property="name"  			column="NAME"  />
+		<result property="biomatId"  		column="BIOMAT_ID"  />
+		<result property="printCnt"  		column="PRINTCNT"  />
+	</resultMap>
+	
+	<resultMap id="selectBoxInfoMap" type="BioTakeMgtVO">
+		<result property="cdbs" 			column="CDBS" />
+		<result property="cdnm"				column="CDNM" />
+		<result property="sortno"				column="SORTNO" />
+	</resultMap>
+	
+	<select id="selectBioTakeMstListTotal" parameterType="map" resultType="int">
+		SELECT 
+			COUNT(*) AS TOTAL
+		FROM
+			RD_BIOTAKE_MST A
+		LEFT OUTER JOIN 
+			csbrain2.mb_object B
+		    ON A.OBJECT_ID = B.IDX
+		WHERE 1 = 1
+			<if test="biomatKind !=null and biomatKind != '' ">
+				AND A.BIOMAT_KIND = #{biomatKind}
+			</if>
+			<if test="objectId !=null and objectId != '' ">
+				AND A.OBJECT_ID IN (${objectId})
+			</if>
+			<if test="name !=null and name != '' ">
+				AND B.NAME= #{name}
+			</if>
+			<if test="biomatId !=null and biomatId != '' ">
+				AND A.BIOMAT_ID = #{biomatId}
+			</if>
+			<if test="startDate !=null and startDate != '' ">
+				AND A.TAKE_DATE BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="takeAgency !=null and takeAgency != '' ">
+				AND A.TAKE_AGENCY = #{takeAgency}
+			</if>
+	</select>
+	
+	<select id="selectBioTakeMstList" parameterType="map" resultMap="bioTakeMgtMap">
+		SELECT 
+			A.TAKE_DATE						TAKE_DATE
+			, D.CDNM						BIOMAT_KIND
+			, A.OBJECT_ID					OBJECT_ID
+			
+			<!--, B.NAME						NAME-->
+			, CONCAT_WS('-', B.birth1, CASE WHEN LENGTH(B.birth2) = 1 THEN LPAD(B.birth2,2,'0') ELSE B.birth2 END) BIRTH
+			, A.BIOMAT_ID					BIOMAT_ID
+			, A.REMARKS						REMARKS
+			, C.CDNM						TAKE_AGENCY
+			, A.TAKE_AGENCY					TAKE_AGENCY_CODE
+			, (SELECT 
+					COUNT(*) 
+				FROM 
+					RD_BIOTAKE_DTL 
+				WHERE 
+					BIOMAT_ID = A.BIOMAT_ID 
+					AND OBJECT_ID = A.OBJECT_ID
+					AND TAKE_DATE = A.TAKE_DATE)		DTL_CNT
+			, DATE_FORMAT(A.CREATE_DATE, "%Y-%m-%d %H:%i:%s")		CREATE_DATE
+		FROM
+			RD_BIOTAKE_MST A
+		LEFT OUTER JOIN 
+			csbrain2.mb_object B
+		    ON A.OBJECT_ID = B.IDX
+		LEFT OUTER JOIN
+			csbrain2.mb_etccd C
+		ON
+			C.CDBS = A.TAKE_AGENCY
+			AND C.KDCD = 'C008'
+			AND C.UNUSEYN = 'N'
+		LEFT OUTER JOIN
+			csbrain2.mb_etccd D
+		ON
+			D.CDBS = A.BIOMAT_KIND
+			AND D.KDCD = 'C014'
+			AND D.UNUSEYN = 'N'
+		WHERE 1 = 1
+			<if test="biomatKind !=null and biomatKind != '' ">
+				AND INSTR(A.BIOMAT_KIND, #{biomatKind}) > 0
+			</if>
+			<if test="objectId !=null and objectId != '' ">
+				AND A.OBJECT_ID IN (${objectId})
+			</if>
+			<if test="name !=null and name != '' ">
+				AND INSTR(B.NAME, #{name}) > 0
+			</if>
+			<if test="biomatId !=null and biomatId != '' ">
+				AND INSTR(A.BIOMAT_ID, #{biomatId}) > 0
+			</if>
+			<if test="startDate !=null and startDate != '' ">
+				AND A.TAKE_DATE BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="takeAgency !=null and takeAgency != '' ">
+				AND A.TAKE_AGENCY = #{takeAgency}
+			</if>
+		ORDER BY A.CREATE_DATE DESC
+		LIMIT #{start}, #{limit}
+	</select>
+	
+	<select id="selectBioTakeDtlListTotal" parameterType="map" resultType="int">
+		SELECT
+			COUNT(*) AS TOTAL
+		FROM
+			RD_BIOTAKE_DTL A
+		WHERE
+			BIOMAT_ID = #{biomatId}
+			AND OBJECT_ID = #{objectId}
+			AND TAKE_DATE = #{takeDate}
+	</select>
+	
+	<select id="selectBioTakeDtlList" parameterType="map" resultMap="bioTakeDtlMap">
+		SELECT
+			A.BIOMAT_ID
+			, A.OBJECT_ID
+			, A.TAKE_DATE 
+			, A.BIOTAKE_SEQ
+			, G.NAME
+			, H.CDNM				BIOMAT_KIND
+            , I.CDNM				TAKE_AGENCY
+			, A.REMARKS_MST
+			, B.CDNM 				BIOMAT_TYPE
+			, C.CDNM				STORAGE
+			, A.BOX_NO
+            , E.CDNM				COLOR
+			, A.TRANSPAREN
+			, CASE A.SIZE_KIND
+				WHEN '1000' THEN '정규격'
+                WHEN '2000' THEN '비규격'
+			  END	SIZE_KIND
+			, CASE A.SIZE_KIND 
+				WHEN '1000' THEN F.CDNM
+                WHEN '2000' THEN A.SIZE
+			  END	SIZE
+			, A.QUANTITY			
+			, A.REMARKS
+			, DATE_FORMAT(A.CREATE_DATE, "%Y-%m-%d %H:%i:%s")		CREATE_DATE
+		FROM
+			(SELECT 
+				RBD.* 
+                , RBM.TAKE_AGENCY
+                , RBM.REMARKS				REMARKS_MST
+			 FROM 
+				RD_BIOTAKE_DTL RBD
+			 JOIN 
+				RD_BIOTAKE_MST RBM
+			 ON 
+				RBD.OBJECT_ID = RBM.OBJECT_ID
+				AND RBD.BIOMAT_ID = RBM.BIOMAT_ID
+				AND RBD.TAKE_DATE = RBM.TAKE_DATE) A
+		LEFT OUTER JOIN
+			csbrain2.mb_etccd B
+		ON
+			B.CDBS = A.BIOMAT_TYPE
+			AND B.KDCD = #{biomatKind}
+		LEFT OUTER JOIN
+			csbrain2.mb_etccd C
+		ON
+			C.CDBS = A.STORAGE
+			AND C.KDCD = 'A002'
+		LEFT OUTER JOIN
+			csbrain2.mb_etccd E
+		ON
+			E.CDBS = A.COLOR
+			AND E.KDCD = #{bioColorCode}
+		LEFT OUTER JOIN
+			csbrain2.mb_etccd F
+		ON
+			F.CDBS = A.SIZE
+			AND F.KDCD = #{sizeKindCode}
+		LEFT OUTER JOIN 
+			csbrain2.mb_object G
+		ON 
+			A.OBJECT_ID = G.IDX
+		LEFT OUTER JOIN
+			csbrain2.mb_etccd H
+		ON
+			H.CDBS = A.BIOMAT_KIND
+			AND H.KDCD = 'C014'
+			AND H.UNUSEYN = 'N'
+		LEFT OUTER JOIN
+			csbrain2.mb_etccd I
+		ON
+			I.CDBS = A.TAKE_AGENCY
+			AND I.KDCD = 'C008'
+			AND I.UNUSEYN = 'N'
+		WHERE
+		1=1
+		<choose>
+			<when test='schKeyField =="selectDown"'>
+			AND (A.BIOMAT_ID, A.OBJECT_ID, A.TAKE_DATE, A.BIOTAKE_SEQ) IN (${schKeyWord}) 
+			</when>
+			<otherwise>
+			AND A.BIOMAT_ID = #{biomatId}
+			AND A.OBJECT_ID = #{objectId}
+			AND A.TAKE_DATE = #{takeDate}
+			</otherwise>
+		</choose>
+		ORDER BY BIOTAKE_SEQ ASC
+		<if test="limit !=0">	
+		LIMIT #{start}, #{limit}
+		</if>
+	</select>
+	
+	<select id="selectBioTakeOriginDtlList" parameterType="map" resultMap="bioTakeDtlMap">
+		SELECT
+			A.BIOMAT_ID
+			, A.OBJECT_ID
+			, A.TAKE_DATE 
+			, A.BIOTAKE_SEQ
+			, A.BIOMAT_TYPE
+			, A.STORAGE
+			, A.BOX_NO
+            , A.COLOR
+			, A.TRANSPAREN
+			, A.SIZE_KIND
+			, A.SIZE
+ 			, CASE SIZE_KIND 
+				WHEN '1000' THEN F.CDNM
+                WHEN '2000' THEN A.SIZE
+			  END	CAL_SIZE			
+			, A.QUANTITY			
+			, A.REMARKS
+			, B.REMARKS			REMARKS_MST
+			, DATE_FORMAT(A.CREATE_DATE, "%Y-%m-%d %H:%i:%s")		CREATE_DATE
+			, B.TAKE_AGENCY
+		FROM
+			RD_BIOTAKE_DTL A
+		JOIN
+			RD_BIOTAKE_MST B
+		ON
+			A.BIOMAT_ID = B.BIOMAT_ID
+			AND A.OBJECT_ID = B.OBJECT_ID
+			AND A.TAKE_DATE = B.TAKE_DATE
+		LEFT OUTER JOIN
+			csbrain2.mb_etccd F
+		ON
+			F.CDBS = A.SIZE
+			AND F.UNUSEYN = 'N'
+			AND F.KDCD = #{sizeKindCode}
+		WHERE
+			A.BIOMAT_ID = #{biomatId}
+			AND A.OBJECT_ID = #{objectId}
+			AND A.TAKE_DATE = #{takeDate}
+		<if test="orderBy !=null and orderBy != '' ">
+			<if test='orderBy =="A"'>
+				ORDER BY BIOTAKE_SEQ ASC
+			</if>
+			<if test='orderBy =="D"'>
+				ORDER BY BIOTAKE_SEQ DESC
+			</if>
+		</if>		
+		LIMIT #{start}, #{limit}
+	</select>
+	
+	<delete id="deleteBioTakeMst" parameterType="String">
+		DELETE FROM 
+			RD_BIOTAKE_MST
+		WHERE
+			BIOMAT_ID = #{biomatId}
+			AND OBJECT_ID = #{objectId}
+			AND TAKE_DATE = #{takeDate}
+	</delete>
+	
+	<delete id="deleteBioTakeDtl" parameterType="String">
+		DELETE FROM 
+			RD_BIOTAKE_DTL
+		WHERE
+			BIOMAT_ID = #{biomatId}
+			AND OBJECT_ID = #{objectId}
+			AND TAKE_DATE = #{takeDate}
+			<if test="biotakeSeq !=null and biotakeSeq != '' ">
+				AND BIOTAKE_SEQ = #{biotakeSeq}
+			</if>
+	</delete>
+	
+	<select id="selectBioTakeReseList" parameterType="map" resultMap="bioTakeReseMap">
+		SELECT 
+			A.RESEDATE
+            ,A.BIOMAT_TYPE
+            ,A.BIOMAT_KIND
+            ,A.OBJECT_ID
+            ,A.NAME
+            ,IFNULL(BIM.BIOMAT_ID,IFNULL((SELECT BIOMAT_ID FROM RD_BIOTAKE_MST BM WHERE BM.OBJECT_ID=A.OBJECT_ID AND BM.TAKE_DATE = A.RESEDATE ORDER BY BIOMAT_ID LIMIT 1)
+            		,A.BIOMAT_ID)) BIOMAT_ID
+            ,1 AS PRINTCNT
+		FROM 
+			(SELECT
+				A.RESEDATE			RESEDATE
+				, B.BIOMAT_TYPE		BIOMAT_TYPE
+			    , B.BIOMAT_TYPE_NM	BIOMAT_KIND
+				, A.OBJECT_IDX		OBJECT_ID
+			    , B.OBJECT_NAME		NAME
+			    , B.BIOMAT_ID		BIOMAT_ID	
+			FROM 
+				csbrain2.mb_resecsf A
+            LEFT JOIN
+				csbrain2.V_BIOMAT_INFO B
+			ON A.OBJECT_IDX = B.OBJECT_ID
+				AND A.RESEDATE = B.RESE_DATE
+			WHERE 1=1
+			<if test="takeDate !=null and takeDate != '' ">
+				AND A.RESEDATE = #{takeDate}
+			</if>	
+		
+		UNION
+		
+		SELECT
+				A.RESEDATE			RESEDATE
+				, B.BIOMAT_TYPE		BIOMAT_TYPE
+			    , B.BIOMAT_TYPE_NM	BIOMAT_KIND
+				, A.OBJECT_IDX		OBJECT_ID
+			    , B.OBJECT_NAME		NAME
+			    , B.BIOMAT_ID		BIOMAT_ID	
+			FROM 
+				csbrain2.mb_resemri A
+			LEFT JOIN
+				csbrain2.V_BIOMAT_INFO B
+			ON A.OBJECT_IDX = B.OBJECT_ID
+				AND A.RESEDATE = B.RESE_DATE
+			WHERE 1=1
+			<if test="takeDate !=null and takeDate != '' ">
+				AND A.RESEDATE = #{takeDate}
+			</if>		
+			) A
+		LEFT JOIN 
+           RD_BIOMAT_ID_MGT BIM
+        ON BIM.OBJECT_ID = A.OBJECT_ID 
+           AND BIM.TAKE_DATE = A.RESEDATE 
+           AND BIM.BIOMAT_KIND = A.BIOMAT_TYPE
+		ORDER BY BIOMAT_TYPE, OBJECT_ID ASC		
+		LIMIT #{start}, #{limit}
+	</select>
+	
+	<select id="selectBioTakeReseListTotal" parameterType="map" resultType="int">
+		SELECT 
+			SUM(A.CNT + B.CNT) TOTAL
+		FROM 
+			(SELECT
+				COUNT(A.CSFID) CNT
+			FROM 
+				csbrain2.mb_resecsf A
+			JOIN 
+				csbrain2.mb_object B
+			ON A.OBJECT_IDX = B.IDX
+			WHERE 1=1
+			<if test="takeDate !=null and takeDate != '' ">
+				AND A.RESEDATE = #{takeDate}
+			</if>	
+			) A,
+			(SELECT
+				COUNT(A.MRIID) CNT
+			FROM 
+				csbrain2.mb_resemri A
+			JOIN 
+				csbrain2.mb_object B
+			ON A.OBJECT_IDX = B.IDX
+			WHERE 1=1
+			<if test="takeDate !=null and takeDate != '' ">
+				AND A.RESEDATE = #{takeDate}
+			</if>	
+			) B
+	</select>
+	
+	<update id="insertBioTakeMst" parameterType="map">
+        INSERT INTO RD_BIOTAKE_MST(
+	        	BIOMAT_ID
+	        	, OBJECT_ID
+	        	, TAKE_DATE
+	        	, BIOMAT_KIND
+	        	, REMARKS
+	        	, TAKE_AGENCY
+				, CREATE_DATE
+				, CREATE_BY
+				, UPDATE_DATE
+				, UPDATE_BY
+        	) VALUES (
+        		 #{biomatId, jdbcType=VARCHAR}
+				, #{objectId , jdbcType=VARCHAR}
+				, #{takeDate , jdbcType=VARCHAR}
+				, #{biomatKind , jdbcType=VARCHAR}
+				, #{remarks , jdbcType=VARCHAR}
+				, #{takeAgency , jdbcType=VARCHAR}
+				, now()
+				, #{createBy, jdbcType=VARCHAR}
+				, now()
+				, #{updateBy , jdbcType=VARCHAR}
+        	)
+    </update>
+    
+    <update id="insertBioTakeDtl" parameterType="map">
+        INSERT INTO RD_BIOTAKE_DTL(
+	        	BIOMAT_ID
+	        	, OBJECT_ID
+	        	, TAKE_DATE
+	        	, BIOMAT_KIND
+	        	, BIOTAKE_SEQ
+	        	, BIOMAT_TYPE
+	        	, STORAGE
+	        	, BOX_NO
+	        	, SIZE_KIND
+	        	, SIZE
+	        	, QUANTITY
+	        	, COLOR
+	        	, TRANSPAREN
+	        	, REMARKS
+				, CREATE_DATE
+				, CREATE_BY
+				, UPDATE_DATE
+				, UPDATE_BY
+        	) VALUES (
+        		 #{biomatId, jdbcType=VARCHAR}
+				, #{objectId , jdbcType=VARCHAR}
+				, #{takeDate , jdbcType=VARCHAR}
+				, #{biomatKind , jdbcType=VARCHAR}
+				, #{biotakeSeq , jdbcType=VARCHAR}
+				, #{biomatType , jdbcType=VARCHAR}
+				, #{storage , jdbcType=VARCHAR}
+				, #{boxNo , jdbcType=VARCHAR}
+				, #{sizeKind , jdbcType=VARCHAR}
+				, #{size , jdbcType=VARCHAR}
+				, #{quantity, jdbcType=VARCHAR}
+				, #{color , jdbcType=VARCHAR}
+				, #{transparen , jdbcType=VARCHAR}
+				, #{remarksDtl , jdbcType=VARCHAR}
+				, now()
+				, #{createBy, jdbcType=VARCHAR}
+				, now()
+				, #{updateBy , jdbcType=VARCHAR}
+        	)
+    </update>
+    
+    <select id="selectBioComboList" parameterType="map" resultMap="selectBoxInfoMap">
+		SELECT
+			CDBS
+			, CDNM
+			, SORTNO
+		FROM 
+			csbrain2.mb_etccd
+    	WHERE
+      		KDCD = #{bioCombo}
+      		AND UNUSEYN = 'N'
+      	ORDER BY
+      		SORTNO ASC
+	</select>
+	
+	<update id="insertBiomatIdMgt" parameterType="map">
+        INSERT INTO RD_BIOMAT_ID_MGT(
+				BIOMAT_ID
+                , OBJECT_ID
+                , TAKE_DATE
+                , BIOMAT_KIND
+				, CREATE_DATE
+				,  CREATE_BY
+				, UPDATE_DATE
+				, UPDATE_BY
+        	) VALUES (
+        		 #{biomatId, jdbcType=VARCHAR}
+				, #{objectId , jdbcType=VARCHAR}
+				, #{takeDate , jdbcType=VARCHAR}
+				, #{biomatKind , jdbcType=VARCHAR}
+				, now()
+				, #{createBy, jdbcType=VARCHAR}
+				, now()
+				, #{createBy, jdbcType=VARCHAR}
+        	)
+        	ON DUPLICATE KEY UPDATE
+        	
+				BIOMAT_ID =  #{biomatId, jdbcType=VARCHAR}
+				, UPDATE_DATE= now()
+				, UPDATE_BY =  'test'
+    </update>
+</mapper>
